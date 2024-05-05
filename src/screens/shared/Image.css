@@ -1,0 +1,49 @@
+@keyframes image-loading {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes image-loaded {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.image-loading {
+  background-image: linear-gradient(lightblue, #ccc);
+  animation-name: image-loading;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+.image-loaded {
+  animation: image-loaded 1.5s forwards;
+}
+
+.image-error {
+  position: relative;
+  animation: none;
+  background: red;
+}
+.image-error::after {
+  content: "Error loading image";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  font-size: 1.5rem;
+}

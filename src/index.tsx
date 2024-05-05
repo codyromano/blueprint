@@ -1,0 +1,38 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import GameArea from "./screens/GameArea";
+import GameState from "./models/GameState";
+import GameContext, { getInitialGameState } from "./state/GameStateProvider";
+
+const { Provider: GameStateProvider } = GameContext;
+
+const routes = createRoutesFromElements(
+  <Route>
+    <Route path="/" element={<GameArea />} />
+  </Route>
+);
+
+const router = createBrowserRouter(routes);
+const App = () => <RouterProvider router={router} />;
+
+const rootElement = document.getElementById("root")!;
+const root = ReactDOM.createRoot(rootElement);
+
+function GameStateManager({ children }: { children: React.ReactNode }) {
+  const state = React.useState<GameState>(getInitialGameState());
+  return <GameStateProvider value={state}>{children}</GameStateProvider>;
+}
+
+root.render(
+  <React.StrictMode>
+    <GameStateManager>
+      <App />
+    </GameStateManager>
+  </React.StrictMode>
+);

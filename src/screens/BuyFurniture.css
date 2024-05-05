@@ -1,0 +1,88 @@
+.hscroll-menu {
+  position: relative;
+  background: #fff;
+  height: 90%;
+  max-height: 500px;
+  width: 90%;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  border: solid #000 1px;
+  border-radius: 2rem;
+}
+
+.hscroll-menu li {
+  width: 30%;
+  min-width: 250px;
+  display: inline-block;
+}
+
+.hscroll-menu li h2 {
+  display: block;
+  text-align: center;
+  font-family: Japandi;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.buy-furniture-tile-button {
+  font-family: Helvetica;
+  max-width: 100%;
+}
+
+.item-cost {
+  display: inline-block;
+  position: relative;
+  font-family: Japandi;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.item-cost::before {
+  position: absolute;
+  left: -2.5rem;
+  top: -0.5rem;
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  background: url(/images/money.webp) no-repeat;
+  background-size: cover;
+}
+
+/*
+Soft Blue: #AED9E0
+Mint Green: #B2D8B2
+Peach or Coral: #FFB6A0
+Light Gray: #D3D3D3
+*/
+
+.hscroll-menu .image-loaded {
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+
+.block-button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+
+  text-align: center;
+  background-color: #b2d8b2;
+
+  color: #000;
+  font-weight: bold;
+  font-family: Japandi;
+  font-size: 1.05rem;
+  border: solid #d3d3d3 1px;
+
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}

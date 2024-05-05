@@ -1,0 +1,92 @@
+.puzzle-anagram {
+  display: flex;
+  width: 100%;
+}
+
+.puzzle-overview {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.digit-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.digits-selected {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+}
+
+.hscroll-menu .digit-selector-digit {
+  max-width: 33%;
+  min-width: auto;
+  text-align: center;
+}
+
+.guess-result-correct::after {
+  content: "👌";
+  position: absolute;
+  font-size: 3rem;
+  animation: zoom 1s forwards;
+}
+
+.guess-result-incorrect::after {
+  content: "❌";
+  position: absolute;
+  font-size: 3rem;
+  animation: zoom 1s forwards;
+}
+
+@keyframes zoom {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+.digit-selector-button,
+.digit-selector-button-selected {
+  font-family: Japandi;
+  font-weight: bold;
+}
+
+.digit-selector-button-selected {
+  font-size: 3rem;
+}
+
+.digit-selector-digit-button-pressed {
+  background-color: #ccc;
+  pointer-events: none;
+  /* animation: shrink-button 0.3s forwards; */
+}
+
+@keyframes shrink-button {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+.digit-selector-button {
+  font-size: 2rem;
+  background-color: #ccc;
+  display: block;
+  width: 100%;
+  max-width: 25%;
+  border-radius: 0.5rem;
+  padding: 1rem 0;
+}

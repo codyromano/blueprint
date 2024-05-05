@@ -1,0 +1,36 @@
+/*
+Soft Blue: #AED9E0
+Mint Green: #B2D8B2
+Peach or Coral: #FFB6A0
+Light Gray: #D3D3D3
+*/
+
+.game-title {
+  color: #000;
+}
+
+h1 {
+  font-family: TypoDraft;
+}
+
+.intro-splash-screen {
+  background-color: #aed9e0;
+  animation: fadeinout 6s linear forwards;
+}
+
+@keyframes fadeinout {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  /*
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+  */
+}

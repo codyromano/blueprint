@@ -1,0 +1,108 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: Japandi;
+  font-weight: lighter;
+  src: url(/fonts/Japandi%20Light.otf);
+}
+
+@font-face {
+  font-family: Japandi;
+  font-weight: normal;
+  src: url(/fonts/Japandi%20Regular.otf);
+}
+
+@font-face {
+  font-family: Japandi;
+  font-weight: bold;
+  src: url(/fonts/Japandi%20Bold.otf);
+}
+
+/*
+Soft Blue: #AED9E0
+Mint Green: #B2D8B2
+Peach or Coral: #FFB6A0
+Light Gray: #D3D3D3
+*/
+
+button {
+  appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+html,
+body {
+  background-color: #000;
+}
+
+button {
+  cursor: pointer;
+}
+
+.base-screen {
+  width: 100vw;
+  height: calc(100vw / 2);
+  max-height: 80%;
+}
+
+.row {
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.05rem;
+}
+
+h1 {
+  font-family: Japandi;
+}
+
+h2,
+h3,
+button {
+  font-family: Helvetica Neue;
+}
+
+.typography-normal {
+  font-family: Helvetica Neue;
+}
+
+
+.focal-point {
+  position: relative;
+}
+
+.focal-point::after {
+  content: "";
+  display: block;
+  background: url(/images/pointer.webp) no-repeat;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: -30px;
+  left: calc(50% - 15px);
+
+  animation: focal-pointer ease-in-out 1s infinite;
+}
+
+@keyframes focal-pointer {
+  0% {
+    translate: 0 0%;
+  }
+  50% {
+    translate: 0 25%;
+    transform: scale(1.25);
+  }
+  100% {
+    translate: 0 0%;
+  }
+}

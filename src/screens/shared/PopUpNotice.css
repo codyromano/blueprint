@@ -1,0 +1,28 @@
+.pop-up-notice {
+  position: absolute;
+  top: 50vh;
+  left: calc(50vw - 30vw / 2);
+
+  z-index: 1;
+
+  width: 30vw;
+
+  background-color: #fff;
+  font-size: 1.25em;
+  padding: 0.25rem;
+  opacity: 0;
+
+  animation: fade-in 1s ease-in forwards;
+  animation-delay: 1s;
+
+  padding: 1rem;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

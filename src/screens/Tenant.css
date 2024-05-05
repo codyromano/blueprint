@@ -1,0 +1,5 @@
+.tenant {
+  position: absolute;
+  z-index: 5;
+  transition: all ease 5s;
+}
