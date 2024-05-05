@@ -5,6 +5,7 @@ import "./PuzzleAnagram.css";
 import getAllStringPermutations from "./getAllStringPermutations";
 
 const getAllWords: () => Promise<string[]> = () => new Promise((resolve, reject) => {
+  /*
   import('./popularEnglishWords.json')
   .then((module) => {
     const data = module.default; // Access the exported JSON data
@@ -14,6 +15,8 @@ const getAllWords: () => Promise<string[]> = () => new Promise((resolve, reject)
     console.error('Error loading data.json:', error);
     reject(error);
   });
+  */
+ resolve([]);
 });
 
 function getRandomStringFromArray(strings: string[]): string {
