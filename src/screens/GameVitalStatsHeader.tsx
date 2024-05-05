@@ -10,11 +10,13 @@ export default function GameVitalStatsHeader({ cash, happiness }: Props) {
     <div
       style={{
         display: "flex",
+        position: "absolute",
         fontFamily: "Japandi",
+        fontWeight: "bold",
         justifyContent: "flex-end",
         marginBottom: "0.5rem",
         width: "95%",
-        top: "0ch",
+        top: "-1rem",
         color: "#fff",
       }}
     >

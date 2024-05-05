@@ -1,6 +1,4 @@
-import React from "react";
-
-import { useRef, useState, useEffect, MouseEvent } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 interface Position {
   x: number;
@@ -17,47 +15,50 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
   });
 
   useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
+    const handleMove = (event: MouseEvent | TouchEvent) => {
       if (isDragging && draggableItemRef.current) {
-        const deltaX = event.clientX - initialPosition.x;
-        const deltaY = event.clientY - initialPosition.y;
+        const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
+        const clientY = "touches" in event ? event.touches[0].clientY : event.clientY;
+        const deltaX = clientX - initialPosition.x;
+        const deltaY = clientY - initialPosition.y;
         setPosition({
           x: position.x + deltaX,
           y: position.y + deltaY,
         });
-        setInitialPosition({ x: event.clientX, y: event.clientY });
+        setInitialPosition({ x: clientX, y: clientY });
       }
     };
 
-    const handleMouseDown = (event: MouseEvent) => {
+    const handleStart = (event: MouseEvent | TouchEvent) => {
       if (draggableItemRef.current) {
         setIsDragging(true);
-        setInitialPosition({ x: event.clientX, y: event.clientY });
+        const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
+        const clientY = "touches" in event ? event.touches[0].clientY : event.clientY;
+        setInitialPosition({ x: clientX, y: clientY });
       }
     };
 
-    const handleMouseUp = () => {
+    const handleEnd = () => {
       setIsDragging(false);
     };
 
     if (isDragging) {
-      // @ts-ignore
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("mousemove", handleMove);
+      document.addEventListener("touchmove", handleMove);
+      document.addEventListener("mouseup", handleEnd);
+      document.addEventListener("touchend", handleEnd);
     }
 
-    // @ts-ignore
-    draggableItemRef?.current?.addEventListener("mousedown", handleMouseDown);
+    draggableItemRef.current?.addEventListener("mousedown", handleStart);
+    draggableItemRef.current?.addEventListener("touchstart", handleStart);
 
     return () => {
-      draggableItemRef?.current?.removeEventListener(
-        "mousedown",
-        // @ts-ignore
-        handleMouseDown
-      );
-      // @ts-ignore
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("touchmove", handleMove);
+      document.removeEventListener("mouseup", handleEnd);
+      document.removeEventListener("touchend", handleEnd);
+      draggableItemRef.current?.removeEventListener("mousedown", handleStart);
+      draggableItemRef.current?.removeEventListener("touchstart", handleStart);
     };
   }, [isDragging, initialPosition, position]);
 

@@ -7,17 +7,16 @@ export default function DebugOverlay({ state }: { state: GameState }) {
       style={{
         position: "fixed",
         maxHeight: "100%",
-        width: "100%",
         overflowY: "scroll",
         color: "#fff",
-        top: 0,
-        left: 0,
+        top: '1rem',
+        left: '1rem',
         zIndex: 100,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
       }}
     >
       <details>
-        <summary>Debug State</summary>
+        <summary>Debug</summary>
         <pre>{JSON.stringify(state, null, 2)}</pre>
       </details>
     </div>

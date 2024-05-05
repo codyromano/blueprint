@@ -103,6 +103,7 @@ export default function GameArea() {
         {ownedItems.length > 0 &&
           ownedItems.map((item) => (
             <Furniture
+              key={item.id}
               onDragPositionChanged={(x, y) => {
                 setGame((state) => {
                   const newState = { ...state };
@@ -128,7 +129,6 @@ export default function GameArea() {
                   setActiveOverlayMenu(ContextOverlayMenu.AssembleFurniture);
                 }
               }}
-              key={item.id}
               ownedItem={item}
             />
           ))}
@@ -147,6 +147,7 @@ export default function GameArea() {
 
           return (
             <Tenant
+              key={tenant.id}
               secondsUntilMoneyIsReady={secondsUntilMoneyReady}
               onCollectMoney={() => {
                 setGame((state) => {
