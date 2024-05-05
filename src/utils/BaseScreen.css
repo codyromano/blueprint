@@ -72,8 +72,16 @@ button {
   font-family: Helvetica Neue;
 }
 
+.typography-normal, .typography-small {
+  max-width: 25rem;
+}
+
 .typography-normal {
   font-family: Helvetica Neue;
+}
+
+.typography-small {
+  font-size: 0.8rem;
 }
 
 
@@ -106,4 +114,8 @@ button {
   100% {
     translate: 0 0%;
   }
+}
+
+p {
+  font-family: Helvetica; 
 }

@@ -22,7 +22,7 @@ export default function PuzzleAnagram({
   difficulty,
 }: Puzzle) {
   const anagrams = React.useMemo(() => getAnagramWords(), []);
-  const secondsLeft = useCountdown(1000);
+  const secondsLeft = useCountdown(60);
   const [wordGuessResult, setWordGuessResult] = React.useState<
     "unfinished" | "correct" | "incorrect"
   >("unfinished");
@@ -56,13 +56,13 @@ export default function PuzzleAnagram({
   };
 
   useEffect(() => {
-    if (secondsLeft === 0) {
-      const rating = getPuzzleRating();
+    const ratingResult = getPuzzleRating();
 
-      if (rating === 0) {
+    if (secondsLeft === 0 || ratingResult === 3) {
+      if (ratingResult === 0) {
         onPuzzleFailed();
       } else {
-        onPuzzleSolved(rating);
+        onPuzzleSolved(ratingResult);
       }
     }
   }, [secondsLeft]);
@@ -90,7 +90,7 @@ export default function PuzzleAnagram({
     <div className="puzzle-anagram">
       <div className="puzzle-overview">
         <div className="puzzle-overview-row row">
-          <h2>Anagrams</h2>
+          <h2>How to play</h2>
           <p>Find all of the anagrams of the provided letters.</p>
         </div>
 
@@ -143,22 +143,21 @@ export default function PuzzleAnagram({
           ))}
         </div>
 
-        {selectedLetterIndicies.length > 0 && (
           <div
             style={{
               display: "flex",
               marginTop: "2rem",
+              gap: "2rem",
               justifyContent: "center",
             }}
           >
-            <button
+            {selectedLetterIndicies.length > 0 && <button
               style={{ color: "red", fontSize: "1rem" }}
               onClick={() => setSelectedLetterIndicies([])}
             >
               Reset
-            </button>
+            </button>}
           </div>
-        )}
       </div>
     </div>
   );

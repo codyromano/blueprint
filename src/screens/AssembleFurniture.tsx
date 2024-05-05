@@ -3,12 +3,14 @@ import Modal from "./shared/Modal";
 import PuzzleAnagram from "./PuzzleAnagram/PuzzleAnagram";
 import Puzzle from "../models/Puzzle";
 import Markers from "../models/Markers";
+import FurnitureModels from "../models/Furniture";
 import GameState from "../models/GameState";
 import GameContext from "../state/GameStateProvider";
 import getObjectValues from "../utils/getObjectValues";
+import Furniture from "./Furniture";
+import Image from "./shared/Image";
 
 enum AssembleFurnitureResult {
-  FAILURE,
   PENDING,
   SUCCESS,
 }
@@ -20,6 +22,15 @@ const getIsFirstTimeAssembly = (state: GameState) => {
   );
 };
 
+type AssemblyQualityRating = NonNullable<NonNullable<GameState["furniture"][string]>['assemblyQuality']>;
+
+const qualityDescriptor: Record<AssemblyQualityRating, string> = {
+  0: 'Poor-quality',
+  1: 'Low-quality',
+  2: 'Medium-quality',
+  3: 'High-quality',
+};
+
 export default function AssembleFurniture({
   item,
   onClose,
@@ -28,17 +39,13 @@ export default function AssembleFurniture({
   onClose: () => void;
 }) {
   const [game, setGame] = React.useContext(GameContext);
-  const [result, setResult] = useState<AssembleFurnitureResult>(
-    AssembleFurnitureResult.PENDING
-  );
   const [rating, setRating] = useState<number | null>(null);
   const [skipTutorialScreen, setSkipTutorialScreen] = useState<boolean>(false);
 
-  const onPuzzleSolved = (rating: number) => {
+  const onPuzzleSolved = (rating: AssemblyQualityRating) => {
     setRating(rating);
-    setResult(AssembleFurnitureResult.SUCCESS);
   };
-  const onPuzzleFailed = () => setResult(AssembleFurnitureResult.FAILURE);
+  const onPuzzleFailed = () => setRating(0);
 
   const onAcceptPuzzleSuccess = () => {
     setGame((game) => {
@@ -72,26 +79,53 @@ export default function AssembleFurniture({
     onClose();
   };
 
-  return (
-    <Modal
-      horizontalScroll={true}
-      title="Assemble furniture"
-      onSelectClose={onClose}
-    >
-      {result === AssembleFurnitureResult.SUCCESS && (
-        <>
-          <div>Furniture assembled! Stars: {rating}</div>
+
+  const furnitureModel = FurnitureModels[item.furnitureName];
+
+  if (rating != null) {
+    return (
+      <Modal
+        horizontalScroll={false}
+        title="Item Crafted!"
+        onSelectClose={onClose}
+      >
+        <div style={{display: "flex",  alignItems: "center", justifyItems: "center", height: "100%", justifyContent: "center", flexDirection: "column"}}>
+          
+        <div className="row">
+          <Image src={`/images/${furnitureModel.id}.png`} width="10rem" />
+          </div>
+
+          <div className="row">
+            {new Array(rating).fill(null).map(() => '★').join('')}
+            {new Array(3 - rating).fill(null).map(() => '☆').join('')}
+          </div>
+
+
+
+          <h2 className="row">
+            {qualityDescriptor[rating]} {furnitureModel.displayName}</h2>
+
+          <p className="typography-small row">Item quality is based on how well you solve the puzzle.
+          As people move into your home, high-quality items will make them happier.</p>
+
           <button
             onClick={onAcceptPuzzleSuccess}
             style={{ color: "blue", fontSize: "1.25rem" }}
           >
             Continue
           </button>
-        </>
-      )}
-      {result === AssembleFurnitureResult.FAILURE && <div>Failure</div>}
-      {result === AssembleFurnitureResult.PENDING &&
-      (getIsFirstTimeAssembly(game) && !skipTutorialScreen) ? (
+        </div>
+      </Modal>
+    )
+  }
+
+  return (
+    <Modal
+      horizontalScroll={true}
+      title="Assemble furniture"
+      onSelectClose={onClose}
+    >
+      {getIsFirstTimeAssembly(game) && !skipTutorialScreen ? (
         <div
           style={{
             padding: "2rem",
@@ -103,14 +137,15 @@ export default function AssembleFurniture({
             justifyContent: "center",
           }}
         >
+          <Image src="/images/box.png" width="100px" />
+
           <p className="typography-normal" style={{ maxWidth: "400px" }}>
-            Assemble a piece of furniture by solving a word puzzle. The quality
-            of your furniture will depend on how well you solve the  puzzle.
+            To assemble a piece of furniture, you'll need to solve a random puzzle.
           </p>
 
           <button onClick={() => {
           setSkipTutorialScreen(true);
-          }}>Continue</button>
+          }}>Generate Puzzle</button>
         </div>
       ) : (
         <PuzzleAnagram
