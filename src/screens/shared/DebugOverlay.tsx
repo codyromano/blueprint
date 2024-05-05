@@ -7,11 +7,11 @@ export default function DebugOverlay({ state }: { state: GameState }) {
       style={{
         position: "fixed",
         maxHeight: "100%",
-        width: "50%",
+        width: "100%",
         overflowY: "scroll",
         color: "#fff",
         top: 0,
-        right: 0,
+        left: 0,
         zIndex: 100,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
       }}
