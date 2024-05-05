@@ -10,7 +10,7 @@ export default function BaseScreen({
   className?: string;
 }) {
   return (
-    <PositionLayer>
+    <PositionLayer alignItems="center">
       <div className={["base-screen", className].join(" ")}>{children}</div>
     </PositionLayer>
   );

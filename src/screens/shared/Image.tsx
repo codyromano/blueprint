@@ -5,7 +5,7 @@ type Props = {
   src: string;
   width?: string;
   maxWidth?: string;
-  isRounded: boolean;
+  isRounded?: boolean;
 };
 
 type ImagePreloadResult = {
@@ -48,7 +48,7 @@ function usePreloadImage(src: string): ImagePreloadResult {
         isLoaded: true,
       }));
     };
-    const onError = (data) => {
+    const onError = () => {
       setResult((state) => ({ ...state, isError: true }));
     };
 

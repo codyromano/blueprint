@@ -6,13 +6,12 @@ export default function PositionLayer({
   justifyContent = "center",
   position = "fixed",
   zIndex = 1,
-}: {
-  children: React.ReactNode;
-  alignItems: "center" | "flex-start" | "flex-end" | "stretch";
-  justifyContent: "center" | "flex-start" | "flex-end" | "space-between";
-  position: "fixed" | "absolute" | "relative";
-  zIndex: number;
-}) {
+}: React.PropsWithChildren<{
+  alignItems?: "center" | "flex-start" | "flex-end" | "stretch";
+  justifyContent?: "center" | "flex-start" | "flex-end" | "space-between";
+  position?: "fixed" | "absolute" | "relative";
+  zIndex?: number;
+}>) {
   return (
     <div
       style={{

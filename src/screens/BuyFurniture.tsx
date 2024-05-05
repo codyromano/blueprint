@@ -76,7 +76,7 @@ export default function BuyFurniture({ onSelectClose, onSelectBuy }: Props) {
           {furnitureItems.map((furniture) => (
             <li key={furniture.id}>
               <h2 className="row">{furniture.displayName}</h2>
-              <Image src={`/images/${furniture.id}.png`} />
+              <Image src={`../public/images/${furniture.id}.png`} />
 
               <button
                 onClick={() => onSelectBuy(furniture)}

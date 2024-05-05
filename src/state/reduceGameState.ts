@@ -95,7 +95,7 @@ export default function reduceGameState(
       break;
     }
     case GameActions.CREATE_TENANTS: {
-      if (newState.markers["IS_READY_FOR_FIRST_TENANT"]) {
+     // if (newState.markers["IS_READY_FOR_FIRST_TENANT"]) {
         const totalAssemblyQuality = getObjectValues(newState.furniture).reduce(
           (total, item) => total + (item?.assemblyQuality ?? 0),
           0
@@ -119,7 +119,7 @@ export default function reduceGameState(
             moneyCollectedTime: null,
           };
         }
-      }
+      // }
       break;
     }
     case GameActions.UPDATE_TENANTS: {

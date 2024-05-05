@@ -1,6 +1,6 @@
 export default function getObjectValues<T extends Record<string, any>>(
   obj: T
-): Array<T[keyof T]> {
+): Array<NonNullable<T[keyof T]>> {
   const values: Array<T[keyof T]> = [];
 
   for (const key in obj) {

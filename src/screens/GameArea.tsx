@@ -90,6 +90,7 @@ export default function GameArea() {
       <PopUpNoticeContainer />
 
       <div
+        className="house"
         style={{
           position: "relative",
           background: "url(/images/house.jpg) no-repeat",
@@ -114,7 +115,7 @@ export default function GameArea() {
                   newItem.position[0] = `${x}px`;
                   newItem.position[1] = `${y}px`;
 
-                  newState.markers["IS_READY_FOR_FIRST_TENANT"] = true;
+                  // newState.markers["IS_READY_FOR_FIRST_TENANT"] = true;
 
                   return newState;
                 });

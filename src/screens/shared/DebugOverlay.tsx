@@ -18,7 +18,7 @@ export default function DebugOverlay({ state }: { state: GameState }) {
     >
       <details>
         <summary>Debug State</summary>
-        <pre>{JSON.stringify(state, <br />, 2)}</pre>
+        <pre>{JSON.stringify(state, null, 2)}</pre>
       </details>
     </div>
   );

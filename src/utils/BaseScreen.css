@@ -9,19 +9,19 @@
 @font-face {
   font-family: Japandi;
   font-weight: lighter;
-  src: url(/fonts/Japandi%20Light.otf);
+  src: url(../../public/fonts/Japandi%20Light.otf);
 }
 
 @font-face {
   font-family: Japandi;
   font-weight: normal;
-  src: url(/fonts/Japandi%20Regular.otf);
+  src: url(../../public/fonts/Japandi%20Regular.otf);
 }
 
 @font-face {
   font-family: Japandi;
   font-weight: bold;
-  src: url(/fonts/Japandi%20Bold.otf);
+  src: url(../../public/fonts/Japandi%20Bold.otf);
 }
 
 /*
@@ -83,7 +83,7 @@ button {
 .focal-point::after {
   content: "";
   display: block;
-  background: url(/images/pointer.webp) no-repeat;
+  background: url(../../public/images/pointer.webp) no-repeat;
   background-size: contain;
   width: 30px;
   height: 30px;

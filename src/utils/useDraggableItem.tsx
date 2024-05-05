@@ -41,17 +41,21 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
     };
 
     if (isDragging) {
+      // @ts-ignore
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
     }
 
+    // @ts-ignore
     draggableItemRef?.current?.addEventListener("mousedown", handleMouseDown);
 
     return () => {
       draggableItemRef?.current?.removeEventListener(
         "mousedown",
+        // @ts-ignore
         handleMouseDown
       );
+      // @ts-ignore
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };

@@ -6,13 +6,11 @@ import "./Tenant.css";
 export default function Tenant({
   tenant,
   index,
-  isMoneyReady = true,
   onCollectMoney,
   secondsUntilMoneyIsReady,
 }: {
   tenant: GameState["tenants"][string];
   index: number;
-  isMoneyReady: boolean;
   onCollectMoney: () => void;
   secondsUntilMoneyIsReady: number,
 }) {
