@@ -22,7 +22,8 @@ export default function PuzzleAnagram({
   difficulty,
 }: Puzzle) {
   const anagrams = React.useMemo(() => getAnagramWords(), []);
-  const secondsLeft = useCountdown(60);
+  const secondsLeft = useCountdown(10);
+  
   const [wordGuessResult, setWordGuessResult] = React.useState<
     "unfinished" | "correct" | "incorrect"
   >("unfinished");

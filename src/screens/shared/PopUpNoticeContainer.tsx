@@ -25,26 +25,6 @@ export default function PopUpNoticeContainer() {
     });
   };
 
-  React.useEffect(() => {
-    const updateMessageVisibility = window.setInterval(() => {
-      if (notice != null) {
-        messageDisplayTimeRef.current[notice.id] =
-          messageDisplayTimeRef.current[notice.id] || Date.now();
-
-        const initialRenderTime = messageDisplayTimeRef.current[notice.id];
-
-        if (
-          initialRenderTime != null &&
-          Date.now() - initialRenderTime >= DURATION
-        ) {
-          onContinue();
-        }
-      }
-    }, 1000);
-
-    return () => window.clearInterval(updateMessageVisibility);
-  }, [notice]);
-
   return notice == null ? null : (
     <PopUpNotice onContinue={onContinue} message={notice} />
   );

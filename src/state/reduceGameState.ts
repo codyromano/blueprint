@@ -42,6 +42,22 @@ const hasDismissedMessage = (marker: Markers, state: GameState) => {
   return state.messages.find((m) => m.id === marker)?.isDismissed;
 };
 
+const getTargetTotalTenants = (totalAssemblyQuality: number): number => {
+  if (totalAssemblyQuality >= 30) {
+    return 3;
+  }
+
+  if (totalAssemblyQuality >= 20) {
+    return 2;
+  }
+
+  if (totalAssemblyQuality >= 5) {
+    return 1;
+  }
+
+  return 0;
+};
+
 export default function reduceGameState(
   state: GameState,
   payload: Payload
@@ -101,7 +117,7 @@ export default function reduceGameState(
           0
         );
         // TODO: Adjust this function
-        const targetTotalTenants = totalAssemblyQuality;
+        const targetTotalTenants = getTargetTotalTenants(totalAssemblyQuality);
         const newTenants = Math.max(
           0,
           targetTotalTenants - Object.keys(newState.tenants).length
