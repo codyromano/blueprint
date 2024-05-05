@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./shared/Modal";
-import PuzzleAnagram from "./PuzzleAnagram";
+import PuzzleAnagram from "./PuzzleAnagram/PuzzleAnagram";
 import Puzzle from "../models/Puzzle";
 import Markers from "../models/Markers";
 import GameState from "../models/GameState";
