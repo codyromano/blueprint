@@ -38,6 +38,14 @@ button {
   outline: none;
 }
 
+.form-button {
+  color: #000;
+  border: double #000 0.2rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 2rem;
+  font-size: 1rem;
+}
+
 html,
 body {
   background-color: #000;

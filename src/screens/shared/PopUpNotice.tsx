@@ -12,8 +12,8 @@ export default function PopUpNotice({
 }) {
   return (
     <div className="pop-up-notice">
-      <p className="typography-normal">{message.messageContent}</p>
-      <button onClick={onContinue}>Continue</button>
+      <p className="typography-normal row">{message.messageContent}</p>
+      <button onClick={onContinue} className="form-button">Continue</button>
     </div>
   );
 }
