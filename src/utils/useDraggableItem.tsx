@@ -16,6 +16,8 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
 
   useEffect(() => {
     const handleMove = (event: MouseEvent | TouchEvent) => {
+      event.preventDefault();
+
       if (isDragging && draggableItemRef.current) {
         const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
         const clientY = "touches" in event ? event.touches[0].clientY : event.clientY;
@@ -30,6 +32,8 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
     };
 
     const handleStart = (event: MouseEvent | TouchEvent) => {
+      event.preventDefault();
+      
       if (draggableItemRef.current) {
         setIsDragging(true);
         const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;

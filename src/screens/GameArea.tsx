@@ -98,7 +98,7 @@ export default function GameArea() {
         style={{
           position: "relative",
           background: "url(/images/house.jpg) no-repeat",
-          backgroundSize: "cover",
+          backgroundSize: "contain",
           backgroundPosition: "center",
           width: "100%",
           height: "100%",
@@ -174,8 +174,7 @@ export default function GameArea() {
             setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
             // addMarker(Markers.TUTORIAL_BUY_FURNITURE);
           }}
-          style={{ position: "absolute", right: "0", bottom: "0" }}
-          className={getClassNameWithFocalPoint('OPEN_BUY_FURNITURE_MENU_BUTTON')}
+          className={getClassNameWithFocalPoint('OPEN_BUY_FURNITURE_MENU_BUTTON', 'buy-furniture-button')}
         >
           <Image
             maxWidth="100px"
