@@ -9,8 +9,11 @@ import {
 import GameArea from "./screens/GameArea";
 import GameState from "./models/GameState";
 import GameContext, { getInitialGameState } from "./state/GameStateProvider";
+import DebugContext from "./state/DebugProvider";
+import { DebugProviderState, getInitialDebugProvider } from "./state/DebugProvider";
 
 const { Provider: GameStateProvider } = GameContext;
+const { Provider: DebugProvider } = DebugContext;
 
 const routes = createRoutesFromElements(
   <Route>
@@ -29,10 +32,17 @@ function GameStateManager({ children }: { children: React.ReactNode }) {
   return <GameStateProvider value={state}>{children}</GameStateProvider>;
 }
 
+function DebugStateManager({ children }: { children: React.ReactNode }) {
+  const state = React.useState<DebugProviderState>(getInitialDebugProvider());
+  return <DebugProvider value={state}>{children}</DebugProvider>;
+}
+
 root.render(
   <React.StrictMode>
-    <GameStateManager>
-      <App />
-    </GameStateManager>
+    <DebugStateManager>
+      <GameStateManager>
+        <App />
+      </GameStateManager>
+    </DebugStateManager>
   </React.StrictMode>
 );

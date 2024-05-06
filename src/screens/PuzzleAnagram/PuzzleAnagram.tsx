@@ -3,6 +3,7 @@ import Puzzle from "../../models/Puzzle";
 import useCountdown from "../../utils/useCountdown";
 import "./PuzzleAnagram.css";
 import englishWords from "./popularEnglishWords.json";
+import useDebugCommand from "../../state/useDebugCommand";
 
 
 function getRandomItem<T>(items: T[]): T {
@@ -22,7 +23,8 @@ export default function PuzzleAnagram({
   difficulty,
 }: Puzzle) {
   const anagrams = React.useMemo(() => getAnagramWords(), []);
-  const secondsLeft = useCountdown(10);
+  const secondsLeft = useCountdown(30);
+  const {setCommandCallback} = useDebugCommand();
   
   const [wordGuessResult, setWordGuessResult] = React.useState<
     "unfinished" | "correct" | "incorrect"
@@ -34,6 +36,12 @@ export default function PuzzleAnagram({
     number[]
   >([]);
   const guess = selectedLetterIndicies.map((i) => anagrams[0][i]).join("");
+
+  useEffect(() => {
+    setCommandCallback('FINISH_PUZZLE_THREE_STARS', () => {
+      setDiscoveredWords(new Set(anagrams));
+    });
+  }, []);
 
   const onClickLetter = (index: number) => {
     setSelectedLetterIndicies((letters) => {
