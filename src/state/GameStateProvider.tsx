@@ -2,13 +2,15 @@ import React, { Dispatch, SetStateAction } from "react";
 import GameState from "../models/GameState";
 import Markers from "../models/Markers";
 
+export const INITIAL_CASH = 100;
+
 export const getInitialGameState = (): GameState => {
   return {
     lastUpdatedTime: Date.now(),
     focalPoint: null,
     player: {
       id: "1",
-      cash: 1000,
+      cash: INITIAL_CASH,
     },
     markers: {},
     messages: [
