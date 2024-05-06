@@ -4,6 +4,7 @@ import GameState from "../models/GameState";
 import GameActions from "./GameActions";
 import getObjectValues from "../utils/getObjectValues";
 import Markers from "../models/Markers";
+import MessageID from "../models/MessageID";
 
 type Payload = {
   action: GameActions;
@@ -21,25 +22,24 @@ const createUUID = () => {
 const TENANT_VW = 15;
 
 const addMessageOnce = (
-  marker: Markers,
+  messageID: MessageID,
   messageContent: string,
   state: GameState
 ): GameState => {
   const newState = { ...state };
-  if (!newState.markers.hasOwnProperty(marker)) {
+  if (!newState.messages.find(m => m.id)) {
     newState.messages.push({
-      id: marker,
+      id: messageID,
       isDismissed: false,
       messageContent,
       messageType: "pop-up",
     });
-    newState.markers[marker] = true;
   }
   return newState;
 };
 
-const hasDismissedMessage = (marker: Markers, state: GameState) => {
-  return state.messages.find((m) => m.id === marker)?.isDismissed;
+const hasDismissedMessage = (messageID: MessageID, state: GameState) => {
+  return state.messages.find((m) => m.id === messageID)?.isDismissed;
 };
 
 const getTargetTotalTenants = (totalAssemblyQuality: number): number => {
@@ -102,10 +102,13 @@ export default function reduceGameState(
         };
 
         newState = addMessageOnce(
-          Markers.BUY_FIRST_FURNITURE_ITEM,
+          'LEARN_TO_ASSEMBLE_FURNITURE',
           `Tap the box to assemble your new furniture`,
           newState
         );
+        if (Object.keys(newState.furniture).length === 1) {
+          newState.focalPoint = 'FURNITURE_ITEM';
+        }
       }
 
       break;
@@ -150,6 +153,10 @@ export default function reduceGameState(
     default:
       throw new Error(`Unknown action: ${payload.action}`);
       break;
+  }
+
+  if (Object.keys(newState.furniture).length === 1 && newState.furniture[0]?.status === 'assembled') {
+    newState.focalPoint = 'FURNITURE_ITEM';
   }
 
   return newState;

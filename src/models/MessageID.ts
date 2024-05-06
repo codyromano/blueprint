@@ -1,0 +1,6 @@
+type MessageID =
+  'LEARN_TO_BUY_FURNITURE' |
+  'LEARN_TO_MOVE_FURNITURE' |
+  'LEARN_TO_ASSEMBLE_FURNITURE';
+
+export default MessageID;

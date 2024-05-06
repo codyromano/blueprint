@@ -1,15 +1,18 @@
+import FocalPoint from "./FocalPoint";
 import { FurnitureName } from "./Furniture";
 import Markers from "./Markers";
+import MessageID from "./MessageID";
 
 type GameState = {
   lastUpdatedTime: number;
+  focalPoint: null | FocalPoint;
   player: {
     id: string;
     cash: number;
     authToken?: string;
   };
   messages: Array<{
-    id: string;
+    id: MessageID;
     isDismissed: boolean;
     messageContent: string;
     messageType: "pop-up";

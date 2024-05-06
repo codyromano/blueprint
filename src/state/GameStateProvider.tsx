@@ -5,6 +5,7 @@ import Markers from "../models/Markers";
 export const getInitialGameState = (): GameState => {
   return {
     lastUpdatedTime: Date.now(),
+    focalPoint: null,
     player: {
       id: "1",
       cash: 1000,
@@ -12,7 +13,7 @@ export const getInitialGameState = (): GameState => {
     markers: {},
     messages: [
       {
-        id: Markers.TUTORIAL_BUY_FURNITURE,
+        id: 'LEARN_TO_BUY_FURNITURE',
         messageContent: "The house feels empty. Let's buy furniture.",
         messageType: "pop-up",
         isDismissed: false,

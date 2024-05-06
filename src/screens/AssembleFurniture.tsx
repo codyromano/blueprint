@@ -62,10 +62,10 @@ export default function AssembleFurniture({
       itemRecord.status = "assembled";
 
       if (
-        !newGame.messages.find((m) => m.id === Markers.TUTORIAL_MOVE_FURNITURE)
+        !newGame.messages.find((m) => 'LEARN_TO_BUY_FURNITURE')
       ) {
         newGame.messages.push({
-          id: Markers.TUTORIAL_MOVE_FURNITURE,
+          id: 'LEARN_TO_MOVE_FURNITURE',
           messageContent:
             "Tap and drag your furniture to make the room feel like home.",
           isDismissed: false,

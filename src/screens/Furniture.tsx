@@ -4,6 +4,7 @@ import GameState from "../models/GameState";
 
 import FurnitureModels from "../models/Furniture";
 import useDraggableItem from "../utils/useDraggableItem";
+import useFocalPoint from "../utils/useFocalPoint";
 
 type Props = {
   onTouchEnd: () => void;
@@ -25,6 +26,7 @@ export default function Furniture({
   ownedItem,
 }: Props) {
   const [draggableItemRef, domPosition] = useDraggableItem();
+  const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
 
   useEffect(() => {
     onDragPositionChanged(domPosition.x, domPosition.y);
@@ -44,7 +46,7 @@ export default function Furniture({
       ref={draggableItemRef}
       onMouseUp={onTouchEnd}
       role="button"
-      className={`furniture-item ${isFocalPoint ? "focal-point" : ""}`}
+      className={getClassNameWithFocalPoint('FURNITURE_ITEM', 'furniture-item')}
       style={{
         position: "absolute",
         zIndex: 3,

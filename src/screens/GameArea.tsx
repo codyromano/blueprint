@@ -16,6 +16,7 @@ import AssembleFurniture from "./AssembleFurniture";
 import useTenants from "../state/useTenants";
 import Tenant from "./Tenant";
 import DebugOverlay from "./shared/DebugOverlay";
+import useFocalPoint from "../utils/useFocalPoint";
 
 enum ContextOverlayMenu {
   BuyFurniture = "BuyFurniture",
@@ -31,10 +32,13 @@ export default function GameArea() {
   const [activeOverlayMenu, setActiveOverlayMenu] =
     React.useState<ContextOverlayMenu | null>(null);
   const [game, setGame] = React.useContext(GameContext);
+  const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
+
   const happiness =
     Object.keys(game.tenants).length > 0
       ? average(getObjectValues(game.tenants).map((t) => t.happiness))
       : null;
+      
 
   const tenants = useTenants();
 
@@ -168,14 +172,10 @@ export default function GameArea() {
         <button
           onClick={() => {
             setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
-            addMarker(Markers.TUTORIAL_BUY_FURNITURE);
+            // addMarker(Markers.TUTORIAL_BUY_FURNITURE);
           }}
           style={{ position: "absolute", right: "0", bottom: "0" }}
-          className={
-            !game.markers[Markers.TUTORIAL_BUY_FURNITURE]
-              ? "focal-point"
-              : undefined
-          }
+          className={getClassNameWithFocalPoint('OPEN_BUY_FURNITURE_MENU_BUTTON')}
         >
           <Image
             maxWidth="100px"
