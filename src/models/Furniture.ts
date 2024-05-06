@@ -59,7 +59,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     id: "antiqueRug",
     displayName: "Antique Rug",
     size: ["50px", "50px"],
-    cost: INITIAL_CASH * 1,
+    cost: INITIAL_CASH * 1.5,
   },
   fancyRug: {
     id: "fancyRug",
@@ -89,7 +89,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     id: "coffeeTable",
     displayName: "Coffee Table",
     size: ["50px", "50px"],
-    cost: INITIAL_CASH * 0.5,
+    cost: INITIAL_CASH * 1.25,
   },
   diningTable: {
     id: "diningTable",
@@ -153,7 +153,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   },
   discoBall: {
     id: "discoBall",
-    displayName: "discoBall",
+    displayName: "Disco Ball",
     size: ["50px", "50px"],
     cost: INITIAL_CASH * 10,
   },

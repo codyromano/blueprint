@@ -10,9 +10,10 @@ import Modal from "./shared/Modal";
 type Props = {
   onSelectClose: () => void;
   onSelectBuy: (item: FurnitureItem) => void;
+  playerCash: number;
 };
 
-export default function BuyFurniture({ onSelectClose, onSelectBuy }: Props) {
+export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }: Props) {
   const furnitureItems: FurnitureItem[] = Object.values(Furniture).sort(
     (a, b) => a.cost - b.cost
   );
@@ -30,15 +31,19 @@ export default function BuyFurniture({ onSelectClose, onSelectBuy }: Props) {
           alignItems: "center",
           gap: "1rem",
           height: "100%",
+          overflowX: "scroll",
         }}
       >
         {furnitureItems.map((furniture) => (
           <li key={furniture.id}>
             <button
+              disabled={furniture.cost > playerCash}
               onClick={() => onSelectBuy(furniture)}
               className="buy-furniture-tile-button"
             >
-              <h2 className="row">{furniture.displayName}</h2>
+              <h2 className="row">{
+                furniture.displayName
+              }</h2>
               <Image isRounded src={`/images/${furniture.id}.png`} />
               <div className="item-cost">{furniture.cost}</div>
             </button>

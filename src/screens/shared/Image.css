@@ -34,10 +34,12 @@
 .image-error {
   position: relative;
   animation: none;
-  background: red;
+  background: lightgreen;
+  height: 150px;
+  min-width: 100px;
 }
 .image-error::after {
-  content: "Error loading image";
+  content: "Image coming soon";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,5 +47,5 @@
   height: 100%;
   position: absolute;
   top: 0;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
 }

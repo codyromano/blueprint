@@ -33,7 +33,11 @@
 
 .buy-furniture-tile-button {
   font-family: Helvetica;
-  max-width: 100%;
+  width: 100%;
+}
+
+.buy-furniture-tile-button[disabled] {
+  cursor: default;
 }
 
 .item-cost {

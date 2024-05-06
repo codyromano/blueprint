@@ -77,6 +77,7 @@ export default function GameArea() {
 
       {activeOverlayMenu === ContextOverlayMenu.BuyFurniture && (
         <BuyFurniture
+          playerCash={game.player.cash}
           onSelectBuy={(item) => {
             const newState = reduceGameState(game, {
               action: GameActions.BUY_FURNITURE_REQUEST,
