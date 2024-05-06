@@ -54,6 +54,12 @@ button {
   max-height: 80%;
 }
 
+@media screen and (orientation: portrait) {
+  .base-screen {
+    transform: rotate(90deg) scale(1.5);
+  }
+}
+
 .row {
   margin-bottom: 0.5rem;
 }

@@ -1,4 +1,5 @@
 {
-  "display": "standalone",
+  "name": "House Fashionista",
+  "display": "fullscreen",
   "orientation": "landscape"
 }
