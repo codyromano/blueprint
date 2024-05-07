@@ -32,7 +32,7 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
     };
 
     const handleStart = (event: MouseEvent | TouchEvent) => {
-      event.preventDefault();
+      // event.preventDefault();
       
       if (draggableItemRef.current) {
         setIsDragging(true);

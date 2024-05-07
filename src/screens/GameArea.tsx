@@ -17,6 +17,7 @@ import useTenants from "../state/useTenants";
 import Tenant from "./Tenant";
 import DebugOverlay from "./shared/DebugOverlay";
 import useFocalPoint from "../utils/useFocalPoint";
+import "./GameArea.css";
 
 enum ContextOverlayMenu {
   BuyFurniture = "BuyFurniture",
@@ -94,17 +95,7 @@ export default function GameArea() {
       )}
       <PopUpNoticeContainer />
 
-      <div
-        className="house"
-        style={{
-          position: "relative",
-          background: "url(/images/house.jpg) no-repeat",
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          width: "100%",
-          height: "100%",
-        }}
-      >
+      <div className="house">
         {ownedItems.length > 0 &&
           ownedItems.map((item) => (
             <Furniture

@@ -1,0 +1,33 @@
+html {
+  --house-side-piece-width: 100px;
+}
+
+.house {
+  position: relative;
+  background: url(../../public/images/roomCenter.webp) repeat;
+  background-size: contain;
+  margin-left: var(--house-side-piece-width);
+  width: calc(100% - var(--house-side-piece-width) * 2);
+  height: 100%;
+}
+
+.house::before, .house::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  display: block;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: var(--house-side-piece-width);
+  height: 100%;
+}
+
+.house::before {
+  left: calc(var(--house-side-piece-width) * -1);
+  background-image: url(../../public/images/roomLeft.webp);
+}
+
+.house::after {
+  right: calc(var(--house-side-piece-width) * -1);
+  background-image: url(../../public/images/roomRight.webp);
+}
