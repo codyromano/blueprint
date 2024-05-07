@@ -168,11 +168,7 @@ export default function GameArea() {
           }}
           className={getClassNameWithFocalPoint('OPEN_BUY_FURNITURE_MENU_BUTTON', 'buy-furniture-button')}
         >
-          <Image
-            maxWidth="100px"
-            width="10vw"
-            src="/images/buy_blueprint_icon.png"
-          />{" "}
+          <i style={{fontSize: "75px"}} className="fa-solid fa-cart-shopping"></i>
         </button>
       </div>
     </BaseScreen>
