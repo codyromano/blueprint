@@ -3,7 +3,7 @@ import PositionLayer from "./shared/PositionLayer";
 import "./BuyFurniture.css";
 import GameState from "../models/GameState";
 import Furniture, { FurnitureName, FurnitureItem } from "../models/Furniture";
-import Image from "./shared/Image";
+import {Img as Image} from "react-image";
 
 import Modal from "./shared/Modal";
 
@@ -44,7 +44,7 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
               <h2 className="row">{
                 furniture.displayName
               }</h2>
-              <Image isRounded src={`/images/${furniture.id}.png`} />
+              <Image style={{width: '100%'}} src={`/images/${furniture.id}.webp`} />
               <div className="item-cost"><i className="fa-solid fa-sack-dollar" style={{color: "#000000"}}></i>{furniture.cost}</div>
             </button>
           </li>

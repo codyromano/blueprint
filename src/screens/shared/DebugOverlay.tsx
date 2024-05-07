@@ -38,6 +38,7 @@ export default function DebugOverlay({ state }: { state: GameState }) {
         {currentTab === 'commands' && (
           <div>
             {availableCommands.map(command => <button
+              key={command}
             style={{
               color: "#fff",
               border: "solid #fff",

@@ -1,6 +1,6 @@
 import React from "react";
 import GameState from "../models/GameState";
-import Image from "./shared/Image";
+import {Img as Image} from "react-image";
 import "./Tenant.css";
 
 export default function Tenant({

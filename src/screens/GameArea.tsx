@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import BaseScreen from "../utils/BaseScreen";
 import PopUpNoticeContainer from "./shared/PopUpNoticeContainer";
 import PositionLayer from "./shared/PositionLayer";
-import Image from "./shared/Image";
+import {Img as Image} from "react-image";
 import BuyFurniture from "./BuyFurniture";
 import GameContext from "../state/GameStateProvider";
 import reduceGameState from "../state/reduceGameState";

@@ -52,7 +52,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   cheapRug: {
     id: "cheapRug",
     displayName: "Cheap Rug",
-    size: ["50px", "50px"],
+    size: ["25vw", "50px"],
     cost: INITIAL_CASH * 0.25,
   },
   antiqueRug: {

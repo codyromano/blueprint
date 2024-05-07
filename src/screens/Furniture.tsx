@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Image from "./shared/Image";
+import {Img as Image} from "react-image";
 import GameState from "../models/GameState";
 
 import FurnitureModels from "../models/Furniture";
@@ -36,10 +36,11 @@ export default function Furniture({
     throw new Error("no owned item");
   }
   const { id, status, furnitureName, position } = ownedItem;
+  const model = FurnitureModels[furnitureName];
   const imageId = FurnitureModels[furnitureName].id;
 
   const imageSrc =
-    status === "blueprint" ? `/images/box.png` : `/images/${imageId}.png`;
+    status === "blueprint" ? `/images/box.png` : `/images/${imageId}.webp`;
 
   return (
     <div
@@ -50,7 +51,7 @@ export default function Furniture({
       style={{
         position: "absolute",
         zIndex: 3,
-        width: "15vw",
+        width: model.size[0],
         cursor: "pointer",
         ...(position == null
           ? {}

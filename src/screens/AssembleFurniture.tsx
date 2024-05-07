@@ -8,7 +8,7 @@ import GameState from "../models/GameState";
 import GameContext from "../state/GameStateProvider";
 import getObjectValues from "../utils/getObjectValues";
 import Furniture from "./Furniture";
-import Image from "./shared/Image";
+import {Img as Image} from "react-image";
 import PuzzleWordMerge from "./PuzzleWordMerge/PuzzleWordMerge";
 
 enum AssembleFurnitureResult {
@@ -93,7 +93,7 @@ export default function AssembleFurniture({
         <div style={{display: "flex",  alignItems: "center", justifyItems: "center", height: "100%", justifyContent: "center", flexDirection: "column"}}>
           
         <div className="row">
-          <Image src={`/images/${furnitureModel.id}.png`} width="10rem" />
+          <Image src={`/images/${furnitureModel.id}.webp`} style={{maxHeight: "25rem"}} />
           </div>
 
           <div className="row">

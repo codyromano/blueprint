@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import {
   Route,
@@ -39,10 +39,12 @@ function DebugStateManager({ children }: { children: React.ReactNode }) {
 
 root.render(
   <React.StrictMode>
+    <Suspense>
     <DebugStateManager>
       <GameStateManager>
         <App />
       </GameStateManager>
     </DebugStateManager>
+    </Suspense>
   </React.StrictMode>
 );

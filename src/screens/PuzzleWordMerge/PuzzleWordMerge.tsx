@@ -33,7 +33,7 @@ export default function PuzzleWordMerge({
 
   useEffect(() => {
     selectedWords.forEach(word => {
-      
+
     });
   }, [selectedWords])
 
@@ -44,7 +44,7 @@ export default function PuzzleWordMerge({
     <p>{instructions}</p>
 
     {wordMergeTerms.map(term => (
-      <button onClick={() => {
+      <button key={term} onClick={() => {
         setSelectedWords(allWords => allWords.add(term))
       }} className="form-button">{term}</button>
     ))}
