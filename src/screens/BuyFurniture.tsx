@@ -45,7 +45,7 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
                 furniture.displayName
               }</h2>
               <Image isRounded src={`/images/${furniture.id}.png`} />
-              <div className="item-cost">{furniture.cost}</div>
+              <div className="item-cost"><i className="fa-solid fa-sack-dollar" style={{color: "#000000"}}></i>{furniture.cost}</div>
             </button>
           </li>
         ))}

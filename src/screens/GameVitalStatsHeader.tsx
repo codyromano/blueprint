@@ -10,18 +10,19 @@ export default function GameVitalStatsHeader({ cash, happiness }: Props) {
     <div
       style={{
         display: "flex",
-        position: "absolute",
+        position: "fixed",
+        top: '1.5rem',
+        left: 0,
         fontFamily: "Japandi",
         fontWeight: "bold",
+        fontSize: "1.25rem",
         justifyContent: "flex-end",
-        marginBottom: "0.5rem",
         width: "95%",
-        top: "-1rem",
         color: "#fff",
       }}
     >
       {happiness !== null && <div>☺️{happiness}</div>}
-      <div>${cash}</div>
+      <div><i className="fa-solid fa-sack-dollar" style={{marginRight: '0.5rem', color: "#ffffff"}}></i>{cash}</div>
     </div>
   );
 }
