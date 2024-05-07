@@ -9,6 +9,7 @@ import GameContext from "../state/GameStateProvider";
 import getObjectValues from "../utils/getObjectValues";
 import Furniture from "./Furniture";
 import Image from "./shared/Image";
+import PuzzleWordMerge from "./PuzzleWordMerge/PuzzleWordMerge";
 
 enum AssembleFurnitureResult {
   PENDING,
@@ -148,13 +149,22 @@ export default function AssembleFurniture({
           }}>Generate Puzzle</button>
         </div>
       ) : (
-        <PuzzleAnagram
-          instructions="Can you find all the anagrams?"
+        <PuzzleWordMerge
+          instructions="Tap similar words to merge them. Merge all the words except one to get a perfect score."
           difficulty="easy"
-          onPuzzleSolved={onPuzzleSolved}
           onPuzzleFailed={onPuzzleFailed}
+          onPuzzleSolved={onPuzzleSolved}
         />
       )}
     </Modal>
   );
 }
+
+  /*
+  <PuzzleAnagram
+    instructions="Can you find all the anagrams?"
+    difficulty="easy"
+    onPuzzleSolved={onPuzzleSolved}
+    onPuzzleFailed={onPuzzleFailed}
+  />
+  */
