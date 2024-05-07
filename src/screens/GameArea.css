@@ -5,7 +5,7 @@ html {
 .house {
   position: relative;
   background: url(../../public/images/roomCenter.webp) repeat;
-  background-size: contain;
+  background-size: 100% 100%;
   margin-left: var(--house-side-piece-width);
   width: calc(100% - var(--house-side-piece-width) * 2);
   height: 100%;
