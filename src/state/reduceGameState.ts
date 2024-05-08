@@ -97,7 +97,7 @@ export default function reduceGameState(
         newState.furniture[id] = {
           id,
           furnitureName,
-          position: ["50vw", "50vh"],
+          position: ["50vw", "90vh"],
           status: "blueprint",
         };
 

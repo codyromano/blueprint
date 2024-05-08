@@ -40,7 +40,7 @@ export default function Furniture({
   const imageId = FurnitureModels[furnitureName].id;
 
   const imageSrc =
-    status === "blueprint" ? `/images/box.png` : `/images/${imageId}.webp`;
+    status === "blueprint" ? `/images/box.webp` : `/images/${imageId}.webp`;
 
   return (
     <div
@@ -51,7 +51,7 @@ export default function Furniture({
       style={{
         position: "absolute",
         zIndex: 3,
-        width: model.size[0],
+        width: status === 'assembled' ? model.size[0] : '10vw',
         cursor: "pointer",
         ...(position == null
           ? {}
