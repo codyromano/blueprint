@@ -1,9 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Puzzle from "../../models/Puzzle";
 import useDebugCommand from "../../state/useDebugCommand";
 import puzzles, { WordMergeTerm } from './wordMergePuzzles';
-import getObjectValues from "../../utils/getObjectValues";
-import { getWordsWithoutIncomingEdges, invertGraph } from "./wordMergeGraphUtils";
+import { getIsCommonTargetForWords, getWordsWithoutDependencies} from "./wordMergeGraphUtils";
+import toposort from "toposort";
+import "./PuzzleWordMerge.css";
+
+const getPuzzleRating = (countResolvedTerms: number, countTotalTerms: number): 0 | 1 | 2 | 3 => {
+  return 3;
+};
 
 export default function PuzzleWordMerge({
   instructions,
@@ -19,9 +24,17 @@ export default function PuzzleWordMerge({
     throw new Error(`No wordMergePuzzle with id ${puzzleId}`);
   }
 
-  const [wordMergeTerms, setWordMergeTerms] = useState(getWordsWithoutIncomingEdges(puzzle.graph));
-  const [selectedWords, setSelectedWords] = useState<Set<WordMergeTerm>>(new Set());
-  const invertedGraph = useMemo(() => invertGraph(puzzle.graph), []);
+  // The user selected two or more words and hit "merge"
+  const [mergedWords, setMergedWords] = useState<Set<WordMergeTerm>>(new Set());
+
+  // Words selected but not yet "merged"
+  const [_selectedWords, setSelectedWords] = useState<Set<WordMergeTerm>>(new Set()); 
+
+  // TODO: Kind of hacky. But we want to exclude merged words from the selected set
+  const selectedWords = new Set(Array.from(_selectedWords).filter(word => !mergedWords.has(word)));
+
+  // Words for which all dependencies (previous words) have been met
+  const resolvedWords = getWordsWithoutDependencies(puzzle.graph, mergedWords).filter(term => !mergedWords.has(term));
 
   const {setCommandCallback} = useDebugCommand();
 
@@ -31,27 +44,70 @@ export default function PuzzleWordMerge({
     });
   }, []);
 
+  const onFinishSolvingPuzzle = () => {
+    const rating = getPuzzleRating(resolvedWords.length, toposort(puzzle.graph).length);
+    onPuzzleSolved(rating); 
+  };
+
   useEffect(() => {
-    selectedWords.forEach(word => {
+    if (resolvedWords.length === 1) {
+      setTimeout(onFinishSolvingPuzzle, 2000);
+    }
+  }, [resolvedWords]);
 
-    });
-  }, [selectedWords])
+  const onSelectWord = (term: WordMergeTerm) => {
+    setSelectedWords(allWords => {
+      const newWords = new Set(allWords);
 
+      if (newWords.has(term)) {
+        newWords.delete(term);
+      } else {
+        newWords.add(term);
+      }
+      return newWords;
+    })
+  };
 
+  const onClickMerge = () => {
+    if (getIsCommonTargetForWords(puzzle.graph, selectedWords)) {
+      setMergedWords(state => {
+        const words = new Set(state);
+        for (const selectedWord of Array.from(selectedWords)) {
+          words.add(selectedWord);
+        }
 
+        return words;
+      });
+    } else {
+      alert('The words must all have something in common');
+    }
+  };
+
+  const onClickReset = () => {
+    setMergedWords(new Set());
+    setSelectedWords(new Set());
+  };
+  
 
   return <div>
-    <p>{instructions}</p>
+    <p style={{margin: '3vh 0'}}>{instructions}</p>
 
-    {wordMergeTerms.map(term => (
-      <button key={term} onClick={() => {
-        setSelectedWords(allWords => allWords.add(term))
-      }} className="form-button">{term}</button>
-    ))}
+    <div className="puzzle-word-merge-container">
+      {resolvedWords.map(term => (
+        <button key={term}  onClick={() => onSelectWord(term)}
+        className={`puzzle-word-merge-button ${selectedWords.has(term) ? 'puzzle-word-selected' : ''}`}>{term}</button>
+      ))}
+    </div>
 
-    <footer>
-      <button disabled={true} className="form-button">Reset</button>
-      <button disabled={true} className="form-button">Merge</button>
+    <footer className="puzzle-word-footer">
+      <div style={{width: "100%", gap: "0.5rem", display: "flex"}}>
+      <button className="puzzle-word-merge-button puzzle-word-footer-button" onClick={onClickReset} disabled={selectedWords.size < 2}>Reset</button>
+      <button className="puzzle-word-merge-button puzzle-word-footer-button merge-button"  onClick={onClickMerge} disabled={selectedWords.size < 2}>Merge</button>
+      </div>
+
+      <button
+        className="puzzle-word-footer-button-secondary"
+        onClick={onFinishSolvingPuzzle}>I give up</button>
     </footer>
   </div>;
 }

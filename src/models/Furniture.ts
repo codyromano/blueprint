@@ -1,5 +1,10 @@
 import { INITIAL_CASH } from "../state/GameStateProvider";
 
+/*
+Topo-sort terms 
+A term is visible if all preceding terms are selected
+*/
+
 export type FurnitureName = 
   "basicBed" |
   "comfortableBed" |

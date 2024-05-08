@@ -1,0 +1,46 @@
+.puzzle-word-merge-button {
+  height: 8vh;
+  flex: 1;
+  min-width: calc(100% / 3 - 0.5rem);
+  max-width: calc(100% / 3 - 0.5rem);
+  text-transform: uppercase;
+  border: solid #ccc 1px;
+  border-radius: 5px;
+}
+.puzzle-word-merge-container {
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2vh 0;
+  gap: 0.5rem;
+}
+.puzzle-word-selected {
+  background-color: #666;
+  color: #fff;
+}
+
+.puzzle-word-footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.puzzle-word-footer-button {
+  max-width: initial;
+  min-width: initial;
+}
+
+.merge-button[disabled] {
+  background-color: initial;
+  color: initial;
+}
+
+.merge-button {
+  background-color: #000;
+  color: #fff;
+}
+
+.puzzle-word-merge-button {
+  flex: 1;
+}

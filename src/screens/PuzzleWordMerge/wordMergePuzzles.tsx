@@ -1,4 +1,7 @@
+export const NO_DEPENDENCIES = '';
+
 export type WordMergeTerm = 
+  typeof NO_DEPENDENCIES |
   'Building' |
   'Hammer' |
   'Nail' |
@@ -9,18 +12,30 @@ export type WordMergeTerm =
 type WordMergePuzzle = {
   id: string;
   difficulty: 'easy' | 'medium' | 'hard' | 'extreme';
-  graph: Partial<Record<Partial<WordMergeTerm>, Partial<WordMergeTerm>[]>>;
+  graph: Array<[WordMergeTerm, WordMergeTerm]>;
 };
+
+// TODO: Maybe some basic validation
+const validatePuzzle = (puzzle: WordMergePuzzle) => puzzle;
 
 const puzzles: WordMergePuzzle[] = [
   {
     id: '1',
     difficulty: 'easy',
-    graph: {
-      'Building': ['Hammer', 'Nail', 'Screwdriver'],
-      'Seattle': ['Building', 'Space Needle']
-    }
+    graph: [
+      ['Hammer', NO_DEPENDENCIES],
+      ['Nail', NO_DEPENDENCIES],
+      ['Screwdriver', NO_DEPENDENCIES],
+      ['Seattle', NO_DEPENDENCIES],
+      ['Building', 'Hammer'],
+      ['Building', 'Nail'],
+      ['Building', 'Screwdriver'],
+      ['Space Needle', 'Building'],
+      ['Space Needle', 'Seattle']
+    ]
   }
 ];
+
+puzzles.forEach(puzzle => validatePuzzle(puzzle));
 
 export default puzzles;
