@@ -1,17 +1,10 @@
 import React from "react";
-import GameActions from "../../state/GameActions";
-import Markers from "../../models/Markers";
 import PopUpNoticeV2 from "./PopUpNoticeV2";
 import GameContext from "../../state/GameStateProvider";
-import reduceGameState from "../../state/reduceGameState";
-import useFocalPoint from "../../utils/useFocalPoint";
-
-const DURATION = 8000;
 
 export default function PopUpNoticeContainer() {
   const [game, setGame] = React.useContext(GameContext);
   const notice = game.messages.find((m) => !m.isDismissed);
-  const { setFocalPoint } = useFocalPoint();
 
   const onContinue = () => {
     setGame((state) => {
@@ -24,7 +17,7 @@ export default function PopUpNoticeContainer() {
       message.isDismissed = true;
 
       if (message.id === "LEARN_TO_BUY_FURNITURE") {
-        setFocalPoint("OPEN_BUY_FURNITURE_MENU_BUTTON");
+        newState.focalPoint = "OPEN_BUY_FURNITURE_MENU_BUTTON";
       }
 
       return newState;
