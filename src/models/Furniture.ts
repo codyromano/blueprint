@@ -39,7 +39,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   basicBed: {
     id: "basicBed",
     displayName: "Basic Bed",
-    size: ["50px", "50px"],
+    size: ["15vw", "10vw"],
     cost: INITIAL_CASH * 0.25,
   },
   comfortableBed: {

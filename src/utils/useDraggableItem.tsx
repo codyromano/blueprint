@@ -1,34 +1,68 @@
 import React, { useRef, useState, useEffect } from "react";
 
-interface Position {
+export interface Position {
   x: number;
   y: number;
+  vw: number;
+  vh: number;
+}
+
+function pixelsToViewportUnits(x: number, y: number): { vw: number; vh: number } {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  const vw = (x / viewportWidth) * 100;
+  const vh = (y / viewportHeight) * 100;
+
+  return { vw, vh };
 }
 
 const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
-  const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
+  const [position, setPosition] = useState<Position>({ x: 0, y: 0, vh: 0, vw: 0 });
   const draggableItemRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+
+  /*
   const [initialPosition, setInitialPosition] = useState<Position>({
     x: 0,
     y: 0,
+    vw: 0,
+    vh: 0,
   });
+  */
 
   useEffect(() => {
     const handleMove = (event: MouseEvent | TouchEvent) => {
       event.preventDefault();
 
       if (isDragging && draggableItemRef.current) {
-        const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
-        const clientY = "touches" in event ? event.touches[0].clientY : event.clientY;
-        const deltaX = clientX - initialPosition.x;
-        const deltaY = clientY - initialPosition.y;
+        const {width: styleWidth, height: styleHeight} = window.getComputedStyle(draggableItemRef.current);
+        const styleWidthHalf = parseInt(styleWidth);
+        const styleHeightHalf = parseInt(styleHeight) / 1.5;
+
+        // @ts-ignore
+        // console.log(styleWidthHalf, styleHeightHalf, event.clientX, event.clientY);
+
+        const clientX = ("touches" in event ? event.touches[0].clientX : event.clientX) - styleWidthHalf;
+        const clientY = "touches" in event ? event.touches[0].clientY : event.clientY - styleHeightHalf;
+
+       // const deltaX = clientX - initialPosition.x;
+       // const deltaY = clientY - initialPosition.y;
+
+        // console.log(`Furniture.domPosition = ` + JSON.stringify(domPosition));
+
+        // const viewportUnits = pixelsToViewportUnits(clientX, clientY);
+
         setPosition({
-          x: position.x + deltaX,
-          y: position.y + deltaY,
-        });
-        setInitialPosition({ x: clientX, y: clientY });
-      }
+          // x: position.x + deltaX,
+          // y: position.y + deltaY,
+          // TODO: Remove  pixel values, no longer used
+          x: clientX,
+          y: clientY,
+          ...pixelsToViewportUnits(clientX, clientY)
+          // vh: deltaY + viewportUnits.vh - styleHeightHalf,
+          // vw: deltaX + viewportUnits.vw - styleWidthHalf
+        });      }
     };
 
     const handleStart = (event: MouseEvent | TouchEvent) => {
@@ -36,9 +70,27 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
       
       if (draggableItemRef.current) {
         setIsDragging(true);
-        const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
-        const clientY = "touches" in event ? event.touches[0].clientY : event.clientY;
-        setInitialPosition({ x: clientX, y: clientY });
+
+        /*
+
+        const {width: styleWidth, height: styleHeight} = window.getComputedStyle(draggableItemRef.current);
+        const styleWidthHalf = parseInt(styleWidth);
+        const styleHeightHalf = parseInt(styleHeight);
+
+        // @ts-ignore
+        // console.log(styleWidthHalf, styleHeightHalf, event.clientX, event.clientY);
+
+        const clientX = ("touches" in event ? event.touches[0].clientX : event.clientX) - styleWidthHalf;
+        const clientY = "touches" in event ? event.touches[0].clientY : event.clientY - styleHeightHalf;
+
+
+        //const viewportUnits = pixelsToViewportUnits(clientX, clientY)
+        setInitialPosition({
+          x: clientX,
+          y: clientY, 
+          ...(pixelsToViewportUnits(clientX, clientY))
+         });
+         */
       }
     };
 
@@ -64,7 +116,7 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
       draggableItemRef.current?.removeEventListener("mousedown", handleStart);
       draggableItemRef.current?.removeEventListener("touchstart", handleStart);
     };
-  }, [isDragging, initialPosition, position]);
+  }, [isDragging, /*initialPosition,*/ position]);
 
   return [draggableItemRef, position];
 };

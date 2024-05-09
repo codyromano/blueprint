@@ -4,7 +4,7 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import GameState from "../models/GameState";
 
 import FurnitureModels from "../models/Furniture";
-import useDraggableItem from "../utils/useDraggableItem";
+import useDraggableItem, { Position } from "../utils/useDraggableItem";
 import useFocalPoint from "../utils/useFocalPoint";
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -14,7 +14,7 @@ import GameContext from "../state/GameStateProvider";
 
 type Props = {
   onTouchEnd: () => void;
-  onDragPositionChanged: (x: number, y: number) => void;
+  onDragPositionChanged: (position: Position) => void;
   ownedItem: NonNullable<GameState["furniture"][string]>;
   isFocalPoint: boolean;
 };
@@ -59,7 +59,8 @@ export default function Furniture({
   const popoverId = open ? 'simple-popover' : undefined;
 
   useEffect(() => {
-    onDragPositionChanged(domPosition.x, domPosition.y);
+    // console.log(`Furniture.domPosition = ` + JSON.stringify(domPosition));
+    onDragPositionChanged(domPosition);
   }, [domPosition]);
 
   if (!ownedItem) {
@@ -72,8 +73,6 @@ export default function Furniture({
   const imageSrc =
     status === "blueprint" ? `/images/box.webp` : `/images/${imageId}.webp`;
   
-
-
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <>
@@ -93,7 +92,6 @@ export default function Furniture({
 
       <Button onClick={() => setAnchorEl(null)}>Cancel</Button>
       </Popover>
-
 
       <div
         ref={draggableItemRef}
