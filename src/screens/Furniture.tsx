@@ -108,7 +108,7 @@ export default function Furniture({
 
           // Only display the context menu on single taps (<250ms)
           // Probably a better way to do this
-          if (mouseDownTime != null && Date.now() - mouseDownTime < 250) {
+          if (status !== 'blueprint' && mouseDownTime != null && Date.now() - mouseDownTime < 250) {
             setAnchorEl(event.currentTarget);
           }
         }}
