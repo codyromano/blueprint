@@ -45,6 +45,19 @@ export default function GameArea() {
 
   const tenants = useTenants();
 
+  const {setCommandCallback} = useDebugCommand();
+
+  useEffect(() => {
+    setCommandCallback('COLLECT_MONEY_CHEAT', () => {
+      setGame(reduceGameState(game, {
+        action: GameActions.COLLECT_CASH,
+        entropy: Math.random(),
+        lastUpdatedTime: Date.now(),
+        collectCash: 1000
+      }))
+    });
+  }, [setCommandCallback]);
+
   const ownedItems: Array<NonNullable<GameState["furniture"][string]>> =
     getObjectValues(game.furniture);
 

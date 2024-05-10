@@ -12,6 +12,7 @@ type Payload = {
   messageId?: string;
   lastUpdatedTime: number;
   entropy: number;
+  collectCash?: number;
 };
 
 let i = 0;
@@ -148,6 +149,13 @@ export default function reduceGameState(
           tenant.lastUpdatedTime = newState.lastUpdatedTime;
         }
       }
+      break;
+    }
+    case GameActions.COLLECT_CASH: {
+      if (payload?.collectCash == null) {
+        throw new Error('You must set a collectCash param in the payload.');
+      }
+      newState.player.cash += payload.collectCash;
       break;
     }
     default:

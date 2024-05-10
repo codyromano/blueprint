@@ -3,7 +3,7 @@ enum GameActions {
   DISMISS_MESSAGE = "dismiss_message",
   CREATE_TENANTS = "create_tenants",
   UPDATE_TENANTS = "update_tenants",
-  COLLECT_MONEY = "collect_money",
+  COLLECT_CASH= "collect_cash",
 }
 
 export default GameActions;

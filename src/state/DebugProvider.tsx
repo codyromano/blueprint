@@ -10,6 +10,7 @@ export const getInitialDebugProvider = (): DebugProviderState => {
   return {
     commands: {
       'FINISH_PUZZLE_THREE_STARS': () => {},
+      'COLLECT_MONEY_CHEAT': () => {},
     }
   };
 };
