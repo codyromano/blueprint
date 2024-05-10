@@ -88,9 +88,3 @@ Light Gray: #D3D3D3
   right: calc(var(--house-side-piece-width) * -0.5);
   z-index: 1;
 }
-
-@media screen and (orientation: portrait) {
-  .buy-furniture-button {
-    top: 0;
-  }
-}
