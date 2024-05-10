@@ -105,6 +105,7 @@ export default function Furniture({
         }}
         onClick={(event) => {
           const mouseDownTime = mouseDownStartTimeRef.current; 
+          setFocalPoint(null);
 
           // Only display the context menu on single taps (<250ms)
           // Probably a better way to do this
