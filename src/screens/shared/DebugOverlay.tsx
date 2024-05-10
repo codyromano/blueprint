@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GameState from "../../models/GameState";
 import useDebugCommand from "../../state/useDebugCommand";
+import { Typography } from "@mui/material";
 
 const tabButtonStyle = {
   color: '#fff',
@@ -27,11 +28,11 @@ export default function DebugOverlay({ state }: { state: GameState }) {
       }}
     >
       <details>
-        <summary>Debug</summary>
+        <summary style={{opacity: 0.75}}><Typography style={{display: 'inline'}}>Cheat / Debug</Typography></summary>
 
         <menu style={{display: 'flex'}}>
           <button onClick={() => setCurrentTab('state')} style={tabButtonStyle}>State</button>
-          <button onClick={() => setCurrentTab('commands')} style={tabButtonStyle}>Commands</button>
+          <button onClick={() => setCurrentTab('commands')} style={tabButtonStyle}>Cheats</button>
         </menu>
 
         {currentTab === 'state' && <pre>{JSON.stringify(state, null, 2)}</pre>}

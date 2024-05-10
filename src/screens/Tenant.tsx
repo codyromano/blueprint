@@ -2,6 +2,8 @@ import React from "react";
 import GameState from "../models/GameState";
 import {Img as Image} from "react-image";
 import "./Tenant.css";
+import { IconButton } from "@mui/material";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 export default function Tenant({
   tenant,
@@ -23,23 +25,21 @@ export default function Tenant({
       }}
     >
       {secondsUntilMoneyIsReady === 0 ? (
-        <button
-          onClick={onCollectMoney}
-          style={{
-            backgroundColor: "red",
-            cursor: "pointer",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Image src={`/images/money.webp`} width="7.5vw" />
-        </button>
+        <div style={{
+          position: 'absolute', 
+          top: '-5vh',
+          left: 0,
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'center',
+        }}>
+        <IconButton  onClick={onCollectMoney} color="primary" size="large">
+          <AttachMoneyIcon fontSize="large" />
+        </IconButton>
+        </div>
       ) : (
         <div
-
         style={{
-          backgroundColor: "red",
           cursor: "pointer",
           width: "100%",
           display: "flex",
@@ -49,7 +49,7 @@ export default function Tenant({
         {secondsUntilMoneyIsReady}
       </div>
       )}
-      <Image src={`/images/tenant.gif`} width="15vw" />
+      <Image src={`/images/tenant.gif`} style={{width: '20vw'}} />
     </div>
   );
 }
