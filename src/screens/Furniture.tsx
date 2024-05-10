@@ -55,8 +55,7 @@ export default function Furniture({
     });
   };
 
-  const open = Boolean(anchorEl);
-  const popoverId = open ? 'simple-popover' : undefined;
+
 
   useEffect(() => {
     // console.log(`Furniture.domPosition = ` + JSON.stringify(domPosition));
@@ -69,6 +68,10 @@ export default function Furniture({
   const { id, status, furnitureName, position } = ownedItem;
   const model = FurnitureModels[furnitureName];
   const imageId = FurnitureModels[furnitureName].id;
+
+  // Don't show the context menu when the furniture is unassembled (box)
+  const open = status !== 'blueprint' && Boolean(anchorEl);
+  const popoverId = open ? 'simple-popover' : undefined;
 
   const imageSrc =
     status === "blueprint" ? `/images/box.webp` : `/images/${imageId}.webp`;
