@@ -17,10 +17,29 @@ function pixelsToViewportUnits(x: number, y: number): { vw: number; vh: number }
   return { vw, vh };
 }
 
-const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
-  const [position, setPosition] = useState<Position>({ x: 0, y: 0, vh: 0, vw: 0 });
+function getInitialPosition(element: HTMLDivElement): Position {
+  const styles = window.getComputedStyle(element);
+  const left = parseInt(styles.left);
+  const top = parseInt(styles.top);
+
+  return {
+    x: left,
+    y: top,
+    ...(pixelsToViewportUnits(left, top))
+  };
+}
+
+const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position | null] => {
   const draggableItemRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [position, setPosition] = useState<Position | null>(null);
+
+
+  useEffect(() => {
+    if (draggableItemRef.current != null) {
+      setPosition(getInitialPosition(draggableItemRef.current));
+    }
+  }, [draggableItemRef]);
 
   /*
   const [initialPosition, setInitialPosition] = useState<Position>({
@@ -70,27 +89,6 @@ const useDraggableItem = (): [React.RefObject<HTMLDivElement>, Position] => {
       
       if (draggableItemRef.current) {
         setIsDragging(true);
-
-        /*
-
-        const {width: styleWidth, height: styleHeight} = window.getComputedStyle(draggableItemRef.current);
-        const styleWidthHalf = parseInt(styleWidth);
-        const styleHeightHalf = parseInt(styleHeight);
-
-        // @ts-ignore
-        // console.log(styleWidthHalf, styleHeightHalf, event.clientX, event.clientY);
-
-        const clientX = ("touches" in event ? event.touches[0].clientX : event.clientX) - styleWidthHalf;
-        const clientY = "touches" in event ? event.touches[0].clientY : event.clientY - styleHeightHalf;
-
-
-        //const viewportUnits = pixelsToViewportUnits(clientX, clientY)
-        setInitialPosition({
-          x: clientX,
-          y: clientY, 
-          ...(pixelsToViewportUnits(clientX, clientY))
-         });
-         */
       }
     };
 

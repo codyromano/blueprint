@@ -14,7 +14,7 @@ import GameContext from "../state/GameStateProvider";
 
 type Props = {
   onTouchEnd: () => void;
-  onDragPositionChanged: (position: Position) => void;
+  onDragPositionChanged: (position: Position | null) => void;
   ownedItem: NonNullable<GameState["furniture"][string]>;
   isFocalPoint: boolean;
 };
@@ -58,7 +58,6 @@ export default function Furniture({
 
 
   useEffect(() => {
-    // console.log(`Furniture.domPosition = ` + JSON.stringify(domPosition));
     onDragPositionChanged(domPosition);
   }, [domPosition]);
 

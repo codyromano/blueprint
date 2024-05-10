@@ -102,7 +102,10 @@ export default function GameArea() {
           ownedItems.map((item) => (
             <Furniture
               key={item.id}
-              onDragPositionChanged={(position: Position) => {
+              onDragPositionChanged={(position: Position | null) => {
+                if (position == null) {
+                  return;
+                }
                 setGame((state) => {
                   const newState = { ...state };
                   const newItem = newState.furniture[item.id];
@@ -111,14 +114,8 @@ export default function GameArea() {
                     throw new Error("expected position");
                   }
 
-                  /*
-                  newItem.position[0] = `${x}px`;
-                  newItem.position[1] = `${y}px`;
-                  */
-                 newItem.position[0] = `${position.vw}vw`;
-                 newItem.position[1] = `${position.vh}vh`;
-
-                  // newState.markers["IS_READY_FOR_FIRST_TENANT"] = true;
+                  newItem.position[0] = `${position.vw}vw`;
+                  newItem.position[1] = `${position.vh}vh`;
 
                   return newState;
                 });
