@@ -10,6 +10,8 @@ import getObjectValues from "../utils/getObjectValues";
 import Furniture from "./Furniture";
 import {Img as Image} from "react-image";
 import PuzzleWordMerge from "./PuzzleWordMerge/PuzzleWordMerge";
+import { Button, Typography } from "@mui/material";
+import Avatar from '@mui/material/Avatar';
 
 enum AssembleFurnitureResult {
   PENDING,
@@ -92,9 +94,7 @@ export default function AssembleFurniture({
       >
         <div style={{display: "flex",  alignItems: "center", justifyItems: "center", height: "100%", justifyContent: "center", flexDirection: "column"}}>
           
-        <div className="row">
-          <Image src={`/images/${furnitureModel.id}.webp`} style={{maxHeight: "25rem"}} />
-          </div>
+          <Avatar variant="square" src={`/images/${furnitureModel.id}.webp`} style={{ height: "100px", width: "100px", margin: "16px"}} />
 
           <div className="row">
             {new Array(rating).fill(null).map(() => '★').join('')}
@@ -109,12 +109,13 @@ export default function AssembleFurniture({
           <p className="typography-small row">Item quality is based on how well you solve the puzzle.
           As people move into your home, high-quality items will make them happier.</p>
 
-          <button
+          <Button
+            variant="contained"
+            color="primary"
             onClick={onAcceptPuzzleSuccess}
-            style={{ color: "blue", fontSize: "1.25rem" }}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </Modal>
     )
@@ -140,17 +141,17 @@ export default function AssembleFurniture({
         >
           <Image src="/images/box.png" width="100px" />
 
-          <p className="typography-normal" style={{ maxWidth: "400px" }}>
+          <Typography style={{marginBottom: '16px'}}>
             To assemble a piece of furniture, you'll need to solve a random puzzle.
-          </p>
+            </Typography>
 
-          <button onClick={() => {
-          setSkipTutorialScreen(true);
-          }}>Generate Puzzle</button>
+          <Button variant="contained" color="primary" onClick={() => {
+            setSkipTutorialScreen(true);
+          }}>Generate Puzzle</Button>
         </div>
       ) : (
         <PuzzleWordMerge
-          instructions="Tap similar words to merge them. Merge all the words except one to get a perfect score."
+          instructions="Tap two or more words that have something in common, then tap &quot;Merge.&quot; Merge all the words except one to get a perfect score."
           difficulty="easy"
           onPuzzleFailed={onPuzzleFailed}
           onPuzzleSolved={onPuzzleSolved}

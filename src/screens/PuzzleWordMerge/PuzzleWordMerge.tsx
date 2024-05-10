@@ -5,6 +5,7 @@ import puzzles, { WordMergeTerm } from './wordMergePuzzles';
 import { getIsCommonTargetForWords, getWordsWithoutDependencies} from "./wordMergeGraphUtils";
 import toposort from "toposort";
 import "./PuzzleWordMerge.css";
+import { Button, ButtonGroup, Grid } from "@mui/material";
 
 const getPuzzleRating = (countResolvedTerms: number, countTotalTerms: number): 0 | 1 | 2 | 3 => {
   return 3;
@@ -92,22 +93,42 @@ export default function PuzzleWordMerge({
   return <div>
     <p style={{margin: '3vh 0'}}>{instructions}</p>
 
-    <div className="puzzle-word-merge-container">
+    <Grid container spacing={2} style={{marginBottom: '16px'}}>
       {resolvedWords.map(term => (
-        <button key={term}  onClick={() => onSelectWord(term)}
-        className={`puzzle-word-merge-button ${selectedWords.has(term) ? 'puzzle-word-selected' : ''}`}>{term}</button>
+        <Grid item xs={4}>
+          <Button
+            fullWidth
+            key={term}
+            variant={selectedWords.has(term) ? "contained" : "outlined"}
+            color={"success"}
+            onClick={() => {
+              if (resolvedWords.length !== 1) {
+                onSelectWord(term);
+              }
+            }}
+          >{term}</Button>
+         </Grid>
       ))}
-    </div>
 
-    <footer className="puzzle-word-footer">
-      <div style={{width: "100%", gap: "0.5rem", display: "flex"}}>
-      <button className="puzzle-word-merge-button puzzle-word-footer-button" onClick={onClickReset} disabled={selectedWords.size < 2}>Reset</button>
-      <button className="puzzle-word-merge-button puzzle-word-footer-button merge-button"  onClick={onClickMerge} disabled={selectedWords.size < 2}>Merge</button>
-      </div>
+    </Grid>
 
-      <button
-        className="puzzle-word-footer-button-secondary"
-        onClick={onFinishSolvingPuzzle}>I give up</button>
-    </footer>
+    {resolvedWords.length !== 1 && <ButtonGroup fullWidth>
+      <Button
+            variant="outlined"
+            color="secondary"
+            onClick={onClickReset}
+            disabled={selectedWords.size < 1}
+            fullWidth
+          >Reset</Button>
+
+      <Button
+          variant="contained"
+          color="primary"
+          onClick={onClickMerge}
+          disabled={selectedWords.size < 2}
+          fullWidth
+        >Merge</Button>
+    </ButtonGroup>}
+
   </div>;
 }
