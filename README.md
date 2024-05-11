@@ -6,4 +6,4 @@ A game about decorating a room
 
 ## Getting started
 
-`cd ./blueprint && nvm use && npm install && npm start`
+`cd ./blueprint && nvm use && yarn start`
