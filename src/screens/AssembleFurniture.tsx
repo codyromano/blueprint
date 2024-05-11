@@ -10,8 +10,9 @@ import getObjectValues from "../utils/getObjectValues";
 import Furniture from "./Furniture";
 import {Img as Image} from "react-image";
 import PuzzleWordMerge from "./PuzzleWordMerge/PuzzleWordMerge";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, ImageList, ImageListItem  } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
+
 
 enum AssembleFurnitureResult {
   PENDING,
