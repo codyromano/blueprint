@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import PositionLayer from "./shared/PositionLayer";
 import "./BuyFurniture.css";
-import GameState from "../models/GameState";
 import Furniture, { FurnitureName, FurnitureItem } from "../models/Furniture";
-import {Img as Image} from "react-image";
 import PaidIcon from '@mui/icons-material/Paid';
 import Modal from "./shared/Modal";
 import { Box, Button, ButtonGroup, IconButton, ImageList, ImageListItem, ImageListItemBar, Typography } from "@mui/material";
 import nullThrows from "../utils/nullThrows";
-
 
 type Props = {
   onSelectClose: () => void;
@@ -28,7 +24,14 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
       onSelectClose={onSelectClose}
       horizontalScroll={true}
     >
-    <ImageList cols={3} rowHeight={164} style={{padding: '15px 0'}}>
+    <ImageList gap={15} cols={
+      Math.min(3,
+        Math.max(
+          1,
+          Math.round(window.screen.availWidth / 300)
+        )
+      )
+    } rowHeight={164} style={{padding: '15px 0'}}>
       {furnitureItems.map((item) => {
         const isDisabled = playerCash < item.cost;
 
@@ -36,6 +39,7 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
         <ImageListItem key={item.id} style={{
           border: selectedItem?.id === item.id ? 'solid #000 1px' : 'solid #ccc 1px',
           borderRadius: '5px',
+          cursor: isDisabled ? 'default' : 'pointer',
           opacity: isDisabled ?  0.5 : 1
         }}>
           <Box onClick={() => {
@@ -70,96 +74,11 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
     </ImageList>
 
     <ButtonGroup fullWidth>
-      <Button variant="outlined" fullWidth>Cancel</Button>
+      <Button variant="outlined" fullWidth onClick={onSelectClose}>Cancel</Button>
       <Button variant="contained" onClick={() => {
         onSelectBuy(nullThrows(selectedItem, 'Expected selectedItem'));
       }} disabled={selectedItem == null} fullWidth color="primary">Buy</Button>
     </ButtonGroup>
-
-    {/*
-      <ul
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-          height: "100%",
-          overflowX: "scroll",
-        }}
-      >
-        {furnitureItems.map((furniture) => (
-          <li key={furniture.id}>
-            <button
-              disabled={furniture.cost > playerCash}
-              onClick={() => onSelectBuy(furniture)}
-              className="buy-furniture-tile-button"
-            >
-              <h2 className="row">{
-                furniture.displayName
-              }</h2>
-              <Image style={{width: '100%'}} src={`/images/${furniture.id}.webp`} />
-              <div className="item-cost"><i className="fa-solid fa-sack-dollar" style={{color: "#000000"}}></i>{furniture.cost}</div>
-            </button>
-          </li>
-        ))}
-      </ul>
-      */}
     </Modal>
   );
-  /*
-  return (
-    <PositionLayer
-      zIndex={10}
-      position="fixed"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <div className="hscroll-menu">
-        <h1
-          style={{
-            fontSize: "1.75rem",
-            marginBottom: "1.5rem",
-          }}
-        >
-          Buy Furniture
-        </h1>
-
-        <ul
-          style={{
-            display: "flex",
-            width: "100%",
-            gap: "10px",
-            overflowX: "scroll",
-          }}
-        >
-          {furnitureItems.map((furniture) => (
-            <li key={furniture.id}>
-              <h2 className="row">{furniture.displayName}</h2>
-              <Image src={`../public/images/${furniture.id}.png`} />
-
-              <button
-                onClick={() => onSelectBuy(furniture)}
-                className="block-button"
-              >
-                Buy 🪙 {furniture.cost}
-              </button>
-            </li>
-          ))}
-        </ul>
-
-        <div
-          style={{
-            position: "absolute",
-            top: "0px",
-            right: "0px",
-          }}
-        >
-          <button onClick={onSelectClose} className="block-button">
-            Close
-          </button>
-        </div>
-      </div>
-    </PositionLayer>
-  );
-  */
 }
