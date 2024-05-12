@@ -12,7 +12,7 @@ type WordMergePuzzle = {
 // TODO: Maybe some basic validation
 const validatePuzzle = (puzzle: WordMergePuzzle) => puzzle;
 
-const puzzles: WordMergePuzzle[] = [
+const puzzles: WordMergePuzzle[] = [  
   {
     id: '1',
     difficulty: 'easy',
@@ -32,15 +32,31 @@ const puzzles: WordMergePuzzle[] = [
     id: '2',
     difficulty: 'medium',
     graph: [
-      ['Ring', NO_DEPENDENCIES],
-      ['Box', NO_DEPENDENCIES],
-      ['Star', NO_DEPENDENCIES],
-      ['Light', NO_DEPENDENCIES],
-      ['Dust', NO_DEPENDENCIES],
-      ['Ball', NO_DEPENDENCIES],
-      ['Tree', NO_DEPENDENCIES],
-      ['Night', NO_DEPENDENCIES],
-      ['Wave', NO_DEPENDENCIES],
+      // Initial words
+      ['Tiff', NO_DEPENDENCIES],
+      ['Ria', NO_DEPENDENCIES],
+      ['Kendra', NO_DEPENDENCIES],
+      ['Reed', NO_DEPENDENCIES],
+      ['One', NO_DEPENDENCIES],
+      ['Three', NO_DEPENDENCIES],
+      ['Limb', NO_DEPENDENCIES],
+      ['Foot', NO_DEPENDENCIES],
+
+      // Combinations
+      ['Friends', 'Tiff'],
+      ['Friends', 'Ria'],
+      ['Friends', 'Kendra'],
+      ['Friends', 'Reed'],
+      ['Plant', 'Reed'],
+      ['Four', 'Three'],
+      ['Four', 'One'],
+      ['Legged', 'Limb'],
+      ['Legged', 'Foot'],
+
+      // Winning combo
+      ['Momo & Emmy', 'Four'],
+      ['Momo & Emmy', 'Legged'],
+      ['Momo & Emmy', 'Friends']
     ]
   }
 ];

@@ -12,6 +12,20 @@ type Props = {
   playerCash: number;
 };
 
+const getColumns = () => {
+  const width = window?.visualViewport?.width;
+
+  if (width == null || width > 900) {
+    return 3;
+  }
+
+  if (width >= 670) {
+    return 2;
+  }
+
+  return 1;
+};
+
 export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }: Props) {
   const [selectedItem, setSelectedItem] = useState<FurnitureItem>();
   const furnitureItems: FurnitureItem[] = Object.values(Furniture).sort(
@@ -24,20 +38,13 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
       onSelectClose={onSelectClose}
       horizontalScroll={true}
     >
-    <ImageList gap={15} cols={
-      Math.min(3,
-        Math.max(
-          1,
-          Math.round(window.screen.availWidth / 300)
-        )
-      )
-    } rowHeight={164} style={{padding: '15px 0'}}>
+    <ImageList gap={15} cols={getColumns()} rowHeight={164} style={{padding: '15px 0'}}>
       {furnitureItems.map((item) => {
         const isDisabled = playerCash < item.cost;
 
        return (
         <ImageListItem key={item.id} style={{
-          border: selectedItem?.id === item.id ? 'solid #000 1px' : 'solid #ccc 1px',
+          border: selectedItem?.id === item.id ? 'solid #000 3px' : 'solid #ccc 3px',
           borderRadius: '5px',
           cursor: isDisabled ? 'default' : 'pointer',
           opacity: isDisabled ?  0.5 : 1

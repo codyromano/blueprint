@@ -5,8 +5,8 @@ import puzzles, { WordMergeTerm } from './wordMergePuzzles';
 import { getIsCommonTargetForWords, getWordsWithoutDependencies} from "./wordMergeGraphUtils";
 import toposort from "toposort";
 import "./PuzzleWordMerge.css";
-import { Alert, Button, ButtonGroup, Grid } from "@mui/material";
-import { CheckCircleOutline } from "@mui/icons-material";
+import { Alert, Box, Button, ButtonGroup, Card, Grid, Typography } from "@mui/material";
+import { CheckCircleOutline, Favorite, FavoriteBorder } from "@mui/icons-material";
 
 const getPuzzleRating = (countResolvedTerms: number, countTotalTerms: number): 0 | 1 | 2 | 3 => {
   return 3;
@@ -19,12 +19,14 @@ export default function PuzzleWordMerge({
   difficulty,
 }: Puzzle) {
   // TODO: Determine correct puzzle id
-  const puzzleId = '1';
+  const puzzleId = '2';
   const puzzle = puzzles.find(p => p.id === puzzleId);
 
   if (puzzle == null) {
     throw new Error(`No wordMergePuzzle with id ${puzzleId}`);
   }
+
+  const [attemptsRemaining, setAttemptsRemaining] = useState<number>(4);
 
   // The user selected two or more words and hit "merge"
   const [mergedWords, setMergedWords] = useState<Set<WordMergeTerm>>(new Set());
@@ -82,16 +84,37 @@ export default function PuzzleWordMerge({
       });
     } else {
       alert('The words must all have something in common');
+      setAttemptsRemaining(attempts => --attempts);
     }
   };
 
   const onClickReset = () => {
     setMergedWords(new Set());
     setSelectedWords(new Set());
+    setAttemptsRemaining(4);
   };
+
+  const heartIcons = [];
+
+  for (let i=1; i<=4; i++) {
+    if (i > attemptsRemaining) {
+      heartIcons.push(
+        <FavoriteBorder sx={{color: '#555'}} />
+      );
+    } else {
+      heartIcons.push(
+        <Favorite sx={{color: '#555'}} />
+      );
+    }
+  }
   
 
   return <div>
+    <Box style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '16px'}}>
+      <Typography variant="caption" style={{marginRight: '5px'}}>Attempts:</Typography> 
+      {heartIcons}
+    </Box>
+
     <Alert title="How to Play" severity="info" style={{margin: '16px'}}>
     {instructions}
     </Alert>

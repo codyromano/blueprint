@@ -152,7 +152,7 @@ export default function AssembleFurniture({
         </div>
       ) : (
         <PuzzleWordMerge
-          instructions="Tap two or more words that have something in common, then tap &quot;Merge.&quot; Merge all the words except one to get a perfect score."
+          instructions="Tap two or more similar words to merge them. Merge all the words to win!"
           difficulty="easy"
           onPuzzleFailed={onPuzzleFailed}
           onPuzzleSolved={onPuzzleSolved}
