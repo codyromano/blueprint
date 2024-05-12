@@ -21,7 +21,7 @@ const createUUID = () => {
 
 const TENANT_VW = 15;
 
-const addMessageOnce = (
+export const addMessageOnce = (
   messageID: MessageID,
   messageContent: string,
   state: GameState
@@ -42,20 +42,15 @@ const hasDismissedMessage = (messageID: MessageID, state: GameState) => {
   return state.messages.find((m) => m.id === messageID)?.isDismissed;
 };
 
-const getTargetTotalTenants = (totalAssemblyQuality: number): number => {
-  if (totalAssemblyQuality >= 30) {
-    return 3;
-  }
+const getTargetTotalTenants = (
+  totalAssemblyQuality: number,
+  totalItems: number,
+  playerCash: number
+): number => {
 
-  if (totalAssemblyQuality >= 20) {
-    return 2;
-  }
+  // TODO - Add end-game conditions here, first
 
-  if (totalAssemblyQuality >= 5) {
-    return 1;
-  }
-
-  return 0;
+  return totalItems >= 2 ? 1 : 0;
 };
 
 export default function reduceGameState(
@@ -122,7 +117,16 @@ export default function reduceGameState(
           0
         );
         // TODO: Adjust this function
-        const targetTotalTenants = getTargetTotalTenants(totalAssemblyQuality);
+        const targetTotalTenants = getTargetTotalTenants(
+          totalAssemblyQuality,
+          Object.keys(newState.furniture).length,
+          newState.player.cash,
+        );
+
+        if (targetTotalTenants === 1) {
+          newGame = addMessageOnce('NEW_TENANT_JEFF', '')
+        }
+
         const newTenants = Math.max(
           0,
           targetTotalTenants - Object.keys(newState.tenants).length
