@@ -94,10 +94,12 @@ export default function reduceGameState(
         newState.player.cash -= furniture.cost;
 
         const id = createUUID();
+
         newState.furniture[id] = {
           id,
           furnitureName,
-          position: [`calc(50vw - ${furniture.size[0]}px)`, `calc(50vh - ${furniture.size[1]}px)`],
+          // Spawn furniture in the center of the screen
+          position: [`calc(50vw - ${furniture.size[0] / 2}px)`, `calc(50vh - ${furniture.size[1] / 2}px)`],
           status: "blueprint",
         };
 

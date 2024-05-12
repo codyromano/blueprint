@@ -115,7 +115,6 @@ export default function Furniture({
           mouseDownStartTimeRef.current = Date.now();
         }}>
       <div
-        draggable
         onMouseUp={onTouchEnd}
         role="button"
         onClick={(event) => {
