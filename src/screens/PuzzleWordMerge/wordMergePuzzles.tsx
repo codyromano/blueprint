@@ -47,7 +47,6 @@ const puzzles: WordMergePuzzle[] = [
       ['Friends', 'Ria'],
       ['Friends', 'Kendra'],
       ['Friends', 'Reed'],
-      ['Plant', 'Reed'],
       ['Four', 'Three'],
       ['Four', 'One'],
       ['Legged', 'Limb'],
