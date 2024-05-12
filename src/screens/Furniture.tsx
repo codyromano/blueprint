@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, IconButton } from "@mui/material";
 import GameContext from "../state/GameStateProvider";
+import Draggable from "react-draggable";
 
 type Props = {
   onTouchEnd: () => void;
@@ -95,13 +96,24 @@ export default function Furniture({
       <Button onClick={() => setAnchorEl(null)}>Cancel</Button>
       </Popover>
 
-      <div
-        ref={draggableItemRef}
-        onMouseUp={onTouchEnd}
-        role="button"
+      <Draggable onStart={event => event.preventDefault()} onStop={(event) => {
+          const mouseDownTime = mouseDownStartTimeRef.current; 
+          setFocalPoint(null);
+
+          // Only display the context menu on single taps (<250ms)
+          // Probably a better way to do this
+          if (status !== 'blueprint' && mouseDownTime != null && Date.now() - mouseDownTime < 250) {
+            // @ts-ignore
+            setAnchorEl(event.currentTarget);
+          }
+        }}
         onMouseDown={() => {
           mouseDownStartTimeRef.current = Date.now();
-        }}
+        }}>
+      <div
+        draggable
+        onMouseUp={onTouchEnd}
+        role="button"
         onClick={(event) => {
           const mouseDownTime = mouseDownStartTimeRef.current; 
           setFocalPoint(null);
@@ -128,6 +140,7 @@ export default function Furniture({
       >
         <Image width="100%" src={imageSrc} />
       </div>
+      </Draggable>
       </>
     </ClickAwayListener>
   );
