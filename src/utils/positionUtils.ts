@@ -11,3 +11,8 @@ export const clamp = (value: number, min: number, max: number) => {
   value = Math.min(max, value); 
   return value;
 };
+
+type ValidatedObject<T> = {
+  [K in keyof T]: T[K];
+};
+

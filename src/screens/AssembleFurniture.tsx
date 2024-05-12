@@ -66,12 +66,12 @@ export default function AssembleFurniture({
       itemRecord.status = "assembled";
 
       if (
-        !newGame.messages.find((m) => 'LEARN_TO_BUY_FURNITURE')
+        !newGame.messages.find((m) => m.id === 'LEARN_TO_MOVE_FURNITURE')
       ) {
         newGame.messages.push({
           id: 'LEARN_TO_MOVE_FURNITURE',
           messageContent:
-            "Tap and drag your furniture to make the room feel like home.",
+            "Tap and drag furniture to make the room look nice.",
           isDismissed: false,
           messageType: "pop-up",
         });
@@ -151,7 +151,7 @@ export default function AssembleFurniture({
           }}>Generate Puzzle</Button>
         </div>
       ) : (
-        <PuzzleWordMerge
+        <PuzzleAnagram
           instructions="Tap two or more similar words to merge them. Merge all the words to win!"
           difficulty="easy"
           onPuzzleFailed={onPuzzleFailed}

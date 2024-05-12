@@ -16,7 +16,7 @@ export const getInitialGameState = (): GameState => {
     messages: [
       {
         id: 'LEARN_TO_BUY_FURNITURE',
-        messageContent: "The house feels empty. Let's buy furniture.",
+        messageContent: "The house feels empty. First, let's buy a bed.",
         messageType: "pop-up",
         isDismissed: false,
       },
