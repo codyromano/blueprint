@@ -2,8 +2,40 @@ import React from "react";
 import GameState from "../models/GameState";
 import {Img as Image} from "react-image";
 import "./Tenant.css";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import MoodIcon from '@mui/icons-material/Mood';
+import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
+function formatCountdown(seconds: number): string {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  const formattedMinutes = minutes > 0 ? `${minutes}m` : '';
+  const formattedSeconds = `${remainingSeconds}s`;
+
+  return [formattedMinutes, formattedSeconds].join(' ');
+}
+
+const TenantMoodIcon = ({
+  happiness
+}: {
+  happiness: number
+}) => {
+  if (happiness >= 90) {
+    return <MoodIcon />;
+  }
+  if (happiness >= 75) {
+    return <SentimentSatisfiedIcon />;
+  }
+  if (happiness >= 50) {
+    return <SentimentDissatisfiedIcon />;
+  }
+  return <SentimentVeryDissatisfiedIcon />;
+}
 
 export default function Tenant({
   tenant,
@@ -24,31 +56,33 @@ export default function Tenant({
         left: `${tenant.position[0]}vw`,
       }}
     >
-      {secondsUntilMoneyIsReady === 0 ? (
         <div style={{
           position: 'absolute', 
-          top: '-5vh',
+          top: '-3vh',
           left: 0,
           display: 'flex',
           width: '100%',
           justifyContent: 'center',
-        }}>
-        <IconButton  onClick={onCollectMoney} color="primary" size="large">
-          <AttachMoneyIcon fontSize="large" />
-        </IconButton>
+        }}>          
+          {secondsUntilMoneyIsReady === 0 ? (
+            <IconButton  onClick={onCollectMoney} color="primary" size="large">
+              <AttachMoneyIcon fontSize="large" />
+            </IconButton>
+          ) : (
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+              <div style={{display: 'flex'}}>
+                <TenantMoodIcon happiness={tenant.happiness} />
+                <Typography>{tenant.happiness}</Typography>
+              </div>
+
+              <div style={{display: 'flex'}}>
+                <AccessTimeIcon />
+                <Typography>{formatCountdown(secondsUntilMoneyIsReady)}</Typography>
+              </div>
+            </div>
+          )}
         </div>
-      ) : (
-        <div
-        style={{
-          cursor: "pointer",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        {secondsUntilMoneyIsReady}
-      </div>
-      )}
+    
       <Image src={`/images/tenant.gif`} style={{width: '20vw'}} />
     </div>
   );

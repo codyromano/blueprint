@@ -13,7 +13,6 @@ import PuzzleWordMerge from "./PuzzleWordMerge/PuzzleWordMerge";
 import { Button, Typography, ImageList, ImageListItem  } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 
-
 enum AssembleFurnitureResult {
   PENDING,
   SUCCESS,
@@ -143,7 +142,7 @@ export default function AssembleFurniture({
           <Image src="/images/box.png" width="100px" />
 
           <Typography style={{marginBottom: '16px'}}>
-            To assemble a piece of furniture, you'll need to solve a random puzzle.
+           Assemble furniture by solving a random puzzle.
             </Typography>
 
           <Button variant="contained" color="primary" onClick={() => {

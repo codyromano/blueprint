@@ -27,7 +27,7 @@ export const addMessageOnce = (
   state: GameState
 ): GameState => {
   const newState = { ...state };
-  if (!newState.messages.find(m => m.id)) {
+  if (!newState.messages.find(m => m.id === messageID)) {
     newState.messages.push({
       id: messageID,
       isDismissed: false,
@@ -124,7 +124,11 @@ export default function reduceGameState(
         );
 
         if (targetTotalTenants === 1) {
-          newGame = addMessageOnce('NEW_TENANT_JEFF', '')
+          newState = addMessageOnce(
+            'LEARN_TO_MANAGE_TENANTS',
+            `Your first tenant moved in! Buy furniture to keep them happy. Happy tenants will give you more money.`,
+            newState,
+          );
         }
 
         const newTenants = Math.max(
@@ -136,7 +140,7 @@ export default function reduceGameState(
           const id = createUUID();
           newState.tenants[id] = {
             id,
-            happiness: 100,
+            happiness: 50,
             // Note: Y position is from the bottom
             // 0 = "bottom: 0px"
             position: [50 - TENANT_VW / 2, 0],
@@ -150,7 +154,8 @@ export default function reduceGameState(
     case GameActions.UPDATE_TENANTS: {
       for (const tenant of getObjectValues(newState.tenants)) {
         if (newState.lastUpdatedTime - tenant.lastUpdatedTime > 1000 * 15) {
-          tenant.position[0] = 100 * payload.entropy;
+          // TODO: Update this
+          tenant.position[0] = 90 * payload.entropy;
           tenant.lastUpdatedTime = newState.lastUpdatedTime;
         }
       }
