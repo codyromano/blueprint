@@ -21,6 +21,7 @@ import "./GameArea.css";
 import useDebugCommand from "../state/useDebugCommand";
 import Position from "../models/Position";
 
+
 enum ContextOverlayMenu {
   BuyFurniture = "BuyFurniture",
   AssembleFurniture = "AssembleFurniture",
@@ -78,8 +79,6 @@ export default function GameArea() {
       {/*
       <div style={{ color: "#fff" }}>{JSON.stringify(game)}</div>
       */}
-      <GameVitalStatsHeader cash={game.player.cash} happiness={happiness} />
-
       {selectedItem != null &&
         activeOverlayMenu === ContextOverlayMenu.AssembleFurniture && (
           <AssembleFurniture
@@ -111,6 +110,8 @@ export default function GameArea() {
       <PopUpNoticeContainer />
 
       <div className="house">
+      <GameVitalStatsHeader cash={game.player.cash} happiness={happiness} />
+      
         {ownedItems.length > 0 &&
           ownedItems.map((item) => (
             <Furniture

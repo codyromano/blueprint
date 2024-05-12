@@ -28,7 +28,7 @@ export default function DebugOverlay({ state }: { state: GameState }) {
       }}
     >
       <details>
-        <summary style={{opacity: 0.75}}><Typography style={{display: 'inline'}}>Cheat / Debug</Typography></summary>
+        <summary style={{opacity: 0.5}}><Typography style={{display: 'inline'}}>Debug</Typography></summary>
 
         <menu style={{display: 'flex'}}>
           <button onClick={() => setCurrentTab('state')} style={tabButtonStyle}>State</button>
