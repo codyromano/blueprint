@@ -33,7 +33,7 @@ type GameState = {
       {
         id: string;
         furnitureName: FurnitureName;
-        position: null | [string, string];
+        position: [string, string];
         status: "blueprint" | "assembled";
         assemblyQuality?: number;
       }

@@ -3,7 +3,6 @@ import Furniture from "../models/Furniture";
 import GameState from "../models/GameState";
 import GameActions from "./GameActions";
 import getObjectValues from "../utils/getObjectValues";
-import Markers from "../models/Markers";
 import MessageID from "../models/MessageID";
 
 type Payload = {
@@ -98,7 +97,7 @@ export default function reduceGameState(
         newState.furniture[id] = {
           id,
           furnitureName,
-          position: ["50vw", "50vh"],
+          position: [`calc(50vw - ${furniture.size[0]}px)`, `calc(50vh - ${furniture.size[1]}px)`],
           status: "blueprint",
         };
 

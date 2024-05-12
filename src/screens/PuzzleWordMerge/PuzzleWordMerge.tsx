@@ -5,7 +5,8 @@ import puzzles, { WordMergeTerm } from './wordMergePuzzles';
 import { getIsCommonTargetForWords, getWordsWithoutDependencies} from "./wordMergeGraphUtils";
 import toposort from "toposort";
 import "./PuzzleWordMerge.css";
-import { Button, ButtonGroup, Grid } from "@mui/material";
+import { Alert, Button, ButtonGroup, Grid } from "@mui/material";
+import { CheckCircleOutline } from "@mui/icons-material";
 
 const getPuzzleRating = (countResolvedTerms: number, countTotalTerms: number): 0 | 1 | 2 | 3 => {
   return 3;
@@ -91,7 +92,9 @@ export default function PuzzleWordMerge({
   
 
   return <div>
-    <p style={{margin: '3vh 0'}}>{instructions}</p>
+    <Alert title="How to Play" severity="info" style={{margin: '16px'}}>
+    {instructions}
+    </Alert>
 
     <Grid container spacing={2} style={{marginBottom: '16px'}}>
       {resolvedWords.map(term => (

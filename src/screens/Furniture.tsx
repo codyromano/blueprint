@@ -4,14 +4,15 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import GameState from "../models/GameState";
 
 import FurnitureModels from "../models/Furniture";
-import useDraggableItem, { Position } from "../utils/useDraggableItem";
 import useFocalPoint from "../utils/useFocalPoint";
 import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, IconButton } from "@mui/material";
 import GameContext from "../state/GameStateProvider";
 import Draggable from "react-draggable";
+
+import type Position from '../models/Position';
+import { convertPixelCoordsToPosition } from "../utils/positionUtils";
 
 type Props = {
   onTouchEnd: () => void;
@@ -32,7 +33,6 @@ export default function Furniture({
   isFocalPoint = true,
   ownedItem,
 }: Props) {
-  const [draggableItemRef, domPosition] = useDraggableItem();
   const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
   const mouseDownStartTimeRef = useRef<number | null>(null);
 
@@ -55,12 +55,6 @@ export default function Furniture({
       return newState;
     });
   };
-
-
-
-  useEffect(() => {
-    onDragPositionChanged(domPosition);
-  }, [domPosition]);
 
   if (!ownedItem) {
     throw new Error("no owned item");
@@ -96,15 +90,25 @@ export default function Furniture({
       <Button onClick={() => setAnchorEl(null)}>Cancel</Button>
       </Popover>
 
-      <Draggable onStart={event => event.preventDefault()} onStop={(event) => {
+
+      <Draggable onStart={event => event.preventDefault()} onDrag={(_event, {x, y}) => {
+        console.log(x, y);
+        // onDragPositionChanged(convertPixelCoordsToPosition(x, y));
+      }} onStop={(event, data) => {
           const mouseDownTime = mouseDownStartTimeRef.current; 
           setFocalPoint(null);
+          onTouchEnd();
+          
+          // When dragging stops, get the computed fixed position of the target element
+          // so that we can persist it for the next time the scene renders
+          const {left, top} = window.getComputedStyle(data.node);
+          console.log(left, top);
 
           // Only display the context menu on single taps (<250ms)
           // Probably a better way to do this
           if (status !== 'blueprint' && mouseDownTime != null && Date.now() - mouseDownTime < 250) {
             // @ts-ignore
-            setAnchorEl(event.currentTarget);
+            // setAnchorEl(event.currentTarget);
           }
         }}
         onMouseDown={() => {
@@ -126,16 +130,13 @@ export default function Furniture({
         }}
         className={getClassNameWithFocalPoint('FURNITURE_ITEM', 'furniture-item')}
         style={{
-          position: "absolute",
+          position: "fixed",
+          top: ownedItem.position[1] ?? '50vh',
+          left: ownedItem.position[0],
           zIndex: 3,
-          width: status === 'assembled' ? model.size[0] : '10vw',
+          width: `${model.size[0]}px`,
           cursor: "pointer",
-          ...(position == null
-            ? {}
-            : {
-                left: position[0],
-                top: position[1],
-              }),
+         // top: '50vh',
         }}
       >
         <Image width="100%" src={imageSrc} />

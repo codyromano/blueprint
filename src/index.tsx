@@ -38,7 +38,9 @@ function DebugStateManager({ children }: { children: React.ReactNode }) {
 }
 
 root.render(
-  <React.StrictMode>
+ // TODO: Draggable uses the deprecated findDOMNode API which throws
+ // an error in strict mode
+ // <React.StrictMode>
     <Suspense>
     <DebugStateManager>
       <GameStateManager>
@@ -46,5 +48,5 @@ root.render(
       </GameStateManager>
     </DebugStateManager>
     </Suspense>
-  </React.StrictMode>
+//  </React.StrictMode>
 );

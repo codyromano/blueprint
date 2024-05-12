@@ -18,8 +18,8 @@ import Tenant from "./Tenant";
 import DebugOverlay from "./shared/DebugOverlay";
 import useFocalPoint from "../utils/useFocalPoint";
 import "./GameArea.css";
-import { Position } from "../utils/useDraggableItem";
 import useDebugCommand from "../state/useDebugCommand";
+import Position from "../models/Position";
 
 enum ContextOverlayMenu {
   BuyFurniture = "BuyFurniture",

@@ -31,7 +31,7 @@ export type FurnitureName =
 export type FurnitureItem = {
   id: FurnitureName;
   displayName: string;
-  size: [string, string];
+  size: [number, number];
   cost: number;
 };
 
@@ -39,127 +39,127 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   basicBed: {
     id: "basicBed",
     displayName: "Basic Bed",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 0.25,
   },
   comfortableBed: {
     id: "comfortableBed",
     displayName: "Comfortable Bed",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 1.5,
   },
   fancyBed: {
     id: "fancyBed",
     displayName: "Fancy Bed",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 5,
   },
   cheapRug: {
     id: "cheapRug",
     displayName: "Cheap Rug",
-    size: ["25vw", "50px"],
+    size: [100, 100],
     cost: INITIAL_CASH * 0.25,
   },
   antiqueRug: {
     id: "antiqueRug",
     displayName: "Antique Rug",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 1.5,
   },
   fancyRug: {
     id: "fancyRug",
     displayName: "Fancy Rug",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 3.5,
   },
   floorLamp: {
     id: "floorLamp",
     displayName: "Floor Lamp",
-    size: ["10vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 0.15,
   },
   lavaLamp: {
     id: "lavaLamp",
     displayName: "Lava Lamp",
-    size: ["10vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 1.75,
   },
   tableLamp: {
     id: "tableLamp",
     displayName: "Table Lamp",
-    size: ["10vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 1,
   },
   coffeeTable: {
     id: "coffeeTable",
     displayName: "Coffee Table",
-    size: ["15vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 1.25,
   },
   diningTable: {
     id: "diningTable",
     displayName: "Dining Table",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 1.5,
   },
   nightstand: {
     id: "nightstand",
     displayName: "Nightstand",
-    size: ["15vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 3,
   },
   momo: {
     id: "momo",
     displayName: "Momo",
-    size: ["15vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 8,
   },
   emmy: {
     id: "emmy",
     displayName: "Emmy",
-    size: ["15vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 8,
   },
   keroppi: {
     id: "keroppi",
     displayName: "Keroppi",
-    size: ["15vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 7.5,
   },
   dresser: {
     id: "dresser",
     displayName: "Dresser",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 2,
   },
   filingCabinet: {
     id: "filingCabinet",
     displayName: "Filing Cabinet",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 6,
   },
   officeDesk: {
     id: "officeDesk",
     displayName: "Office Desk",
-    size: ["20vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 4,
   },
   basicWallArt: {
     id: "basicWallArt",
     displayName: "Basic Wall Art",
-    size: ["10vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 2.25,
   },
   fancyWallArt: {
     id: "fancyWallArt",
     displayName: "Fancy Wall Art",
-    size: ["10vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 5.5,
   },
   discoBall: {
     id: "discoBall",
     displayName: "Disco Ball",
-    size: ["25vw", "auto"],
+    size: [100, 100],
     cost: INITIAL_CASH * 10,
   },
 };
