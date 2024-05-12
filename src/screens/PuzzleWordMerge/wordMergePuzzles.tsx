@@ -1,13 +1,7 @@
 export const NO_DEPENDENCIES = '';
 
-export type WordMergeTerm = 
-  typeof NO_DEPENDENCIES |
-  'Building' |
-  'Hammer' |
-  'Nail' |
-  'Screwdriver' |
-  'Space Needle' |
-  'Seattle';
+export type WordMergeTerm = string;
+  
 
 type WordMergePuzzle = {
   id: string;
@@ -32,6 +26,21 @@ const puzzles: WordMergePuzzle[] = [
       ['Building', 'Screwdriver'],
       ['Space Needle', 'Building'],
       ['Space Needle', 'Seattle']
+    ]
+  },
+  {
+    id: '2',
+    difficulty: 'medium',
+    graph: [
+      ['Ring', NO_DEPENDENCIES],
+      ['Box', NO_DEPENDENCIES],
+      ['Star', NO_DEPENDENCIES],
+      ['Light', NO_DEPENDENCIES],
+      ['Dust', NO_DEPENDENCIES],
+      ['Ball', NO_DEPENDENCIES],
+      ['Tree', NO_DEPENDENCIES],
+      ['Night', NO_DEPENDENCIES],
+      ['Wave', NO_DEPENDENCIES],
     ]
   }
 ];
