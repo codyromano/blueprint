@@ -20,6 +20,7 @@ import useFocalPoint from "../utils/useFocalPoint";
 import "./GameArea.css";
 import useDebugCommand from "../state/useDebugCommand";
 import Position from "../models/Position";
+import { Box } from "@mui/material";
 
 
 enum ContextOverlayMenu {
@@ -109,6 +110,7 @@ export default function GameArea() {
       )}
       <PopUpNoticeContainer />
 
+      <Box display="flex" height="100%" alignContent="center" alignItems="center">
       <div className="house">
       <GameVitalStatsHeader cash={game.player.cash} happiness={happiness} />
       
@@ -188,6 +190,7 @@ export default function GameArea() {
           <i style={{fontSize: "75px"}} className="fa-solid fa-cart-shopping"></i>
         </button>
       </div>
+      </Box>
     </BaseScreen>
   );
 }

@@ -9,7 +9,7 @@ html {
   background-size: 200px 100%;
   margin-left: var(--house-side-piece-width);
   width: calc(100% - var(--house-side-piece-width) * 2);
-  height: 100%;
+  padding-bottom: 50%;
 }
 
 .house::before, .house::after {
