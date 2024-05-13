@@ -4,26 +4,20 @@ import PuzzleAnagram from "./PuzzleAnagram/PuzzleAnagram";
 import Puzzle from "../models/Puzzle";
 import Markers from "../models/Markers";
 import FurnitureModels from "../models/Furniture";
-import GameState from "../models/GameState";
+import GameState, { PuzzleID } from "../models/GameState";
 import GameContext from "../state/GameStateProvider";
 import getObjectValues from "../utils/getObjectValues";
 import Furniture from "./Furniture";
 import {Img as Image} from "react-image";
 import PuzzleWordMerge from "./PuzzleWordMerge/PuzzleWordMerge";
-import { Button, Typography, ImageList, ImageListItem  } from "@mui/material";
+import { Button, Typography, ImageList, ImageListItem, Box, ImageListItemBar, IconButton  } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
+import PaidIcon from '@mui/icons-material/Paid';
 
 enum AssembleFurnitureResult {
   PENDING,
   SUCCESS,
 }
-
-const getIsFirstTimeAssembly = (state: GameState) => {
-  return (
-    getObjectValues(state.furniture).find((f) => f.status === "assembled") ==
-    null
-  );
-};
 
 type AssemblyQualityRating = NonNullable<NonNullable<GameState["furniture"][string]>['assemblyQuality']>;
 
@@ -32,6 +26,36 @@ const qualityDescriptor: Record<AssemblyQualityRating, string> = {
   1: 'Low-quality',
   2: 'Medium-quality',
   3: 'High-quality',
+};
+
+const puzzleGameOptions: Array<{
+  id: PuzzleID,
+  title: string;
+  instructions: string;
+  cost: number;
+}> = [
+  {
+    id: 'puzzleAnagram',
+    title: 'Anagrams',
+    instructions: "Rearrange a set of letters to find new words",
+    cost: 0,
+  },
+  {
+    id: 'puzzleWordMerge',
+    title: 'Word Merge',
+    instructions: "Tap two or more similar words to merge them. Merge all the words to win!",
+    cost: 500,
+  }
+];
+
+const getPuzzleDifficulty = (selectedPuzzle: typeof puzzleGameOptions[number], state: GameState): Puzzle['difficulty'] => {
+  // TODO: Decide how to modify puzzle difficulty based on game progress
+  return 'easy';
+};
+
+const mapPuzzleIdToComponent: Record<typeof puzzleGameOptions[number]['id'], React.FC<Puzzle>> = {
+  'puzzleAnagram': PuzzleAnagram,
+  'puzzleWordMerge': PuzzleWordMerge,
 };
 
 export default function AssembleFurniture({
@@ -44,6 +68,7 @@ export default function AssembleFurniture({
   const [game, setGame] = React.useContext(GameContext);
   const [rating, setRating] = useState<number | null>(null);
   const [skipTutorialScreen, setSkipTutorialScreen] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<null | typeof puzzleGameOptions[number]>(null);
 
   const onPuzzleSolved = (rating: AssemblyQualityRating) => {
     setRating(rating);
@@ -121,14 +146,15 @@ export default function AssembleFurniture({
     )
   }
 
+  const PuzzleComponent = selectedItem?.id == null ? null : mapPuzzleIdToComponent[selectedItem.id];
+
   return (
     <Modal
       horizontalScroll={true}
       title="Assemble furniture"
       onSelectClose={onClose}
     >
-      {getIsFirstTimeAssembly(game) && !skipTutorialScreen ? (
-        <div
+        {PuzzleComponent == null || selectedItem == null ? <div
           style={{
             padding: "2rem",
             height: "100%",
@@ -142,23 +168,83 @@ export default function AssembleFurniture({
           <Image src="/images/box.png" width="100px" />
 
           <Typography style={{marginBottom: '16px'}}>
-           Assemble furniture by solving a random puzzle.
+           Assemble furniture by solving a word puzzle. Choose a puzzle:
             </Typography>
 
-          <Button variant="contained" color="primary" onClick={() => {
-            setSkipTutorialScreen(true);
-          }}>Generate Puzzle</Button>
-        </div>
-      ) : (
+
+            <ImageList gap={15} cols={3} rowHeight={175} style={{padding: '15px 0'}}>
+      {puzzleGameOptions.map((item) => {
+        const isUnlocked = game.puzzlesUnlocked.hasOwnProperty(item.id);
+        const isDisabled = game.player.cash < item.cost && !isUnlocked;
+
+       return (
+        <ImageListItem key={item.id} style={{
+          border: selectedItem?.id === item.id ? 'solid #000 3px' : 'solid #ccc 3px',
+          borderRadius: '5px',
+          cursor: isDisabled ? 'default' : 'pointer',
+          opacity: isDisabled ?  0.5 : 1
+        }}>
+          <Box onClick={() => {
+            if (!isDisabled) {
+              setSelectedItem(item);
+              setGame(state => {
+                return {
+                  ...state,
+                  puzzlesUnlocked: {
+                    ...state.puzzlesUnlocked,
+                    [item.id]: true,
+                  }
+                };
+              });
+            }
+          }}>
+            <>
+            <div style={{
+              height: 175,
+              background: `url(/images/${item.id}.webp) no-repeat`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }} />
+
+            <ImageListItemBar
+              title={item.title}
+              actionIcon={
+                <IconButton
+                  sx={{ color: 'white' }}
+                  aria-label={`info about ${item.title}`}
+                >
+                  <PaidIcon />
+                  <Typography>
+                    {game.puzzlesUnlocked.hasOwnProperty(item.id) ? 'Unlocked' : (
+                        item.cost > 0 ? item.cost : 'Free'
+                    )}</Typography>
+                </IconButton>
+              }
+            />
+          </>
+        </Box>
+        </ImageListItem>);
+      })}
+    </ImageList>
+        </div> : (
+          <PuzzleComponent
+            instructions={selectedItem.instructions}
+            difficulty={getPuzzleDifficulty(selectedItem, game)}
+            onPuzzleFailed={onPuzzleFailed}
+            onPuzzleSolved={onPuzzleSolved}
+          />
+        )}
+      </Modal>
+  );
+
+      /*
         <PuzzleAnagram
           instructions="Tap two or more similar words to merge them. Merge all the words to win!"
           difficulty="easy"
           onPuzzleFailed={onPuzzleFailed}
           onPuzzleSolved={onPuzzleSolved}
         />
-      )}
-    </Modal>
-  );
+        */
 }
 
   /*

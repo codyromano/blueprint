@@ -3,6 +3,8 @@ import { FurnitureName } from "./Furniture";
 import Markers from "./Markers";
 import MessageID from "./MessageID";
 
+export type PuzzleID = 'puzzleAnagram' | 'puzzleWordMerge';
+
 type GameState = {
   lastUpdatedTime: number;
   focalPoint: null | FocalPoint;
@@ -11,6 +13,7 @@ type GameState = {
     cash: number;
     authToken?: string;
   };
+  puzzlesUnlocked: Partial<Record<PuzzleID, true>>,
   messages: Array<{
     id: MessageID;
     isDismissed: boolean;

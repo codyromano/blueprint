@@ -8,6 +8,7 @@ export const getInitialGameState = (): GameState => {
   return {
     lastUpdatedTime: Date.now(),
     focalPoint: null,
+    puzzlesUnlocked: {},
     player: {
       id: "1",
       cash: INITIAL_CASH,
