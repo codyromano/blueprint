@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import Puzzle from "../../models/Puzzle";
 import useCountdown from "../../utils/useCountdown";
 import "./PuzzleAnagram.css";
 import englishWords from "./popularEnglishWords.json";
 import useDebugCommand from "../../state/useDebugCommand";
+import { Box, Button, Typography } from "@mui/material";
+import { AccessTime } from "@mui/icons-material";
+import { formatCountdown } from "../../utils/timeUtils";
 
 
 function getRandomItem<T>(items: T[]): T {
@@ -23,7 +27,7 @@ export default function PuzzleAnagram({
   difficulty,
 }: Puzzle) {
   const anagrams = React.useMemo(() => getAnagramWords(), []);
-  const secondsLeft = useCountdown(30);
+  const secondsLeft = useCountdown(45);
   const {setCommandCallback} = useDebugCommand();
   
   const [wordGuessResult, setWordGuessResult] = React.useState<
@@ -98,16 +102,18 @@ export default function PuzzleAnagram({
   return (
     <div className="puzzle-anagram">
       <div className="puzzle-overview">
+
+
+      <Box display="flex" alignItems={"center"} gap="10px">
+        <AccessTime fontSize="large" color="info" />
+        <Typography fontSize="large" color="info">{
+          Number.isFinite(secondsLeft) ? formatCountdown(secondsLeft) : secondsLeft
+        }</Typography>
+      </Box>
+        
         <div className="puzzle-overview-row row">
           <h2>How to play</h2>
           <p>Find all of the anagrams of the provided letters.</p>
-        </div>
-
-        <div className="puzzle-overview-row row">
-          <h2>Time Remaining</h2>
-          <p>
-            {secondsLeft} {secondsLeft === 1 ? "second" : "seconds"}
-          </p>
         </div>
 
         <div className="puzzle-overview-row row">
@@ -137,18 +143,14 @@ export default function PuzzleAnagram({
 
         <div className="digit-selector">
           {anagrams[0].split("").map((letter, i) => (
-            <button
+            <Button
               key={i}
+              variant="outlined"
               disabled={selectedLetterIndicies.includes(i)}
               onClick={() => onClickLetter(i)}
-              className={`digit-selector-button ${
-                selectedLetterIndicies.includes(i)
-                  ? "digit-selector-digit-button-pressed"
-                  : ""
-              }`}
             >
               {letter}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -160,12 +162,11 @@ export default function PuzzleAnagram({
               justifyContent: "center",
             }}
           >
-            {selectedLetterIndicies.length > 0 && <button
-              style={{ color: "red", fontSize: "1rem" }}
+            {selectedLetterIndicies.length > 0 && <Button
               onClick={() => setSelectedLetterIndicies([])}
             >
               Reset
-            </button>}
+            </Button>}
           </div>
       </div>
     </div>
