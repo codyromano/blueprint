@@ -1,8 +1,17 @@
 import { useState, useEffect, useRef } from "react";
+import useDebugCommand from "../state/useDebugCommand";
 
 const useCountdown = (initialSeconds: number): number => {
   const [remainingTime, setRemainingTime] = useState<number>(initialSeconds);
   const timeoutRef = useRef<number | null>(null);
+  const {setCommandCallback} = useDebugCommand();
+  
+
+  useEffect(() => {
+    setCommandCallback('FREEZE_TIME', () => {
+      setRemainingTime(Infinity);
+    });
+  }, []);
 
   useEffect(() => {
     if (remainingTime > 0) {
