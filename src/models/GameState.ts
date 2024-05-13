@@ -25,6 +25,11 @@ type GameState = {
     {
       id: string;
       happiness: number;
+      coords: {
+        x: number;
+        y: number;
+      };
+      // Deprecated
       position: [number, number];
       lastUpdatedTime: number;
       moneyCollectedTime: number | null;
@@ -36,6 +41,11 @@ type GameState = {
       {
         id: string;
         furnitureName: FurnitureName;
+        coords: {
+          x: number;
+          y: number;
+        };
+        // Deprecated
         position: [string, string];
         status: "blueprint" | "assembled";
         assemblyQuality?: number;

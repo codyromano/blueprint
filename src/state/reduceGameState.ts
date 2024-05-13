@@ -93,6 +93,7 @@ export default function reduceGameState(
         newState.furniture[id] = {
           id,
           furnitureName,
+          coords: {x: 0.5, y: 0.5},
           // Spawn furniture in the center of the screen
           position: [`calc(50vw - ${furniture.size[0] / 2}px)`, `calc(50vh - ${furniture.size[1] / 2}px)`],
           status: "blueprint",
@@ -141,6 +142,7 @@ export default function reduceGameState(
           newState.tenants[id] = {
             id,
             happiness: 50,
+            coords: {x: 0.5, y: 0.5},
             // Note: Y position is from the bottom
             // 0 = "bottom: 0px"
             position: [50 - TENANT_VW / 2, 0],
