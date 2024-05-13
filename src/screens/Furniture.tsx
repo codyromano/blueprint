@@ -3,7 +3,7 @@ import {Img as Image} from "react-image";
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import GameState from "../models/GameState";
 
-import FurnitureModels from "../models/Furniture";
+import FurnitureModels, { BASE_IMAGE_SIZE } from "../models/Furniture";
 import useFocalPoint from "../utils/useFocalPoint";
 import Popover from '@mui/material/Popover';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -13,6 +13,8 @@ import Draggable from "react-draggable";
 
 import type Position from '../models/Position';
 import { convertPixelCoordsToPosition } from "../utils/positionUtils";
+
+import "./Furniture.css";
 
 type Props = {
   onTouchEnd: () => void;
@@ -69,6 +71,10 @@ export default function Furniture({
 
   const imageSrc =
     status === "blueprint" ? `/images/box.webp` : `/images/${imageId}.webp`;
+
+  // Default box aspect ratio: 500px / 302px = 1.65
+  const aspectRatio = status === "blueprint" ? 1.65 : model.aspectRatio;
+  const scale = status === "blueprint" ? 1.5 : model.scale;
   
   return (
     <ClickAwayListener onClickAway={handleClose}>
@@ -129,17 +135,18 @@ export default function Furniture({
         }}
         className={getClassNameWithFocalPoint('FURNITURE_ITEM', 'furniture-item')}
         style={{
-          position: "fixed",
+          position: "absolute",
           top: ownedItem.position[1] ?? '50vh',
           left: ownedItem.position[0],
           zIndex: 3,
-          width: `${model.size[0]}px`,
+          width: `${BASE_IMAGE_SIZE * scale}%`,
+          paddingBottom: `${BASE_IMAGE_SIZE * scale / aspectRatio}%`,
+          backgroundImage: `url(${imageSrc})`,
+          backgroundRepeat: 'no-repeat',
           cursor: "pointer",
          // top: '50vh',
         }}
-      >
-        <Image width="100%" src={imageSrc} />
-      </div>
+      />
       </Draggable>
       </>
     </ClickAwayListener>

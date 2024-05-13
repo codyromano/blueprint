@@ -1,5 +1,10 @@
 import { INITIAL_CASH } from "../state/GameStateProvider";
 
+// Default image size expressed as a % of the gameplay area's width.
+// By default, the image will be square (width = height), but the
+// height may vary depending on the image's declared aspect ratio.
+export const BASE_IMAGE_SIZE = 10;
+
 /*
 Topo-sort terms 
 A term is visible if all preceding terms are selected
@@ -42,8 +47,8 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   basicBed: {
     id: "basicBed",
     displayName: "Basic Bed",
-    scale: 1,
-    aspectRatio: 1,
+    scale: 2,
+    aspectRatio: 600 / 566,
     size: [100, 100],
     cost: INITIAL_CASH * 0.25,
   },
