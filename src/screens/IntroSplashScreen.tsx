@@ -36,7 +36,7 @@ export default function IntroSplashScreen() {
           <Typography fontSize={17}>Code by Cody Yu Romano</Typography>
         </Box>
 
-        <Link to="/play">
+        <Link to="/play" style={{textDecoration: 'none'}}>
           <Button variant="contained" size="large">New Game</Button>
         </Link>
       </div>
