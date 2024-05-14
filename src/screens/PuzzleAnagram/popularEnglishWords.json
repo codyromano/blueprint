@@ -1,679 +1,438 @@
 {
   "words": [
-      {
-          "word": "acer",
-          "anagrams": [
-              "acre",
-              "care",
-              "race"
-          ]
-      },
-      {
-          "word": "acre",
-          "anagrams": [
-              "acer",
-              "care",
-              "race"
-          ]
-      },
-      {
-          "word": "acts",
-          "anagrams": [
-              "cats",
-              "cast"
-          ]
-      },
-      {
-          "word": "ages",
-          "anagrams": [
-              "sage",
-              "sega"
-          ]
-      },
-      {
-          "word": "alert",
-          "anagrams": [
-              "alter",
-              "later"
-          ]
-      },
-      {
-          "word": "alter",
-          "anagrams": [
-              "alert",
-              "later"
-          ]
-      },
-      {
-          "word": "arts",
-          "anagrams": [
-              "rats",
-              "star"
-          ]
-      },
-      {
-          "word": "baker",
-          "anagrams": [
-              "brake",
-              "break"
-          ]
-      },
-      {
-          "word": "brake",
-          "anagrams": [
-              "break",
-              "baker"
-          ]
-      },
-      {
-          "word": "break",
-          "anagrams": [
-              "brake",
-              "baker"
-          ]
-      },
-      {
-          "word": "brief",
-          "anagrams": [
-              "fibre",
-              "fiber"
-          ]
-      },
-      {
-          "word": "care",
-          "anagrams": [
-              "acre",
-              "acer",
-              "race"
-          ]
-      },
-      {
-          "word": "carlo",
-          "anagrams": [
-              "carol",
-              "coral"
-          ]
-      },
-      {
-          "word": "carol",
-          "anagrams": [
-              "carlo",
-              "coral"
-          ]
-      },
-      {
-          "word": "cast",
-          "anagrams": [
-              "cats",
-              "acts"
-          ]
-      },
-      {
-          "word": "cats",
-          "anagrams": [
-              "cast",
-              "acts"
-          ]
-      },
-      {
-          "word": "coins",
-          "anagrams": [
-              "icons",
-              "sonic"
-          ]
-      },
-      {
-          "word": "coral",
-          "anagrams": [
-              "carol",
-              "carlo"
-          ]
-      },
-      {
-          "word": "corp",
-          "anagrams": [
-              "crop",
-              "proc"
-          ]
-      },
-      {
-          "word": "crop",
-          "anagrams": [
-              "corp",
-              "proc"
-          ]
-      },
-      {
-          "word": "dale",
-          "anagrams": [
-              "deal",
-              "lead"
-          ]
-      },
-      {
-          "word": "dare",
-          "anagrams": [
-              "dear",
-              "read"
-          ]
-      },
-      {
-          "word": "deal",
-          "anagrams": [
-              "dale",
-              "lead"
-          ]
-      },
-      {
-          "word": "dear",
-          "anagrams": [
-              "dare",
-              "read"
-          ]
-      },
-      {
-          "word": "demo",
-          "anagrams": [
-              "dome",
-              "mode"
-          ]
-      },
-      {
-          "word": "diet",
-          "anagrams": [
-              "edit",
-              "tide",
-              "tied"
-          ]
-      },
-      {
-          "word": "dome",
-          "anagrams": [
-              "demo",
-              "mode"
-          ]
-      },
-      {
-          "word": "early",
-          "anagrams": [
-              "relay",
-              "layer"
-          ]
-      },
-      {
-          "word": "edit",
-          "anagrams": [
-              "diet",
-              "tied",
-              "tide"
-          ]
-      },
-      {
-          "word": "fares",
-          "anagrams": [
-              "fears",
-              "safer"
-          ]
-      },
-      {
-          "word": "fears",
-          "anagrams": [
-              "fares",
-              "safer"
-          ]
-      },
-      {
-          "word": "fiber",
-          "anagrams": [
-              "fibre",
-              "brief"
-          ]
-      },
-      {
-          "word": "fibre",
-          "anagrams": [
-              "fiber",
-              "brief"
-          ]
-      },
-      {
-          "word": "hist",
-          "anagrams": [
-              "hits",
-              "shit",
-              "this"
-          ]
-      },
-      {
-          "word": "hits",
-          "anagrams": [
-              "hist",
-              "this",
-              "shit"
-          ]
-      },
-      {
-          "word": "hurt",
-          "anagrams": [
-              "ruth",
-              "thru"
-          ]
-      },
-      {
-          "word": "icons",
-          "anagrams": [
-              "coins",
-              "sonic"
-          ]
-      },
-      {
-          "word": "later",
-          "anagrams": [
-              "alter",
-              "alert"
-          ]
-      },
-      {
-          "word": "layer",
-          "anagrams": [
-              "early",
-              "relay"
-          ]
-      },
-      {
-          "word": "lead",
-          "anagrams": [
-              "deal",
-              "dale"
-          ]
-      },
-      {
-          "word": "least",
-          "anagrams": [
-              "steal",
-              "tales"
-          ]
-      },
-      {
-          "word": "loop",
-          "anagrams": [
-              "polo",
-              "pool"
-          ]
-      },
-      {
-          "word": "lost",
-          "anagrams": [
-              "lots",
-              "slot"
-          ]
-      },
-      {
-          "word": "lots",
-          "anagrams": [
-              "lost",
-              "slot"
-          ]
-      },
-      {
-          "word": "males",
-          "anagrams": [
-              "meals",
-              "salem"
-          ]
-      },
-      {
-          "word": "mate",
-          "anagrams": [
-              "meat",
-              "meta",
-              "team"
-          ]
-      },
-      {
-          "word": "meals",
-          "anagrams": [
-              "males",
-              "salem"
-          ]
-      },
-      {
-          "word": "meat",
-          "anagrams": [
-              "meta",
-              "mate",
-              "team"
-          ]
-      },
-      {
-          "word": "meta",
-          "anagrams": [
-              "meat",
-              "mate",
-              "team"
-          ]
-      },
-      {
-          "word": "mode",
-          "anagrams": [
-              "dome",
-              "demo"
-          ]
-      },
-      {
-          "word": "nepal",
-          "anagrams": [
-              "panel",
-              "plane"
-          ]
-      },
-      {
-          "word": "notes",
-          "anagrams": [
-              "tones",
-              "stone"
-          ]
-      },
-      {
-          "word": "panel",
-          "anagrams": [
-              "plane",
-              "nepal"
-          ]
-      },
-      {
-          "word": "pest",
-          "anagrams": [
-              "pets",
-              "sept",
-              "step"
-          ]
-      },
-      {
-          "word": "pets",
-          "anagrams": [
-              "pest",
-              "sept",
-              "step"
-          ]
-      },
-      {
-          "word": "plane",
-          "anagrams": [
-              "panel",
-              "nepal"
-          ]
-      },
-      {
-          "word": "polo",
-          "anagrams": [
-              "pool",
-              "loop"
-          ]
-      },
-      {
-          "word": "pool",
-          "anagrams": [
-              "polo",
-              "loop"
-          ]
-      },
-      {
-          "word": "post",
-          "anagrams": [
-              "spot",
-              "stop",
-              "tops"
-          ]
-      },
-      {
-          "word": "posts",
-          "anagrams": [
-              "spots",
-              "stops"
-          ]
-      },
-      {
-          "word": "proc",
-          "anagrams": [
-              "crop",
-              "corp"
-          ]
-      },
-      {
-          "word": "race",
-          "anagrams": [
-              "acre",
-              "acer",
-              "care"
-          ]
-      },
-      {
-          "word": "rats",
-          "anagrams": [
-              "arts",
-              "star"
-          ]
-      },
-      {
-          "word": "read",
-          "anagrams": [
-              "dear",
-              "dare"
-          ]
-      },
-      {
-          "word": "relay",
-          "anagrams": [
-              "early",
-              "layer"
-          ]
-      },
-      {
-          "word": "ruth",
-          "anagrams": [
-              "thru",
-              "hurt"
-          ]
-      },
-      {
-          "word": "safer",
-          "anagrams": [
-              "fares",
-              "fears"
-          ]
-      },
-      {
-          "word": "sage",
-          "anagrams": [
-              "sega",
-              "ages"
-          ]
-      },
-      {
-          "word": "salem",
-          "anagrams": [
-              "males",
-              "meals"
-          ]
-      },
-      {
-          "word": "sega",
-          "anagrams": [
-              "sage",
-              "ages"
-          ]
-      },
-      {
-          "word": "sept",
-          "anagrams": [
-              "step",
-              "pest",
-              "pets"
-          ]
-      },
-      {
-          "word": "shit",
-          "anagrams": [
-              "hist",
-              "hits",
-              "this"
-          ]
-      },
-      {
-          "word": "slot",
-          "anagrams": [
-              "lost",
-              "lots"
-          ]
-      },
-      {
-          "word": "sonic",
-          "anagrams": [
-              "icons",
-              "coins"
-          ]
-      },
-      {
-          "word": "spot",
-          "anagrams": [
-              "stop",
-              "post",
-              "tops"
-          ]
-      },
-      {
-          "word": "spots",
-          "anagrams": [
-              "stops",
-              "posts"
-          ]
-      },
-      {
-          "word": "star",
-          "anagrams": [
-              "arts",
-              "rats"
-          ]
-      },
-      {
-          "word": "steal",
-          "anagrams": [
-              "tales",
-              "least"
-          ]
-      },
-      {
-          "word": "step",
-          "anagrams": [
-              "sept",
-              "pest",
-              "pets"
-          ]
-      },
-      {
-          "word": "stone",
-          "anagrams": [
-              "tones",
-              "notes"
-          ]
-      },
-      {
-          "word": "stop",
-          "anagrams": [
-              "spot",
-              "tops",
-              "post"
-          ]
-      },
-      {
-          "word": "stops",
-          "anagrams": [
-              "spots",
-              "posts"
-          ]
-      },
-      {
-          "word": "tales",
-          "anagrams": [
-              "least",
-              "steal"
-          ]
-      },
-      {
-          "word": "team",
-          "anagrams": [
-              "meta",
-              "meat",
-              "mate"
-          ]
-      },
-      {
-          "word": "this",
-          "anagrams": [
-              "hits",
-              "hist",
-              "shit"
-          ]
-      },
-      {
-          "word": "thru",
-          "anagrams": [
-              "hurt",
-              "ruth"
-          ]
-      },
-      {
-          "word": "tide",
-          "anagrams": [
-              "tied",
-              "diet",
-              "edit"
-          ]
-      },
-      {
-          "word": "tied",
-          "anagrams": [
-              "tide",
-              "edit",
-              "diet"
-          ]
-      },
-      {
-          "word": "tones",
-          "anagrams": [
-              "notes",
-              "stone"
-          ]
-      },
-      {
-          "word": "tops",
-          "anagrams": [
-              "post",
-              "stop",
-              "spot"
-          ]
-      },
-      {
-          "word": "weird",
-          "anagrams": [
-              "wired",
-              "wider"
-          ]
-      },
-      {
-          "word": "wider",
-          "anagrams": [
-              "wired",
-              "weird"
-          ]
-      },
-      {
-          "word": "wired",
-          "anagrams": [
-              "wider",
-              "weird"
-          ]
-      }
+    {
+      "word": "acre",
+      "anagrams": [
+        "care",
+        "race"
+      ]
+    },
+    {
+      "word": "acts",
+      "anagrams": [
+        "cats",
+        "cast"
+      ]
+    },
+    {
+      "word": "ages",
+      "anagrams": [
+        "sage"
+      ]
+    },
+    {
+      "word": "alert",
+      "anagrams": [
+        "alter",
+        "later"
+      ]
+    },
+    {
+      "word": "alter",
+      "anagrams": [
+        "alert",
+        "later"
+      ]
+    },
+    {
+      "word": "arts",
+      "anagrams": [
+        "rats",
+        "star"
+      ]
+    },
+    {
+      "word": "brake",
+      "anagrams": [
+        "break"
+      ]
+    },
+    {
+      "word": "break",
+      "anagrams": [
+        "brake"
+      ]
+    },
+    {
+      "word": "brief",
+      "anagrams": [
+        "fibre",
+        "fiber"
+      ]
+    },
+    {
+      "word": "care",
+      "anagrams": [
+        "acre",
+        "race"
+      ]
+    },
+    {
+      "word": "cast",
+      "anagrams": [
+        "cats",
+        "acts"
+      ]
+    },
+    {
+      "word": "coins",
+      "anagrams": [
+        "icons"
+      ]
+    },
+    {
+      "word": "coral",
+      "anagrams": [
+        "carol"
+      ]
+    },
+    {
+      "word": "crop",
+      "anagrams": [
+        "corp"
+      ]
+    },
+    {
+      "word": "dale",
+      "anagrams": [
+        "lead",
+        "deal"
+      ]
+    },
+    {
+      "word": "dear",
+      "anagrams": [
+        "read"
+      ]
+    },
+    {
+      "word": "diet",
+      "anagrams": [
+        "edit",
+        "tide",
+        "tied"
+      ]
+    },
+    {
+      "word": "dome",
+      "anagrams": [
+        "demo",
+        "mode"
+      ]
+    },
+    {
+      "word": "early",
+      "anagrams": [
+        "layer"
+      ]
+    },
+    {
+      "word": "edit",
+      "anagrams": [
+        "diet",
+        "tied",
+        "tide"
+      ]
+    },
+    {
+      "word": "fare",
+      "anagrams": [
+        "fear",
+        "safe"
+      ]
+    },
+    {
+      "word": "fibre",
+      "anagrams": [
+        "fiber"
+      ]
+    },
+    {
+      "word": "hist",
+      "anagrams": [
+        "hits",
+        "shit",
+        "this"
+      ]
+    },
+    {
+      "word": "hits",
+      "anagrams": [
+        "hist",
+        "this",
+        "shit"
+      ]
+    },
+    {
+      "word": "hurt",
+      "anagrams": [
+        "ruth"
+      ]
+    },
+    {
+      "word": "later",
+      "anagrams": [
+        "alter"
+      ]
+    },
+    {
+      "word": "layer",
+      "anagrams": [
+        "relay"
+      ]
+    },
+    {
+      "word": "lead",
+      "anagrams": [
+        "dale"
+      ]
+    },
+    {
+      "word": "loop",
+      "anagrams": [
+        "pool"
+      ]
+    },
+    {
+      "word": "lost",
+      "anagrams": [
+        "lots",
+        "slot"
+      ]
+    },
+    {
+      "word": "male",
+      "anagrams": [
+        "meal"
+      ]
+    },
+    {
+      "word": "mate",
+      "anagrams": [
+        "meat",
+        "meta",
+        "team"
+      ]
+    },
+    {
+      "word": "meat",
+      "anagrams": [
+        "meta",
+        "mate",
+        "team"
+      ]
+    },
+    {
+      "word": "meta",
+      "anagrams": [
+        "meat",
+        "mate",
+        "team"
+      ]
+    },
+    {
+      "word": "mode",
+      "anagrams": [
+        "dome",
+        "demo"
+      ]
+    },
+    {
+      "word": "note",
+      "anagrams": [
+        "tone"
+      ]
+    },
+    {
+      "word": "panel",
+      "anagrams": [
+        "plane"
+      ]
+    },
+    {
+      "word": "pest",
+      "anagrams": [
+        "pets",
+        "sept",
+        "step"
+      ]
+    },
+    {
+      "word": "plane",
+      "anagrams": [
+        "panel"
+      ]
+    },
+    {
+      "word": "polo",
+      "anagrams": [
+        "pool"
+      ]
+    },
+    {
+      "word": "post",
+      "anagrams": [
+        "spot",
+        "stop",
+        "tops"
+      ]
+    },
+    {
+      "word": "posts",
+      "anagrams": [
+        "spots",
+        "stops"
+      ]
+    },
+    {
+      "word": "race",
+      "anagrams": [
+        "care",
+        "acre"
+      ]
+    },
+    {
+      "word": "rats",
+      "anagrams": [
+        "arts",
+        "star"
+      ]
+    },
+    {
+      "word": "read",
+      "anagrams": [
+        "dear"
+      ]
+    },
+    {
+      "word": "relay",
+      "anagrams": [
+        "early",
+        "layer"
+      ]
+    },
+    {
+      "word": "safe",
+      "anagrams": [
+        "fare",
+        "fear"
+      ]
+    },
+    {
+      "word": "sage",
+      "anagrams": [
+        "ages"
+      ]
+    },
+    {
+      "word": "sept",
+      "anagrams": [
+        "step",
+        "pest",
+        "pets"
+      ]
+    },
+    {
+      "word": "shit",
+      "anagrams": [
+        "hist",
+        "hits",
+        "this"
+      ]
+    },
+    {
+      "word": "slot",
+      "anagrams": [
+        "lost",
+        "lots"
+      ]
+    },
+    {
+      "word": "sonic",
+      "anagrams": [
+        "icons"
+      ]
+    },
+    {
+      "word": "spot",
+      "anagrams": [
+        "stop",
+        "post",
+        "tops"
+      ]
+    },
+    {
+      "word": "spots",
+      "anagrams": [
+        "stops",
+        "posts"
+      ]
+    },
+    {
+      "word": "star",
+      "anagrams": [
+        "arts",
+        "rats"
+      ]
+    },
+    {
+      "word": "step",
+      "anagrams": [
+        "sept",
+        "pest",
+        "pets"
+      ]
+    },
+    {
+      "word": "team",
+      "anagrams": [
+        "meta",
+        "meat",
+        "mate"
+      ]
+    },
+    {
+      "word": "this",
+      "anagrams": [
+        "hits",
+        "hist",
+        "shit"
+      ]
+    },
+    {
+      "word": "tone",
+      "anagrams": [
+        "note"
+      ]
+    },
+    {
+      "word": "tops",
+      "anagrams": [
+        "post",
+        "stop",
+        "spot"
+      ]
+    },
+    {
+      "word": "wired",
+      "anagrams": [
+        "wider",
+        "weird"
+      ]
+    },
+    {
+      "word": "wider",
+      "anagrams": [
+        "wired",
+        "weird"
+      ]
+    },
+    {
+      "word": "weird",
+      "anagrams": [
+        "wired",
+        "wider"
+      ]
+    }
   ]
 }

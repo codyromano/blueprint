@@ -58,7 +58,7 @@ export default function Tenant({
     >
         <div style={{
           position: 'absolute', 
-          top: '-3vh',
+          top: '-2.5rem',
           left: 0,
           display: 'flex',
           width: '100%',
