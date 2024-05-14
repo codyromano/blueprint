@@ -5,17 +5,46 @@ Peach or Coral: #FFB6A0
 Light Gray: #D3D3D3
 */
 
+@font-face {
+  font-family: Japandi;
+  font-weight: lighter;
+  src: url(../../public/fonts/Japandi%20Light.otf);
+}
+
+@font-face {
+  font-family: Japandi;
+  font-weight: normal;
+  src: url(../../public/fonts/Japandi%20Regular.otf);
+}
+
+@font-face {
+  font-family: Japandi;
+  font-weight: bold;
+  src: url(../../public/fonts/Japandi%20Bold.otf);
+}
+
 .game-title {
   color: #000;
 }
 
-h1 {
-  font-family: TypoDraft;
+.intro-splash-screen {
+  background-color: #fff;
+  animation: fadeinout 6s linear forwards;
+  font-family: Japandi;
+  
+  display: flex;
+  flex-direction: column;
 }
 
-.intro-splash-screen {
-  background-color: #aed9e0;
-  animation: fadeinout 6s linear forwards;
+h1 {
+  font-family: Japandi;
+  font-weight: bold;
+
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  font-family: Japandi;
 }
 
 @keyframes fadeinout {

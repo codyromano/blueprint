@@ -11,13 +11,15 @@ import GameState from "./models/GameState";
 import GameContext, { getInitialGameState } from "./state/GameStateProvider";
 import DebugContext from "./state/DebugProvider";
 import { DebugProviderState, getInitialDebugProvider } from "./state/DebugProvider";
+import IntroSplashScreen from "./screens/IntroSplashScreen";
 
 const { Provider: GameStateProvider } = GameContext;
 const { Provider: DebugProvider } = DebugContext;
 
 const routes = createRoutesFromElements(
   <Route>
-    <Route path="/" element={<GameArea />} />
+    <Route path="/play" element={<GameArea />} />
+    <Route path="/" element={<IntroSplashScreen />} />
   </Route>
 );
 
