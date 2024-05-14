@@ -19,7 +19,7 @@ export default function PuzzleWordMerge({
   difficulty,
 }: Puzzle) {
   // TODO: Determine correct puzzle id
-  const puzzleId = '2';
+  const puzzleId = '3';
   const puzzle = puzzles.find(p => p.id === puzzleId);
 
   if (puzzle == null) {

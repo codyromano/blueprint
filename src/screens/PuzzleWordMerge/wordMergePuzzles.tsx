@@ -57,6 +57,45 @@ const puzzles: WordMergePuzzle[] = [
       ['Momo & Emmy', 'Legged'],
       ['Momo & Emmy', 'Friends']
     ]
+  },
+  {
+    id: '3',
+    difficulty: 'hard',
+    graph: [
+      ['Brand', NO_DEPENDENCIES],
+      ['Collection', NO_DEPENDENCIES],
+      ['Label', NO_DEPENDENCIES],
+      ['Fashion', 'Brand'],
+      ['Fashion', 'Collection'],
+      ['Fashion', 'Label'],
+
+      ['Diamond', NO_DEPENDENCIES],
+      ['Emerald', NO_DEPENDENCIES],
+      ['Saphire', NO_DEPENDENCIES],
+      ['Jewels', 'Diamond'],
+      ['Jewels', 'Emerald'],
+      ['Jewels', 'Saphire'],
+
+      ['Bunny', NO_DEPENDENCIES],
+      ['Duck', NO_DEPENDENCIES],
+      ['Martian', NO_DEPENDENCIES],
+      ['Cartoon', 'Bunny'],
+      ['Cartoon', 'Duck'],
+      ['Cartoon', 'Martian'],
+
+      ['Greece', NO_DEPENDENCIES],
+      ['Cats', NO_DEPENDENCIES],
+      ['Hair', NO_DEPENDENCIES],
+      ['Live Show', 'Greece'],
+      ['Live Show', 'Cats'],
+      ['Live Show', 'Hair'],
+
+      ['Taylor Swift', 'Fashion'],
+      ['Taylor Swift', 'Live Show'],
+
+      ['Bejeweled', 'Taylor Swift'],
+      ['Bejewled', 'Jewels']
+    ]
   }
 ];
 
