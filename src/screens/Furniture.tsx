@@ -98,7 +98,6 @@ export default function Furniture({
 
 
       <Draggable onStart={event => event.preventDefault()} onDrag={(_event, {x, y}) => {
-        console.log(x, y);
         // onDragPositionChanged(convertPixelCoordsToPosition(x, y));
       }} onStop={(event, data) => {
           const mouseDownTime = mouseDownStartTimeRef.current; 
@@ -108,7 +107,6 @@ export default function Furniture({
           // When dragging stops, get the computed fixed position of the target element
           // so that we can persist it for the next time the scene renders
           const {left, top} = window.getComputedStyle(data.node);
-          console.log(left, top);
 
           // Only display the context menu on single taps (<250ms)
           // Probably a better way to do this
