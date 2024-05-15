@@ -7,7 +7,7 @@ import FurnitureModels, { BASE_IMAGE_SIZE } from "../models/Furniture";
 import useFocalPoint from "../utils/useFocalPoint";
 import Popover from '@mui/material/Popover';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, Icon, IconButton } from "@mui/material";
+import { Box, Button, Icon, IconButton, Typography } from "@mui/material";
 import GameContext from "../state/GameStateProvider";
 import Draggable from "react-draggable";
 import KeyboardDoubleArrowDownSharpIcon from '@mui/icons-material/KeyboardDoubleArrowUpSharp';
@@ -110,23 +110,24 @@ export default function Furniture({
           horizontal: 'left',
         }}
       >
-
-        
-          <Box display="flex" gap="2px">
-            {/* TODO: Update disabled */}
+        <Box padding="5px">
+        <Typography variant="caption" fontWeight={"bold"}>{model.displayName}</Typography>
+        <Box display="flex" gap="2px">
+          {/* TODO: Update disabled */}
           <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id, 'down')}>
             <KeyboardDoubleArrowUpSharpIcon />
-            </IconButton>
+          </IconButton>
 
-            <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id,'up')}>
+          <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id,'up')}>
             <KeyboardDoubleArrowDownSharpIcon />
-            </IconButton>
-          </Box>
+          </IconButton>
 
 
-        <IconButton color="error" onClick={handleClickDelete}>
-          <DeleteIcon/>
-        </IconButton>
+          <IconButton color="error" onClick={handleClickDelete}>
+            <DeleteIcon/>
+          </IconButton>
+        </Box>
+        </Box>
 
       {/* <Button onClick={() => setAnchorEl(null)}>Cancel</Button> */}
       </Popover>
