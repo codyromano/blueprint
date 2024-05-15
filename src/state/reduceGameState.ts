@@ -12,6 +12,8 @@ type Payload = {
   lastUpdatedTime: number;
   entropy: number;
   collectCash?: number;
+  selectedItemId?: string;
+  changeZIndex?: 'up' | 'down';
 };
 
 let i = 0;
@@ -169,6 +171,27 @@ export default function reduceGameState(
         throw new Error('You must set a collectCash param in the payload.');
       }
       newState.player.cash += payload.collectCash;
+      break;
+    }
+    case GameActions.CHANGE_Z_INDEX: {
+      const { selectedItemId, changeZIndex } = payload;
+      const selectedItem = newState?.furniture[selectedItemId ?? ''];
+
+      if (selectedItem == null || changeZIndex == null) {
+        throw new Error('Missing selected item or z index prop');
+      }
+
+      const currentZIndex = selectedItem.zIndex;
+
+      switch (changeZIndex) {
+        case 'up': {
+          // TODO: Handle up and down actions
+          break;
+        }
+        case 'down': {
+          break;
+        }
+      }
       break;
     }
     default:
