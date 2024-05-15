@@ -3,9 +3,12 @@ import GameState from "../models/GameState";
 import Markers from "../models/Markers";
 
 export const INITIAL_CASH = 100;
+export const GAME_STORAGE_KEY = '_temp_hf_key_';
 
 export const getInitialGameState = (): GameState => {
-  return {
+  // TODO: Replace with proper game save system
+  const saved = window.localStorage.getItem(GAME_STORAGE_KEY);
+  const game = saved == null ? ({
     lastUpdatedTime: Date.now(),
     layerZIndex: [],
     focalPoint: null,
@@ -14,6 +17,7 @@ export const getInitialGameState = (): GameState => {
       id: "1",
       cash: INITIAL_CASH,
     },
+    initialLoadCoords: {},
     markers: {},
     messages: [
       {
@@ -25,7 +29,22 @@ export const getInitialGameState = (): GameState => {
     ],
     tenants: {},
     furniture: {},
-  };
+  } as GameState) : (JSON.parse(saved) as GameState);
+
+  for (const itemId in game.initialLoadCoords) {
+    const coords = game.initialLoadCoords[itemId];
+    const item = game.furniture[itemId];
+
+    if (item == null) {
+      console.warn(`Item ID ${itemId} no longer exists. Deleting position metadata`);
+      delete game.initialLoadCoords[itemId];
+    } else {
+      console.log(`Updating start coords for item ${itemId}`);
+      item.coords = coords;
+    }
+  }
+
+  return game;
 };
 
 const GameContext = React.createContext<

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import {
   Route,
@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import GameArea from "./screens/GameArea";
 import GameState from "./models/GameState";
-import GameContext, { getInitialGameState } from "./state/GameStateProvider";
+import GameContext, { GAME_STORAGE_KEY, getInitialGameState } from "./state/GameStateProvider";
 import DebugContext from "./state/DebugProvider";
 import { DebugProviderState, getInitialDebugProvider } from "./state/DebugProvider";
 import IntroSplashScreen from "./screens/IntroSplashScreen";
@@ -31,6 +31,11 @@ const root = ReactDOM.createRoot(rootElement);
 
 function GameStateManager({ children }: { children: React.ReactNode }) {
   const state = React.useState<GameState>(getInitialGameState());
+  // TODO: Implement proper game save system
+  useEffect(() => {
+    window.localStorage.setItem(GAME_STORAGE_KEY, JSON.stringify(state[0]));
+  }, [state]);
+  
   return <GameStateProvider value={state}>{children}</GameStateProvider>;
 }
 

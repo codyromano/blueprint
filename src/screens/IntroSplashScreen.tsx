@@ -1,7 +1,7 @@
 import React from "react";
 import "./IntroSplashScreen.css";
 import BaseScreen from "../utils/BaseScreen";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function IntroSplashScreen() {
@@ -31,10 +31,28 @@ export default function IntroSplashScreen() {
 
         <h1 className="game-title">House Fashionista</h1>
 
-        <Box display="flex" textAlign="center" flexDirection="column" padding="1.5rem"  width="100%" maxWidth="500px">
-          <Typography fontSize={17}>Illustrations by Jacquie Yu</Typography>
-          <Typography fontSize={17}>Code by Cody Yu Romano</Typography>
-        </Box>
+        <Grid container margin="0 0 1.5rem 0" justifyContent={"center"} justifyItems={"center"}>
+          <Grid xs={6} textAlign="right" paddingRight={3}>
+            <Typography fontSize={15}>Illustrations</Typography>
+          </Grid>
+          <Grid xs={6}>
+            <Typography fontSize={15}>Jacquie Yu</Typography>
+          </Grid>
+
+          <Grid xs={6} textAlign="right" paddingRight={3}>
+            <Typography fontSize={15}>Writing</Typography>
+          </Grid>
+          <Grid xs={6}>
+            <Typography fontSize={15}>Tiffany Chen</Typography>
+          </Grid>
+
+          <Grid xs={6} textAlign="right" paddingRight={3}>
+            <Typography fontSize={15}>Code</Typography>
+          </Grid>
+          <Grid xs={6}>
+            <Typography fontSize={15}>Cody Yu Romano</Typography>
+          </Grid>
+        </Grid>
 
         <Link to="/play" style={{textDecoration: 'none'}}>
           <Button variant="contained" size="large">New Game</Button>

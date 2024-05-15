@@ -33,6 +33,28 @@ const defaultPosition = {
   bottom: "0px",
 };
 
+function getPositionRelativeToParent(element: HTMLElement): { x: number; y: number } {
+  const parent = element.offsetParent as HTMLElement;
+  if (!parent) {
+      throw new Error("Element has no offset parent.");
+  }
+
+  let x = (element.offsetLeft / parent.offsetWidth) * 100;
+  let y = (element.offsetTop / parent.offsetHeight) * 100;
+
+  // Account for translate values
+  const computedStyle = window.getComputedStyle(element);
+  const transform = computedStyle.transform;
+
+  if (transform && transform !== "none") {
+      const matrix = new DOMMatrix(transform);
+      x += (matrix.m41 / parent.offsetWidth) * 100;
+      y += (matrix.m42 / parent.offsetHeight) * 100;
+  }
+
+  return { x, y };
+}
+
 // Presentation only component
 export default function Furniture({
   onTouchEnd,
@@ -137,9 +159,22 @@ export default function Furniture({
 
       <Draggable
         onStart={event => event.preventDefault()}
-        onDrag={(_event, {x, y}) => {
+        onDrag={(_event, data) => {
           // onDragPositionChanged(convertPixelCoordsToPosition(x, y));
         }} onStop={(event, data) => {
+          const {x, y} = getPositionRelativeToParent(data.node);
+
+          setGame(state => reduceGameState(state, {
+            action: GameActions.UPDATE_ITEM_COORDS,
+            selectedItemId: ownedItem.id,
+            lastUpdatedTime: Date.now(),
+            entropy: Math.random(),
+            newCoords: {
+              x: x / 100,
+              y: y / 100
+            }
+          }));
+
           const mouseDownTime = mouseDownStartTimeRef.current; 
           setFocalPoint(null);
           onTouchEnd();

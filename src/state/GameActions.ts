@@ -5,6 +5,7 @@ enum GameActions {
   UPDATE_TENANTS = "update_tenants",
   COLLECT_CASH= "collect_cash",
   CHANGE_Z_INDEX = "change_z_index",
+  UPDATE_ITEM_COORDS = "update_item_coords",
 }
 
 export default GameActions;

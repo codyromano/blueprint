@@ -36,6 +36,10 @@ type GameState = {
       moneyCollectedTime: number | null;
     }
   >;
+  initialLoadCoords: Record<string, {
+    x: number;
+    y: number
+  }>;
   furniture: Partial<
     Record<
       string,

@@ -5,6 +5,7 @@ import GameActions from "./GameActions";
 import getObjectValues from "../utils/getObjectValues";
 import MessageID from "../models/MessageID";
 import reduceLayerZIndex from "./reduceLayerZIndex";
+import nullThrows from "../utils/nullThrows";
 
 type Payload = {
   action: GameActions;
@@ -15,6 +16,7 @@ type Payload = {
   collectCash?: number;
   selectedItemId?: string;
   changeZIndex?: 'up' | 'down';
+  newCoords?: {x: number, y: number};
 };
 
 let i = 0;
@@ -96,6 +98,7 @@ export default function reduceGameState(
         newState.furniture[id] = {
           id,
           furnitureName,
+          // coords: {x: 0.8819, y: 0.6390},
           coords: {x: 0.5, y: 0.5},
           // Spawn furniture in the center of the screen
           position: [`calc(50vw - ${furniture.size[0] / 2}px)`, `calc(50vh - ${furniture.size[1] / 2}px)`],
@@ -187,6 +190,12 @@ export default function reduceGameState(
       }
 
       newState.layerZIndex = reduceLayerZIndex(selectedItemId, changeZIndex, newState.layerZIndex);
+      break;
+    }
+    case GameActions.UPDATE_ITEM_COORDS: {
+      const newCoords = nullThrows(payload.newCoords);
+      const selectedItemId = nullThrows(payload.selectedItemId);
+      newState.initialLoadCoords[selectedItemId] = newCoords;
       break;
     }
     default:
