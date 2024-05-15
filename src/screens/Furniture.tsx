@@ -96,6 +96,8 @@ export default function Furniture({
   // Default box aspect ratio: 500px / 302px = 1.65
   const aspectRatio = status === "blueprint" ? 1.65 : model.aspectRatio;
   const scale = status === "blueprint" ? 1.5 : model.scale;
+  const imageWidth = BASE_IMAGE_SIZE * scale;
+  const imagePaddingBottom = BASE_IMAGE_SIZE * scale / aspectRatio;
   
   return (
     <ClickAwayListener onClickAway={handleClose}>
@@ -173,11 +175,13 @@ export default function Furniture({
         className={getClassNameWithFocalPoint('FURNITURE_ITEM', 'furniture-item')}
         style={{
           position: "absolute",
-          top: ownedItem.position[1] ?? '50vh',
-          left: ownedItem.position[0],
+          // top: ownedItem.position[1],
+          // left: ownedItem.position[0],
+          top: `${ownedItem.coords.y * 100}%`,
+          left: `${ownedItem.coords.x * 100}%`,
           zIndex,
-          width: `${BASE_IMAGE_SIZE * scale}%`,
-          paddingBottom: `${BASE_IMAGE_SIZE * scale / aspectRatio}%`,
+          width: `${imageWidth}%`,
+          paddingBottom: `${imagePaddingBottom}%`,
           backgroundImage: `url(${imageSrc})`,
           backgroundRepeat: 'no-repeat',
           cursor: "pointer",
