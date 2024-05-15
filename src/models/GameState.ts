@@ -41,6 +41,7 @@ type GameState = {
       {
         id: string;
         furnitureName: FurnitureName;
+        zIndex: number;
         coords: {
           x: number;
           y: number;
