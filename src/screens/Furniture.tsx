@@ -7,9 +7,11 @@ import FurnitureModels, { BASE_IMAGE_SIZE } from "../models/Furniture";
 import useFocalPoint from "../utils/useFocalPoint";
 import Popover from '@mui/material/Popover';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, IconButton } from "@mui/material";
+import { Box, Button, Icon, IconButton } from "@mui/material";
 import GameContext from "../state/GameStateProvider";
 import Draggable from "react-draggable";
+import KeyboardDoubleArrowDownSharpIcon from '@mui/icons-material/KeyboardDoubleArrowUpSharp';
+import KeyboardDoubleArrowUpSharpIcon from '@mui/icons-material/KeyboardDoubleArrowDownSharp';
 
 import type Position from '../models/Position';
 import { convertPixelCoordsToPosition } from "../utils/positionUtils";
@@ -90,11 +92,19 @@ export default function Furniture({
           horizontal: 'left',
         }}
       >
-      <Button color="error" onClick={handleClickDelete} endIcon={<DeleteIcon />}>
-        Remove
-      </Button>
 
-      <Button onClick={() => setAnchorEl(null)}>Cancel</Button>
+        <IconButton disabled={true}>
+          <Box display="flex" gap="2px">
+            <KeyboardDoubleArrowUpSharpIcon />
+            <KeyboardDoubleArrowDownSharpIcon />
+          </Box>
+        </IconButton>
+
+        <IconButton color="error" onClick={handleClickDelete}>
+          <DeleteIcon/>
+        </IconButton>
+
+      {/* <Button onClick={() => setAnchorEl(null)}>Cancel</Button> */}
       </Popover>
 
 
