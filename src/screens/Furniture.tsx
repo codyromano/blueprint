@@ -37,6 +37,7 @@ export default function Furniture({
 }: Props) {
   const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
   const mouseDownStartTimeRef = useRef<number | null>(null);
+  const furnitureRef = useRef<HTMLDivElement>(null);
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
 
@@ -97,22 +98,24 @@ export default function Furniture({
       </Popover>
 
 
-      <Draggable onStart={event => event.preventDefault()} onDrag={(_event, {x, y}) => {
-        // onDragPositionChanged(convertPixelCoordsToPosition(x, y));
-      }} onStop={(event, data) => {
+      <Draggable
+        onStart={event => event.preventDefault()}
+        onDrag={(_event, {x, y}) => {
+          // onDragPositionChanged(convertPixelCoordsToPosition(x, y));
+        }} onStop={(event, data) => {
           const mouseDownTime = mouseDownStartTimeRef.current; 
           setFocalPoint(null);
           onTouchEnd();
           
           // When dragging stops, get the computed fixed position of the target element
           // so that we can persist it for the next time the scene renders
-          const {left, top} = window.getComputedStyle(data.node);
+          // const {left, top} = window.getComputedStyle(data.node);
 
           // Only display the context menu on single taps (<250ms)
           // Probably a better way to do this
           if (status !== 'blueprint' && mouseDownTime != null && Date.now() - mouseDownTime < 250) {
             // @ts-ignore
-            // setAnchorEl(event.currentTarget);
+            setAnchorEl(furnitureRef.current);
           }
         }}
         onMouseDown={() => {
@@ -120,6 +123,7 @@ export default function Furniture({
         }}>
       <div
         onMouseUp={onTouchEnd}
+        ref={furnitureRef}
         role="button"
         onClick={(event) => {
           const mouseDownTime = mouseDownStartTimeRef.current; 
