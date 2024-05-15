@@ -99,7 +99,6 @@ export default function reduceGameState(
           // Spawn furniture in the center of the screen
           position: [`calc(50vw - ${furniture.size[0] / 2}px)`, `calc(50vh - ${furniture.size[1] / 2}px)`],
           status: "blueprint",
-          zIndex: 1,
         };
 
         newState = addMessageOnce(
@@ -177,22 +176,28 @@ export default function reduceGameState(
       const { selectedItemId, changeZIndex } = payload;
       const selectedItem = newState?.furniture[selectedItemId ?? ''];
 
-      if (selectedItem == null || changeZIndex == null) {
+      if (selectedItemId == null || changeZIndex == null) {
         throw new Error('Missing selected item or z index prop');
       }
-
-      const currentZIndex = selectedItem.zIndex;
-
-      switch (changeZIndex) {
-        case 'up': {
-          // TODO: Handle up and down actions
-          break;
-        }
-        case 'down': {
-          break;
-        }
+      if (selectedItem == null) {
+        throw new Error('No furniture item matches provided id');
       }
-      break;
+
+      const layers = [...newState.layerZIndex];
+      const currentIndex = layers.findIndex(id => id === selectedItemId);
+
+      // If the furniture item already exists in the stack of layers
+      if (Number.isInteger(currentIndex)) {
+        const newIndex = changeZIndex === 'up' ? currentIndex + 1 : currentIndex - 1;
+        const prevIndex = currentIndex;
+
+        // If there's a previous item, swap them
+        if (layers[prevIndex] != null) {
+          [layers[prevIndex], layers[newIndex]] = [layers[newIndex], layers[prevIndex]];
+        }
+      } else {
+        layers.push(selectedItemId);
+      }
     }
     default:
       throw new Error(`Unknown action: ${payload.action}`);

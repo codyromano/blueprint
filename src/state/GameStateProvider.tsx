@@ -7,6 +7,7 @@ export const INITIAL_CASH = 100;
 export const getInitialGameState = (): GameState => {
   return {
     lastUpdatedTime: Date.now(),
+    layerZIndex: [],
     focalPoint: null,
     puzzlesUnlocked: {},
     player: {

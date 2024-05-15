@@ -8,6 +8,7 @@ export type PuzzleID = 'puzzleAnagram' | 'puzzleWordMerge';
 type GameState = {
   lastUpdatedTime: number;
   focalPoint: null | FocalPoint;
+  layerZIndex: Array<string>,
   player: {
     id: string;
     cash: number;
@@ -41,7 +42,6 @@ type GameState = {
       {
         id: string;
         furnitureName: FurnitureName;
-        zIndex: number;
         coords: {
           x: number;
           y: number;
