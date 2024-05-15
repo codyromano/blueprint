@@ -74,6 +74,11 @@ export default function GameArea() {
     });
   };
 
+  const itemZIndexMap: Record<string, number> = {};
+  game.layerZIndex.forEach((itemId, i) => {
+    itemZIndexMap[itemId] = i;
+  });
+
   return (
     <BaseScreen>
       <DebugOverlay state={game} />
@@ -117,6 +122,7 @@ export default function GameArea() {
         {ownedItems.length > 0 &&
           ownedItems.map((item) => (
             <Furniture
+              zIndex={1 + (itemZIndexMap[item.id] ?? 0)}
               key={item.id}
               onDragPositionChanged={(position: Position | null) => {
                 if (position == null) {

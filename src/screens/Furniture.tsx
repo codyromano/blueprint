@@ -17,12 +17,15 @@ import type Position from '../models/Position';
 import { convertPixelCoordsToPosition } from "../utils/positionUtils";
 
 import "./Furniture.css";
+import reduceGameState from "../state/reduceGameState";
+import GameActions from "../state/GameActions";
 
 type Props = {
   onTouchEnd: () => void;
   onDragPositionChanged: (position: Position | null) => void;
   ownedItem: NonNullable<GameState["furniture"][string]>;
   isFocalPoint: boolean;
+  zIndex: number;
 };
 
 const defaultPosition = {
@@ -35,6 +38,7 @@ export default function Furniture({
   onTouchEnd,
   onDragPositionChanged,
   isFocalPoint = true,
+  zIndex,
   ownedItem,
 }: Props) {
   const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
@@ -43,7 +47,21 @@ export default function Furniture({
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
 
-  const [_, setGame] = useContext(GameContext);
+  const [game, setGame] = useContext(GameContext);
+
+  const adjustLayer = (selectedItemId: string, direction: 'up' | 'down') => {
+    setGame(state => {
+      const newState = reduceGameState(state, {
+        action: GameActions.CHANGE_Z_INDEX,
+        selectedItemId,
+        changeZIndex: direction,
+        lastUpdatedTime: Date.now(),
+        entropy: Math.random(),
+      });
+
+      return newState;
+    });
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -93,12 +111,18 @@ export default function Furniture({
         }}
       >
 
-        <IconButton disabled={true}>
+        
           <Box display="flex" gap="2px">
+            {/* TODO: Update disabled */}
+          <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id, 'down')}>
             <KeyboardDoubleArrowUpSharpIcon />
+            </IconButton>
+
+            <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id,'up')}>
             <KeyboardDoubleArrowDownSharpIcon />
+            </IconButton>
           </Box>
-        </IconButton>
+
 
         <IconButton color="error" onClick={handleClickDelete}>
           <DeleteIcon/>
@@ -150,7 +174,7 @@ export default function Furniture({
           position: "absolute",
           top: ownedItem.position[1] ?? '50vh',
           left: ownedItem.position[0],
-          zIndex: 3,
+          zIndex,
           width: `${BASE_IMAGE_SIZE * scale}%`,
           paddingBottom: `${BASE_IMAGE_SIZE * scale / aspectRatio}%`,
           backgroundImage: `url(${imageSrc})`,

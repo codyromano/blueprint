@@ -4,6 +4,7 @@ import GameState from "../models/GameState";
 import GameActions from "./GameActions";
 import getObjectValues from "../utils/getObjectValues";
 import MessageID from "../models/MessageID";
+import reduceLayerZIndex from "./reduceLayerZIndex";
 
 type Payload = {
   action: GameActions;
@@ -101,6 +102,8 @@ export default function reduceGameState(
           status: "blueprint",
         };
 
+        newState.layerZIndex.push(id);
+
         newState = addMessageOnce(
           'LEARN_TO_ASSEMBLE_FURNITURE',
           `Tap the box to assemble your new furniture`,
@@ -183,21 +186,8 @@ export default function reduceGameState(
         throw new Error('No furniture item matches provided id');
       }
 
-      const layers = [...newState.layerZIndex];
-      const currentIndex = layers.findIndex(id => id === selectedItemId);
-
-      // If the furniture item already exists in the stack of layers
-      if (Number.isInteger(currentIndex)) {
-        const newIndex = changeZIndex === 'up' ? currentIndex + 1 : currentIndex - 1;
-        const prevIndex = currentIndex;
-
-        // If there's a previous item, swap them
-        if (layers[prevIndex] != null) {
-          [layers[prevIndex], layers[newIndex]] = [layers[newIndex], layers[prevIndex]];
-        }
-      } else {
-        layers.push(selectedItemId);
-      }
+      newState.layerZIndex = reduceLayerZIndex(selectedItemId, changeZIndex, newState.layerZIndex);
+      break;
     }
     default:
       throw new Error(`Unknown action: ${payload.action}`);
