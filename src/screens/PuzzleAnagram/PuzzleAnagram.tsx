@@ -8,6 +8,7 @@ import useDebugCommand from "../../state/useDebugCommand";
 import { Box, Button, Typography } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
 import { formatCountdown } from "../../utils/timeUtils";
+import { findNextPuzzle } from "../../utils/puzzleUtils";
 
 
 function getRandomItem<T>(items: T[]): T {
@@ -15,18 +16,27 @@ function getRandomItem<T>(items: T[]): T {
   return items[randomIndex];
 }
 
-const getAnagramWords = () => {
-  const targetItem = getRandomItem(englishWords.words);
-  return targetItem.anagrams.concat(targetItem.word);
+const getAnagramWords = (puzzle: {
+  id: string;
+  word: string;
+  anagrams: string[];
+}) => {
+  return puzzle.anagrams.concat(puzzle.word);
 };
 
 export default function PuzzleAnagram({
   instructions,
   onPuzzleSolved,
   onPuzzleFailed,
+  completedPuzzleIds,
   difficulty,
 }: Puzzle) {
-  const anagrams = React.useMemo(() => getAnagramWords(), []);
+  const puzzle = React.useMemo(() => findNextPuzzle(
+    completedPuzzleIds,
+    englishWords.words.map(item => ({ ...item, id: item.word}))
+  ), []);
+
+  const anagrams = React.useMemo(() => getAnagramWords(puzzle), []);
   const secondsLeft = useCountdown(45);
   const {setCommandCallback} = useDebugCommand();
   
@@ -75,10 +85,10 @@ export default function PuzzleAnagram({
       if (ratingResult === 0) {
         onPuzzleFailed();
       } else {
-        onPuzzleSolved(ratingResult);
+        onPuzzleSolved(ratingResult, puzzle.id);
       }
     }
-  }, [secondsLeft]);
+  }, [secondsLeft, puzzle]);
 
   useEffect(() => {
     if (selectedLetterIndicies.length === anagrams[0].length) {

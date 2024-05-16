@@ -70,8 +70,14 @@ export default function AssembleFurniture({
   const [skipTutorialScreen, setSkipTutorialScreen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<null | typeof puzzleGameOptions[number]>(null);
 
-  const onPuzzleSolved = (rating: AssemblyQualityRating) => {
+  const onPuzzleSolved = (rating: AssemblyQualityRating, puzzleId: string) => {
     setRating(rating);
+
+    setGame(state => {
+      const newGame = {...state};
+      newGame.actionsCompleted[puzzleId] = true;
+      return newGame;
+    });
   };
   const onPuzzleFailed = () => setRating(0);
 
@@ -232,6 +238,7 @@ export default function AssembleFurniture({
             difficulty={getPuzzleDifficulty(selectedItem, game)}
             onPuzzleFailed={onPuzzleFailed}
             onPuzzleSolved={onPuzzleSolved}
+            completedPuzzleIds={game.actionsCompleted}
           />
         )}
       </Modal>

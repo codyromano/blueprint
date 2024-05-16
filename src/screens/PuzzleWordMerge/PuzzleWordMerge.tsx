@@ -12,15 +12,25 @@ const getPuzzleRating = (countResolvedTerms: number, countTotalTerms: number): 0
   return 3;
 };
 
+function findNextPuzzle<T extends {id: string}>(
+  completedPuzzleIds: Record<string, true>,
+  puzzles: Array<T>
+): T {
+  const firstNonCompletedPuzzle = puzzles.find(item => !completedPuzzleIds[item.id]);
+  return firstNonCompletedPuzzle ?? puzzles[
+    Math.floor(Math.random() * puzzles.length)
+  ];
+}
+
 export default function PuzzleWordMerge({
   instructions,
   onPuzzleSolved,
   onPuzzleFailed,
+  completedPuzzleIds,
   difficulty,
 }: Puzzle) {
-  // TODO: Determine correct puzzle id
-  const puzzleId = '3';
-  const puzzle = puzzles.find(p => p.id === puzzleId);
+  const puzzle = findNextPuzzle(completedPuzzleIds, puzzles);
+  const puzzleId = puzzle.id;
 
   if (puzzle == null) {
     throw new Error(`No wordMergePuzzle with id ${puzzleId}`);
@@ -44,13 +54,13 @@ export default function PuzzleWordMerge({
 
   useEffect(() => {
     setCommandCallback('FINISH_PUZZLE_THREE_STARS', () => {
-      onPuzzleSolved(3);
+      onPuzzleSolved(3, puzzleId);
     });
-  }, []);
+  }, [puzzleId]);
 
   const onFinishSolvingPuzzle = () => {
     const rating = getPuzzleRating(resolvedWords.length, toposort(puzzle.graph).length);
-    onPuzzleSolved(rating); 
+    onPuzzleSolved(rating, puzzleId); 
   };
 
   useEffect(() => {

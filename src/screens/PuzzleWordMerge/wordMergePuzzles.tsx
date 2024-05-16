@@ -14,7 +14,7 @@ const validatePuzzle = (puzzle: WordMergePuzzle) => puzzle;
 
 const puzzles: WordMergePuzzle[] = [  
   {
-    id: '1',
+    id: 'wordMerge1',
     difficulty: 'easy',
     graph: [
       ['Hammer', NO_DEPENDENCIES],
@@ -29,7 +29,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '2',
+    id: 'wordMerge2',
     difficulty: 'medium',
     graph: [
       // Initial words
@@ -59,7 +59,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '3',
+    id: 'wordMerge3',
     difficulty: 'medium',
     graph: [
       ["Ad-lib", NO_DEPENDENCIES],
@@ -101,7 +101,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
     },
   {
-    id: '4',
+    id: 'wordMerge4',
     difficulty: 'hard',
     graph: [
       ['Brand', NO_DEPENDENCIES],
@@ -140,7 +140,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '5',
+    id: 'wordMerge5',
     difficulty: 'medium',
     graph: [
       ["Article", NO_DEPENDENCIES],
@@ -166,7 +166,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '6',
+    id: 'wordMerge6',
     difficulty: 'medium',
     graph: [
       ["Column", NO_DEPENDENCIES],
@@ -202,7 +202,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '7',
+    id: 'wordMerge7',
     difficulty: 'medium',
     "graph": [
       ["Aim", NO_DEPENDENCIES],
@@ -238,7 +238,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '8',
+    id: 'wordMerge8',
     difficulty: 'medium',
     "graph": [
       ["Adhere", NO_DEPENDENCIES],
@@ -276,7 +276,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '9',
+    id: 'wordMerge9',
     difficulty: 'easy',
     "graph": [
       ["Bunk", NO_DEPENDENCIES],
@@ -298,7 +298,7 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
-    id: '10',
+    id: 'wordMerge10',
     difficulty: 'hard',
     "graph": [
       ["Bud", NO_DEPENDENCIES],
