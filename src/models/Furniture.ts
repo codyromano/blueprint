@@ -175,8 +175,8 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   filingCabinet: {
     id: "filingCabinet",
     displayName: "Filing Cabinet",
-    scale: 1,
-    aspectRatio: 1,
+    scale: 0.8,
+    aspectRatio: 351 / 700,
     size: [100, 100],
     cost: INITIAL_CASH * 6,
   },

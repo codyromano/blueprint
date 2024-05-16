@@ -17,7 +17,7 @@ export default function Modal({
 }: Props) {
   return (
     <PositionLayer
-      zIndex={10}
+      zIndex={500}
       position="fixed"
       justifyContent="center"
       alignItems="center"

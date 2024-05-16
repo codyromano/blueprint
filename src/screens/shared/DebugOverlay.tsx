@@ -23,7 +23,7 @@ export default function DebugOverlay({ state }: { state: GameState }) {
         color: "#fff",
         top: '1rem',
         left: '1rem',
-        zIndex: 100,
+        zIndex: 501,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
       }}
     >
