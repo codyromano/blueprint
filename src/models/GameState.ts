@@ -15,6 +15,11 @@ type GameState = {
     authToken?: string;
   };
   puzzlesUnlocked: Partial<Record<PuzzleID, true>>,
+
+  // An "action" is a generic term that refers to any activity by the player
+  // such as solving a puzzle or collecting an item. An "action" has a unique
+  // ID and a simple flag representing completion.
+  actionsCompleted: Record<string, true>,
   messages: Array<{
     id: MessageID;
     isDismissed: boolean;

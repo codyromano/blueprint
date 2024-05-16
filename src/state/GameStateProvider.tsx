@@ -13,6 +13,7 @@ export const getInitialGameState = (): GameState => {
     layerZIndex: [],
     focalPoint: null,
     puzzlesUnlocked: {},
+    actionsCompleted: {},
     player: {
       id: "1",
       cash: INITIAL_CASH,
