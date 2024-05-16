@@ -67,7 +67,7 @@ export default function DebugOverlay({ state }: { state: GameState }) {
         top: '0rem',
         left: '0rem',
         zIndex: 501,
-        backgroundColor: isOverlayVisible ? "rgba(255, 255, 255, 0.8)" : "transparent",
+        backgroundColor: isOverlayVisible ? "rgba(255, 255, 255, 0.95)" : "transparent",
       }}
     >
     {isOverlayVisible ? <Box sx={{ width: '100%' }}>
