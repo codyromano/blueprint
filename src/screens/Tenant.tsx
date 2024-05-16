@@ -49,41 +49,49 @@ export default function Tenant({
   secondsUntilMoneyIsReady: number,
 }) {
   return (
-    <div
-      className="tenant"
-      style={{
-        bottom: `${tenant.position[1]}vh`,
-        left: `${tenant.position[0]}vw`,
-      }}
-    >
-        <div style={{
-          position: 'absolute', 
-          top: '-2.5rem',
-          left: 0,
-          display: 'flex',
-          width: '100%',
-          justifyContent: 'center',
-        }}>          
-          {secondsUntilMoneyIsReady === 0 ? (
-            <IconButton  onClick={onCollectMoney} color="primary" size="large">
-              <AttachMoneyIcon fontSize="large" />
-            </IconButton>
-          ) : (
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-              <div style={{display: 'flex'}}>
-                <TenantMoodIcon happiness={tenant.happiness} />
-                <Typography>{tenant.happiness}</Typography>
-              </div>
+    <>
+      <div
+        className="tenant"
+        style={{
+          bottom: `${tenant.position[1] / 2}vh`,
+          left: `${tenant.position[0]}vw`,
+        }}
+      >
+          <div style={{
+            position: 'absolute', 
+            top: '-2.5rem',
+            left: 0,
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'center',
+          }}>          
+              <div style={{display: 'flex', flexDirection: 'column'}}>
 
-              <div style={{display: 'flex'}}>
-                <AccessTimeIcon />
-                <Typography>{formatCountdown(secondsUntilMoneyIsReady)}</Typography>
+              {secondsUntilMoneyIsReady === 0 ? (
+              <IconButton
+                style={{zIndex: 499, position: 'relative'}}
+                onClick={onCollectMoney} color="primary" size="large">
+                <AttachMoneyIcon fontSize="large" />
+              </IconButton>
+              ) : (
+                <>
+                <div style={{display: 'flex', zIndex: 499, position: 'relative'}}>
+                  <TenantMoodIcon happiness={tenant.happiness} />
+                  <Typography>{tenant.happiness}</Typography>
+                </div>
+                <div style={{display: 'flex'}}>
+                  <AccessTimeIcon />
+                  <Typography>{formatCountdown(secondsUntilMoneyIsReady)}</Typography>
+                </div>
+                </>
+              )}
+
+
               </div>
-            </div>
-          )}
-        </div>
-    
-      <Image src={`/images/tenant.gif`} style={{width: '20vw'}} />
-    </div>
+          </div>
+      
+        <Image src={`/images/tenant.gif`} style={{position: 'relative', pointerEvents: 'none', zIndex: 499, width: '20vw'}} />
+      </div>
+    </>
   );
 }
