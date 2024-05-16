@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import {
   Route,
   RouterProvider,
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
 } from "react-router-dom";
 import GameArea from "./screens/GameArea";
@@ -23,7 +23,7 @@ const routes = createRoutesFromElements(
   </Route>
 );
 
-const router = createBrowserRouter(routes);
+const router = createHashRouter(routes);
 const App = () => <RouterProvider router={router} />;
 
 const rootElement = document.getElementById("root")!;
