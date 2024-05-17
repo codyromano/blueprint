@@ -12,12 +12,14 @@ import GameContext, { GAME_STORAGE_KEY, getInitialGameState } from "./state/Game
 import DebugContext from "./state/DebugProvider";
 import { DebugProviderState, getInitialDebugProvider } from "./state/DebugProvider";
 import IntroSplashScreen from "./screens/IntroSplashScreen";
+import GameMode from "./screens/GameMode";
 
 const { Provider: GameStateProvider } = GameContext;
 const { Provider: DebugProvider } = DebugContext;
 
 const routes = createRoutesFromElements(
   <Route>
+    <Route path="/mode" element={<GameMode />} />
     <Route path="/play" element={<GameArea />} />
     <Route path="/" element={<IntroSplashScreen />} />
   </Route>

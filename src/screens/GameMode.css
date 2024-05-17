@@ -1,0 +1,16 @@
+.game-mode {
+  width: 100%;
+}
+.game-mode-item {
+  padding: 1rem;
+  text-align: center;
+}
+.game-mode-icon {
+  width: 50%;
+  margin: 0.5rem auto;
+  padding-bottom: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
