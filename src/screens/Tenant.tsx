@@ -9,6 +9,10 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import getObjectValues from "../utils/getObjectValues";
+import Tenants from "../models/Tenants";
+import { BASE_IMAGE_SIZE } from "../models/Furniture";
+import nullThrows from "../utils/nullThrows";
 
 function formatCountdown(seconds: number): string {
   const minutes = Math.floor(seconds / 60);
@@ -37,6 +41,9 @@ const TenantMoodIcon = ({
   return <SentimentVeryDissatisfiedIcon />;
 }
 
+// Shuffle the tenant models
+const tenantModels = getObjectValues(Tenants).sort(() => Math.random() > 0.5 ? -1 : 1);
+
 export default function Tenant({
   tenant,
   index,
@@ -48,6 +55,8 @@ export default function Tenant({
   onCollectMoney: () => void;
   secondsUntilMoneyIsReady: number,
 }) {
+  const model = tenantModels[index % tenantModels.length];
+
   return (
     <>
       <div
@@ -55,6 +64,8 @@ export default function Tenant({
         style={{
           bottom: `${tenant.position[1] / 2}vh`,
           left: `${tenant.position[0]}vw`,
+          width: `${BASE_IMAGE_SIZE * model.scale}%`,
+          paddingBottom: `${BASE_IMAGE_SIZE * model.scale / model.aspectRatio}%`
         }}
       >
           <div style={{
@@ -90,7 +101,18 @@ export default function Tenant({
               </div>
           </div>
       
-        <Image src={`/images/tenant.gif`} style={{position: 'relative', pointerEvents: 'none', zIndex: 499, width: '20vw'}} />
+        <div
+          style={{
+            position: "absolute",
+            background: `url(/images/${model.id}.webp) no-repeat`,
+            backgroundSize: '100% 100%',
+            pointerEvents: 'none',
+            zIndex: 499,
+            width: '100%',
+            height: '100%',
+            opacity: 0.8,
+          }} 
+        />
       </div>
     </>
   );

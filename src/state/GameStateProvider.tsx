@@ -40,7 +40,6 @@ export const getInitialGameState = (): GameState => {
       console.warn(`Item ID ${itemId} no longer exists. Deleting position metadata`);
       delete game.initialLoadCoords[itemId];
     } else {
-      console.log(`Updating start coords for item ${itemId}`);
       item.coords = coords;
     }
   }

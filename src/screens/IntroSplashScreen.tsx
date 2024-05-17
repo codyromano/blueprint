@@ -52,6 +52,13 @@ export default function IntroSplashScreen() {
           <Grid xs={6}>
             <Typography fontSize={15}>Cody Yu Romano</Typography>
           </Grid>
+
+          <Grid xs={6} textAlign="right" paddingRight={3}>
+            <Typography fontSize={15}>Starring</Typography>
+          </Grid>
+          <Grid xs={6}>
+            <Typography fontSize={15}>Joycie's Bridesmaids</Typography>
+          </Grid>
         </Grid>
 
         <Link to="/play" style={{textDecoration: 'none'}}>
