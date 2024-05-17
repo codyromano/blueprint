@@ -21,7 +21,6 @@ export type FurnitureName =
   "lavaLamp" |
   "tableLamp" |
   "coffeeTable" |
-  "diningTable" |
   "nightstand" |
   "momo" |
   "emmy" |
@@ -120,17 +119,9 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     id: "coffeeTable",
     displayName: "Coffee Table",
     scale: 1,
-    aspectRatio: 1,
+    aspectRatio: 593 / 421,
     size: [100, 100],
     cost: INITIAL_CASH * 1.25,
-  },
-  diningTable: {
-    id: "diningTable",
-    displayName: "Dining Table",
-    scale: 1,
-    aspectRatio: 1,
-    size: [100, 100],
-    cost: INITIAL_CASH * 1.5,
   },
   nightstand: {
     id: "nightstand",
@@ -167,8 +158,8 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   dresser: {
     id: "dresser",
     displayName: "Dresser",
-    scale: 1,
-    aspectRatio: 1,
+    scale: 2,
+    aspectRatio: 628 / 398,
     size: [100, 100],
     cost: INITIAL_CASH * 2,
   },
@@ -183,8 +174,8 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   officeDesk: {
     id: "officeDesk",
     displayName: "Office Desk",
-    scale: 1,
-    aspectRatio: 1,
+    scale: 2,
+    aspectRatio: 609 / 410,
     size: [100, 100],
     cost: INITIAL_CASH * 4,
   },
