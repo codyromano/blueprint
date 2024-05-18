@@ -26,6 +26,7 @@ import { getImageUrlForItem } from "../utils/itemStageUtils";
 import PlantMenu from "./PlantMenu";
 import { useNavigate } from "react-router-dom";
 import { ShoppingBag, ShoppingCart } from "@mui/icons-material";
+import Economy from "../models/Economy";
 
 
 enum ContextOverlayMenu {
@@ -61,7 +62,7 @@ export default function GameArea() {
         action: GameActions.COLLECT_CASH,
         entropy: Math.random(),
         lastUpdatedTime: Date.now(),
-        collectCash: 1000
+        collectCash: Economy.PRICE_LEVEL_10
       }))
     });
 
