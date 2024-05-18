@@ -1,4 +1,3 @@
-import { INITIAL_CASH } from "../state/GameStateProvider";
 import Economy from "./Economy";
 
 // Default image size expressed as a % of the gameplay area's width.
