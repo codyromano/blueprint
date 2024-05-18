@@ -105,6 +105,17 @@ export default function reduceGameState(
           status: "blueprint",
         };
 
+        switch (furniture.category) {
+          case 'plant': {
+            newState.itemStages[id] = {
+              id,
+              currentStage: 1,
+              stageLastChangedTime: Date.now()
+            };
+            break;
+          }
+        }
+
         newState.layerZIndex.push(id);
 
         newState = addMessageOnce(

@@ -22,7 +22,7 @@ export default function GameMode() {
         </Grid>
         <Grid xs={4} display={"flex"} className="game-mode-item" flexDirection={"column"}>
           <Typography variant="h5" textAlign={"center"}>Botanist</Typography>
-          <div className="game-mode-icon"  style={{backgroundImage: 'url(/images/plant.jpeg'}} />
+          <div className="game-mode-icon"  style={{backgroundImage: 'url(/images/basicPlant_stage1.webp'}} />
           <Typography variant="caption">Your plants grow twice as fast, but plants are expensive; you start the game with less money.</Typography>
        </Grid>
         <Grid xs={4}  display={"flex"} className="game-mode-item" flexDirection={"column"}>

@@ -21,6 +21,8 @@ import "./GameArea.css";
 import useDebugCommand from "../state/useDebugCommand";
 import Position from "../models/Position";
 import { Box } from "@mui/material";
+import FurnitureModels from "../models/Furniture";
+import { getImageUrlForItem } from "../utils/itemStageUtils";
 
 
 enum ContextOverlayMenu {
@@ -120,39 +122,44 @@ export default function GameArea() {
       <GameVitalStatsHeader cash={game.player.cash} happiness={happiness} />
       
         {ownedItems.length > 0 &&
-          ownedItems.map((item) => (
-            <Furniture
-              zIndex={1 + (itemZIndexMap[item.id] ?? 0)}
-              key={item.id}
-              onDragPositionChanged={(position: Position | null) => {
-                if (position == null) {
-                  return;
-                }
-                setGame((state) => {
-                  const newState = { ...state };
-                  const newItem = newState.furniture[item.id];
+          ownedItems.map((item) => {
+            const imageUrl = getImageUrlForItem(game, item.id);
 
-                  if (newItem?.position == null) {
-                    throw new Error("expected position");
+            return (
+              <Furniture
+                zIndex={1 + (itemZIndexMap[item.id] ?? 0)}
+                key={item.id}
+                onDragPositionChanged={(position: Position | null) => {
+                  if (position == null) {
+                    return;
                   }
+                  setGame((state) => {
+                    const newState = { ...state };
+                    const newItem = newState.furniture[item.id];
 
-                  newItem.position[0] = `${position.vw}vw`;
-                  newItem.position[1] = `${position.vh}vh`;
+                    if (newItem?.position == null) {
+                      throw new Error("expected position");
+                    }
 
-                  return newState;
-                });
-              }}
-              isFocalPoint={true}
-              onTouchEnd={() => {
-                setSelectedItem(item);
+                    newItem.position[0] = `${position.vw}vw`;
+                    newItem.position[1] = `${position.vh}vh`;
 
-                if (item.status === "blueprint") {
-                  setActiveOverlayMenu(ContextOverlayMenu.AssembleFurniture);
-                }
-              }}
-              ownedItem={item}
-            />
-          ))}
+                    return newState;
+                  });
+                }}
+                isFocalPoint={true}
+                onTouchEnd={() => {
+                  setSelectedItem(item);
+
+                  if (item.status === "blueprint") {
+                    setActiveOverlayMenu(ContextOverlayMenu.AssembleFurniture);
+                  }
+                }}
+                ownedItem={item}
+                imageUrl={imageUrl}
+              />
+            );
+        })}
 
         {tenants.map((tenant, index) => {
           const currentTime = Date.now();

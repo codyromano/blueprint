@@ -18,6 +18,7 @@ export const getInitialGameState = (): GameState => {
       id: "1",
       cash: INITIAL_CASH,
     },
+    itemStages: {},
     initialLoadCoords: {},
     markers: {},
     messages: [

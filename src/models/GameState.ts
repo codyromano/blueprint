@@ -16,6 +16,12 @@ type GameState = {
   };
   puzzlesUnlocked: Partial<Record<PuzzleID, true>>,
 
+  itemStages: Record<string, {
+    id: string;
+    currentStage: number;
+    stageLastChangedTime: number;
+  }>;
+
   // An "action" is a generic term that refers to any activity by the player
   // such as solving a puzzle or collecting an item. An "action" has a unique
   // ID and a simple flag representing completion.

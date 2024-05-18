@@ -13,6 +13,7 @@ import PuzzleWordMerge from "./PuzzleWordMerge/PuzzleWordMerge";
 import { Button, Typography, ImageList, ImageListItem, Box, ImageListItemBar, IconButton  } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import PaidIcon from '@mui/icons-material/Paid';
+import { getImageUrlForUnownedItemPreview } from "../utils/itemStageUtils";
 
 enum AssembleFurnitureResult {
   PENDING,
@@ -125,7 +126,7 @@ export default function AssembleFurniture({
       >
         <div style={{display: "flex",  alignItems: "center", justifyItems: "center", height: "100%", justifyContent: "center", flexDirection: "column"}}>
           
-          <Avatar variant="square" src={`/images/${furnitureModel.id}.webp`} style={{ height: "100px", width: "100px", margin: "16px"}} />
+          <Avatar variant="square" src={`${getImageUrlForUnownedItemPreview(game, furnitureModel.id)}`} style={{ height: "100px", width: "100px", margin: "16px"}} />
 
           <div className="row">
             {new Array(rating).fill(null).map(() => '★').join('')}

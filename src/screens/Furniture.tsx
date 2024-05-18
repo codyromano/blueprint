@@ -26,6 +26,7 @@ type Props = {
   ownedItem: NonNullable<GameState["furniture"][string]>;
   isFocalPoint: boolean;
   zIndex: number;
+  imageUrl: string;
 };
 
 const defaultPosition = {
@@ -55,6 +56,8 @@ function getPositionRelativeToParent(element: HTMLElement): { x: number; y: numb
   return { x, y };
 }
 
+// TODO: Name this something broader than furniture. It also includes
+// plants, animals, and decorations.
 // Presentation only component
 export default function Furniture({
   onTouchEnd,
@@ -62,6 +65,7 @@ export default function Furniture({
   isFocalPoint = true,
   zIndex,
   ownedItem,
+  imageUrl,
 }: Props) {
   const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
   const mouseDownStartTimeRef = useRef<number | null>(null);
@@ -111,9 +115,7 @@ export default function Furniture({
   // Don't show the context menu when the furniture is unassembled (box)
   const open = status !== 'blueprint' && Boolean(anchorEl);
   const popoverId = open ? 'simple-popover' : undefined;
-
-  const imageSrc =
-    status === "blueprint" ? `/images/box.webp` : `/images/${imageId}.webp`;
+    
 
   // Default box aspect ratio: 500px / 302px = 1.65
   const aspectRatio = status === "blueprint" ? 1.65 : model.aspectRatio;
@@ -145,7 +147,6 @@ export default function Furniture({
           <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id,'up')}>
             <KeyboardDoubleArrowDownSharpIcon />
           </IconButton>
-
 
           <IconButton color="error" onClick={handleClickDelete}>
             <DeleteIcon/>
@@ -217,7 +218,7 @@ export default function Furniture({
           zIndex,
           width: `${imageWidth}%`,
           paddingBottom: `${imagePaddingBottom}%`,
-          backgroundImage: `url(${imageSrc})`,
+          backgroundImage: `url(${imageUrl})`,
           backgroundRepeat: 'no-repeat',
           cursor: "pointer",
          // top: '50vh',

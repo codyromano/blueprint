@@ -5,11 +5,6 @@ import { INITIAL_CASH } from "../state/GameStateProvider";
 // height may vary depending on the image's declared aspect ratio.
 export const BASE_IMAGE_SIZE = 10;
 
-/*
-Topo-sort terms 
-A term is visible if all preceding terms are selected
-*/
-
 export type FurnitureName = 
   "basicBed" |
   "comfortableBed" |
@@ -30,7 +25,8 @@ export type FurnitureName =
   "officeDesk" |
   "basicWallArt" |
   "fancyWallArt" |
-  "discoBall";
+  "discoBall" |
+  "basicPlant";
 
 export type FurnitureItem = {
   id: FurnitureName;
@@ -40,8 +36,11 @@ export type FurnitureItem = {
   aspectRatio: number;
   size: [number, number];
   cost: number;
+  category: 'furniture' | 'decorations' | 'plant' | 'animal';
 };
 
+// TODO: Name this something other than furniture. It grew
+// to include stuff like decorations, plants, animals
 const Furniture: Record<FurnitureName, FurnitureItem> = {
   basicBed: {
     id: "basicBed",
@@ -50,6 +49,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 600 / 566,
     size: [100, 100],
     cost: INITIAL_CASH * 0.25,
+    category: 'furniture'
   },
   comfortableBed: {
     id: "comfortableBed",
@@ -58,6 +58,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 548 / 455,
     size: [100, 100],
     cost: INITIAL_CASH * 1.5,
+    category: 'furniture'
   },
   fancyBed: {
     id: "fancyBed",
@@ -66,6 +67,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 548 / 455,
     size: [100, 100],
     cost: INITIAL_CASH * 5,
+    category: 'furniture'
   },
   cheapRug: {
     id: "cheapRug",
@@ -74,6 +76,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 688 / 362,
     size: [100, 100],
     cost: INITIAL_CASH * 0.25,
+    category: 'furniture'
   },
   antiqueRug: {
     id: "antiqueRug",
@@ -82,6 +85,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 500 / 64,
     size: [100, 100],
     cost: INITIAL_CASH * 1.5,
+    category: 'furniture'
   },
   fancyRug: {
     id: "fancyRug",
@@ -90,6 +94,16 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 500 / 133,
     size: [100, 100],
     cost: INITIAL_CASH * 3.5,
+    category: 'furniture'
+  },
+  basicPlant: {
+    id: "basicPlant",
+    displayName: "Basic Plant",
+    scale: 0.75,
+    aspectRatio: 409 / 611,
+    size: [100, 100],
+    cost: INITIAL_CASH * 7,
+    category: 'plant'
   },
   floorLamp: {
     id: "floorLamp",
@@ -98,6 +112,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 346 / 721,
     size: [100, 100],
     cost: INITIAL_CASH * 0.15,
+    category: 'furniture'
   },
   lavaLamp: {
     id: "lavaLamp",
@@ -106,6 +121,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 440 / 600,
     size: [100, 100],
     cost: INITIAL_CASH * 1.75,
+    category: 'furniture'
   },
   tableLamp: {
     id: "tableLamp",
@@ -114,6 +130,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 1,
     size: [100, 100],
     cost: INITIAL_CASH * 1,
+    category: 'furniture'
   },
   coffeeTable: {
     id: "coffeeTable",
@@ -122,6 +139,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 593 / 421,
     size: [100, 100],
     cost: INITIAL_CASH * 1.25,
+    category: 'furniture'
   },
   nightstand: {
     id: "nightstand",
@@ -130,6 +148,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 413 / 603,
     size: [100, 100],
     cost: INITIAL_CASH * 3,
+    category: 'furniture'
   },
   momo: {
     id: "momo",
@@ -138,6 +157,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 1,
     size: [100, 100],
     cost: INITIAL_CASH * 8,
+    category: 'animal',
   },
   emmy: {
     id: "emmy",
@@ -146,6 +166,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 1,
     size: [100, 100],
     cost: INITIAL_CASH * 8,
+    category: 'animal',
   },
   keroppi: {
     id: "keroppi",
@@ -154,6 +175,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 500 / 549,
     size: [100, 100],
     cost: INITIAL_CASH * 7.5,
+    category: 'animal',
   },
   dresser: {
     id: "dresser",
@@ -162,6 +184,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 628 / 398,
     size: [100, 100],
     cost: INITIAL_CASH * 2,
+    category: 'furniture',
   },
   filingCabinet: {
     id: "filingCabinet",
@@ -170,6 +193,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 351 / 700,
     size: [100, 100],
     cost: INITIAL_CASH * 6,
+    category: 'furniture',
   },
   officeDesk: {
     id: "officeDesk",
@@ -178,6 +202,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 609 / 410,
     size: [100, 100],
     cost: INITIAL_CASH * 4,
+    category: 'furniture',
   },
   basicWallArt: {
     id: "basicWallArt",
@@ -186,6 +211,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 500 / 648,
     size: [100, 100],
     cost: INITIAL_CASH * 2.25,
+    category: 'decorations'
   },
   fancyWallArt: {
     id: "fancyWallArt",
@@ -194,6 +220,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 500 / 332,
     size: [100, 100],
     cost: INITIAL_CASH * 5.5,
+    category: 'decorations'
   },
   discoBall: {
     id: "discoBall",
@@ -202,6 +229,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 394 / 634,
     size: [100, 100],
     cost: INITIAL_CASH * 10,
+    category: 'decorations'
   },
 };
 

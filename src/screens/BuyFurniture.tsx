@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./BuyFurniture.css";
 import Furniture, { FurnitureName, FurnitureItem } from "../models/Furniture";
 import PaidIcon from '@mui/icons-material/Paid';
 import Modal from "./shared/Modal";
 import { Box, Button, ButtonGroup, IconButton, ImageList, ImageListItem, ImageListItemBar, Typography } from "@mui/material";
 import nullThrows from "../utils/nullThrows";
+import { getImageUrlForItem, getImageUrlForUnownedItemPreview } from "../utils/itemStageUtils";
+import GameContext from "../state/GameStateProvider";
 
 type Props = {
   onSelectClose: () => void;
@@ -31,6 +33,7 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
   const furnitureItems: FurnitureItem[] = Object.values(Furniture).sort(
     (a, b) => a.cost - b.cost
   );
+  const [game] = useContext(GameContext);
 
   return (
     <Modal
@@ -57,7 +60,7 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
             <>
             <div style={{
               height: 100,
-              background: `url(/images/${item.id}.webp) no-repeat`,
+              background: `url(${getImageUrlForUnownedItemPreview(game, item.id)}) no-repeat`,
               backgroundSize: 'contain',
               backgroundPosition: 'center',
             }} />
