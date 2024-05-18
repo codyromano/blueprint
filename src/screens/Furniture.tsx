@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import {Img as Image} from "react-image";
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import GameState from "../models/GameState";
@@ -27,6 +27,7 @@ type Props = {
   isFocalPoint: boolean;
   zIndex: number;
   imageUrl: string;
+  overheadContent: null | ReactNode;
 };
 
 const defaultPosition = {
@@ -65,6 +66,7 @@ export default function Furniture({
   isFocalPoint = true,
   zIndex,
   ownedItem,
+  overheadContent = null,
   imageUrl,
 }: Props) {
   const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
@@ -202,9 +204,18 @@ export default function Furniture({
           const mouseDownTime = mouseDownStartTimeRef.current; 
           setFocalPoint(null);
 
+          // @ts-ignore
+          if (!event.target.matches('.furniture-item')) {
+            setAnchorEl(null);
+            return;
+          }
+
           // Only display the context menu on single taps (<250ms)
           // Probably a better way to do this
-          if (status !== 'blueprint' && mouseDownTime != null && Date.now() - mouseDownTime < 250) {
+          if (
+            status !== 'blueprint' &&
+            mouseDownTime != null &&
+            Date.now() - mouseDownTime < 250) {
             setAnchorEl(event.currentTarget);
           }
         }}
@@ -221,9 +232,20 @@ export default function Furniture({
           backgroundImage: `url(${imageUrl})`,
           backgroundRepeat: 'no-repeat',
           cursor: "pointer",
-         // top: '50vh',
         }}
-      />
+      >
+        <Box
+          className="overhead-content"
+          width="100%"
+          position="absolute"
+          top="-50%" 
+          display="flex"
+          justifyItems={"center"}
+          justifyContent={"center"}
+        >
+          {overheadContent}
+        </Box>
+      </div>
       </Draggable>
       </>
     </ClickAwayListener>

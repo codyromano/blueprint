@@ -45,3 +45,39 @@ export function getImageUrlForItem(state: GameState, itemId: string) {
     }
   }
 }
+
+export function getSecondsUntilNextStage(state: GameState, itemId: string) {
+  const item = nullThrows(
+    state.furniture[itemId],
+    `Expected player to own item with ID ${itemId}`
+  );
+
+  const stageInfo = nullThrows(
+    state.itemStages[itemId],
+    'Expected stage info to exist for item'
+  );
+
+  let targetTime: number;
+
+  switch (stageInfo.currentStage) {
+    case 1: {
+      // Three minutes
+      targetTime = stageInfo.stageLastChangedTime + 1000 * 60 * 3;
+      break;
+    }
+    case 2: {
+      // Five minutes
+      targetTime = stageInfo.stageLastChangedTime + 1000 * 60 * 5;
+      break;
+    }
+    case 3: {
+      // Ten minutes
+      targetTime = stageInfo.stageLastChangedTime + 1000 * 60 * 10;
+      break;
+    }
+    default: {
+      throw new Error(`Unexpected stage # ${stageInfo.currentStage}`);
+    }
+  }
+  return Math.floor(Math.max(0, targetTime - Date.now()) / 1000);
+}

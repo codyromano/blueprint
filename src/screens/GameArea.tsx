@@ -20,9 +20,10 @@ import useFocalPoint from "../utils/useFocalPoint";
 import "./GameArea.css";
 import useDebugCommand from "../state/useDebugCommand";
 import Position from "../models/Position";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import FurnitureModels from "../models/Furniture";
 import { getImageUrlForItem } from "../utils/itemStageUtils";
+import PlantMenu from "./PlantMenu";
 
 
 enum ContextOverlayMenu {
@@ -127,6 +128,10 @@ export default function GameArea() {
 
             return (
               <Furniture
+                overheadContent={
+                  FurnitureModels[item.furnitureName].category === 'plant' ?
+                  <PlantMenu ownedItem={item} /> : null
+                }
                 zIndex={1 + (itemZIndexMap[item.id] ?? 0)}
                 key={item.id}
                 onDragPositionChanged={(position: Position | null) => {
