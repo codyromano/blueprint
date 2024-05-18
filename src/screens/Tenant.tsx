@@ -86,7 +86,7 @@ export default function Tenant({
                 color="primary"
                 variant="outlined"
                 startIcon={<AttachMoneyIcon fontSize="small" />}
-                style={{zIndex: 499, backgroundColor: '#fff', position: 'relative'}}
+                style={{zIndex: 500, backgroundColor: '#fff', position: 'relative'}}
                 onClick={onCollectMoney} size="small">
                   {rentAmount}
               </Button>

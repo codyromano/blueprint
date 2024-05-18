@@ -69,6 +69,30 @@ export default function GameArea() {
     setCommandCallback('CHANGE_CHARACTER_TRAIT', () => {
       navigate('/mode');
     });
+
+    setCommandCallback('FULL_HOUSE', () => {
+      setGame(state => {
+        let newState = {...state};
+
+        const items = getObjectValues({...FurnitureModels});
+        newState.player.cash = Economy.PRICE_LEVEL_10 * items.length;
+        console.log('total items', items);
+
+        for (const item of items) {
+          newState = reduceGameState(game, {
+            action: GameActions.BUY_FURNITURE_REQUEST,
+            furnitureName: item.id,
+            lastUpdatedTime: Date.now(),
+            entropy: Math.random(),
+          });
+        }
+        for (const item of getObjectValues({...newState.furniture})) {
+          item.status = 'assembled';
+        }
+        console.log(newState);
+        return newState;
+      });
+    });
   }, [setCommandCallback]);
 
   const ownedItems: Array<NonNullable<GameState["furniture"][string]>> =

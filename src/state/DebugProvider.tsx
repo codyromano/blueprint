@@ -13,6 +13,7 @@ export const getInitialDebugProvider = (): DebugProviderState => {
       'COLLECT_MONEY_CHEAT': () => {},
       'FREEZE_TIME': () => {},
       'CHANGE_CHARACTER_TRAIT': () => {},
+      'FULL_HOUSE': () => {}
     }
   };
 };

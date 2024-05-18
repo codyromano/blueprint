@@ -196,7 +196,7 @@ export default function reduceGameState(
       for (const tenant of getObjectValues(newState.tenants)) {
         if (newState.lastUpdatedTime - tenant.lastUpdatedTime > 1000 * 30) {
           // TODO: Update this
-          tenant.position[0] = 80 * payload.entropy;
+          tenant.position[0] = 80 * Math.random();
           tenant.lastUpdatedTime = newState.lastUpdatedTime;
         }
       }
