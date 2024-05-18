@@ -7,11 +7,8 @@ import { useAudioPlayer } from "react-use-audio-player";
 import { MusicNote } from "@mui/icons-material";
 
 export default function IntroSplashScreen() {
-  const { load, play } = useAudioPlayer();
+  const { load} = useAudioPlayer();
 
-  useEffect(() => {
-    load('/audio/theme.mp3');
-  }, [load]);
   
   return (
     <BaseScreen className="intro-splash-screen">
@@ -30,9 +27,11 @@ export default function IntroSplashScreen() {
           alignContent: "center",
         }}
       >
-        {/* <Box position={"absolute"} top="0" right="0">
-          <Button onClick={play} endIcon={<MusicNote />}><Typography variant="caption">Tap here for a little jingle</Typography></Button>
-      </Box> */}
+        <Box position={"absolute"} top="0" right="0">
+          <Button onClick={() => {
+            load('/audio/theme.mp3', {autoplay: true});
+          }} endIcon={<MusicNote />}><Typography variant="caption">Tap for jingle</Typography></Button>
+        </Box>
 
         <Box marginBottom="2rem">
           <img src="/images/keroppi.webp" style={{
