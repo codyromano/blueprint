@@ -1,4 +1,5 @@
 import { INITIAL_CASH } from "../state/GameStateProvider";
+import Economy from "./Economy";
 
 // Default image size expressed as a % of the gameplay area's width.
 // By default, the image will be square (width = height), but the
@@ -48,7 +49,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 2,
     aspectRatio: 600 / 566,
     size: [100, 100],
-    cost: INITIAL_CASH * 0.25,
+    cost: Economy.PRICE_LEVEL_1,
     category: 'furniture'
   },
   comfortableBed: {
@@ -57,7 +58,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 2.5,
     aspectRatio: 548 / 455,
     size: [100, 100],
-    cost: INITIAL_CASH * 1.5,
+    cost: Economy.PRICE_LEVEL_6,
     category: 'furniture'
   },
   fancyBed: {
@@ -66,7 +67,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 2.5,
     aspectRatio: 548 / 455,
     size: [100, 100],
-    cost: INITIAL_CASH * 5,
+    cost: Economy.PRICE_LEVEL_7,
     category: 'furniture'
   },
   cheapRug: {
@@ -75,7 +76,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 688 / 362,
     size: [100, 100],
-    cost: INITIAL_CASH * 0.25,
+    cost: Economy.PRICE_LEVEL_1,
     category: 'furniture'
   },
   antiqueRug: {
@@ -84,7 +85,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 5,
     aspectRatio: 500 / 64,
     size: [100, 100],
-    cost: INITIAL_CASH * 1.5,
+    cost: Economy.PRICE_LEVEL_6,
     category: 'furniture'
   },
   fancyRug: {
@@ -93,7 +94,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 3,
     aspectRatio: 500 / 133,
     size: [100, 100],
-    cost: INITIAL_CASH * 3.5,
+    cost: Economy.PRICE_LEVEL_5,
     category: 'furniture'
   },
   basicPlant: {
@@ -102,7 +103,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 0.75,
     aspectRatio: 409 / 611,
     size: [100, 100],
-    cost: INITIAL_CASH * 7,
+    cost: Economy.PRICE_LEVEL_2,
     category: 'plant'
   },
   floorLamp: {
@@ -111,7 +112,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 346 / 721,
     size: [100, 100],
-    cost: INITIAL_CASH * 0.15,
+    cost: Economy.PRICE_LEVEL_4,
     category: 'furniture'
   },
   lavaLamp: {
@@ -120,7 +121,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 0.5,
     aspectRatio: 440 / 600,
     size: [100, 100],
-    cost: INITIAL_CASH * 1.75,
+    cost: Economy.PRICE_LEVEL_5,
     category: 'furniture'
   },
   tableLamp: {
@@ -129,7 +130,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 1,
     size: [100, 100],
-    cost: INITIAL_CASH * 1,
+    cost: Economy.PRICE_LEVEL_2,
     category: 'furniture'
   },
   coffeeTable: {
@@ -138,7 +139,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 593 / 421,
     size: [100, 100],
-    cost: INITIAL_CASH * 1.25,
+    cost: Economy.PRICE_LEVEL_4,
     category: 'furniture'
   },
   nightstand: {
@@ -147,7 +148,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 0.75,
     aspectRatio: 413 / 603,
     size: [100, 100],
-    cost: INITIAL_CASH * 3,
+    cost: Economy.PRICE_LEVEL_2,
     category: 'furniture'
   },
   momo: {
@@ -156,7 +157,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 1,
     size: [100, 100],
-    cost: INITIAL_CASH * 8,
+    cost: Economy.PRICE_LEVEL_9,
     category: 'animal',
   },
   emmy: {
@@ -165,7 +166,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 1,
     size: [100, 100],
-    cost: INITIAL_CASH * 8,
+    cost: Economy.PRICE_LEVEL_8,
     category: 'animal',
   },
   keroppi: {
@@ -174,7 +175,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 0.5,
     aspectRatio: 500 / 549,
     size: [100, 100],
-    cost: INITIAL_CASH * 7.5,
+    cost: Economy.PRICE_LEVEL_8,
     category: 'animal',
   },
   dresser: {
@@ -183,7 +184,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 2,
     aspectRatio: 628 / 398,
     size: [100, 100],
-    cost: INITIAL_CASH * 2,
+    cost: Economy.PRICE_LEVEL_3,
     category: 'furniture',
   },
   filingCabinet: {
@@ -192,7 +193,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 0.8,
     aspectRatio: 351 / 700,
     size: [100, 100],
-    cost: INITIAL_CASH * 6,
+    cost: Economy.PRICE_LEVEL_3,
     category: 'furniture',
   },
   officeDesk: {
@@ -201,7 +202,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 2,
     aspectRatio: 609 / 410,
     size: [100, 100],
-    cost: INITIAL_CASH * 4,
+    cost: Economy.PRICE_LEVEL_6,
     category: 'furniture',
   },
   basicWallArt: {
@@ -210,7 +211,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 500 / 648,
     size: [100, 100],
-    cost: INITIAL_CASH * 2.25,
+    cost: Economy.PRICE_LEVEL_5,
     category: 'decorations'
   },
   fancyWallArt: {
@@ -219,7 +220,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 2,
     aspectRatio: 500 / 332,
     size: [100, 100],
-    cost: INITIAL_CASH * 5.5,
+    cost: Economy.PRICE_LEVEL_7,
     category: 'decorations'
   },
   discoBall: {
@@ -228,7 +229,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 394 / 634,
     size: [100, 100],
-    cost: INITIAL_CASH * 10,
+    cost: Economy.PRICE_LEVEL_9,
     category: 'decorations'
   },
 };

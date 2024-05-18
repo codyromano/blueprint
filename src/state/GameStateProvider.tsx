@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction } from "react";
 import GameState from "../models/GameState";
 import Markers from "../models/Markers";
 import CharacterTrait from "../models/CharacterTrait";
+import Economy from "../models/Economy";
 
-export const INITIAL_CASH = 100;
 export const GAME_STORAGE_KEY = '_temp_hf_key_';
 
 export const getInitialGameState = (): GameState => {
@@ -17,7 +17,8 @@ export const getInitialGameState = (): GameState => {
     actionsCompleted: {},
     player: {
       id: "1",
-      cash: INITIAL_CASH,
+      // Start with roughly the amount of three basic items
+      cash: Economy.PRICE_LEVEL_1 * 3,
       trait: CharacterTrait.UNSPECIFIED,
     },
     itemStages: {},
