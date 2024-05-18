@@ -156,7 +156,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 1,
     aspectRatio: 1,
     size: [100, 100],
-    cost: Economy.PRICE_LEVEL_9,
+    cost: Economy.PRICE_LEVEL_10,
     category: 'animal',
   },
   emmy: {
