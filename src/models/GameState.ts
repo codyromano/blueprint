@@ -1,3 +1,4 @@
+import CharacterTrait from "./CharacterTrait";
 import FocalPoint from "./FocalPoint";
 import { FurnitureName } from "./Furniture";
 import Markers from "./Markers";
@@ -13,6 +14,7 @@ type GameState = {
     id: string;
     cash: number;
     authToken?: string;
+    trait: CharacterTrait;
   };
   puzzlesUnlocked: Partial<Record<PuzzleID, true>>,
 
@@ -31,6 +33,8 @@ type GameState = {
     isDismissed: boolean;
     messageContent: string;
     messageType: "pop-up";
+    primaryButtonText?: string;
+    primaryButtonUrl?: string;
   }>;
   tenants: Record<
     string,

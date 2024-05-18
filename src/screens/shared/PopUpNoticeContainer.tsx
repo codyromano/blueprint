@@ -1,10 +1,12 @@
 import React from "react";
 import PopUpNoticeV2 from "./PopUpNoticeV2";
 import GameContext from "../../state/GameStateProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function PopUpNoticeContainer() {
   const [game, setGame] = React.useContext(GameContext);
   const notice = game.messages.find((m) => !m.isDismissed);
+  const navigate = useNavigate();
 
   const onContinue = () => {
     setGame((state) => {
@@ -22,6 +24,10 @@ export default function PopUpNoticeContainer() {
 
       return newState;
     });
+
+    if (notice?.primaryButtonUrl) {
+      navigate(notice.primaryButtonUrl);
+    }
   };
 
   return notice == null ? null : (
@@ -31,18 +37,7 @@ export default function PopUpNoticeContainer() {
       onClose={() => {}}
       title=""
       description={notice.messageContent}
-      buttonText="Continue"
+      buttonText={notice.primaryButtonText ?? 'Continue'}
     />
   );
 }
-
-/*
-interface PopUpNoticeProps {
-  open: boolean;
-  onClose: () => void;
-  onContinue: () => void;
-  title: string;
-  description: string;
-  buttonText: string;
-}
-*/

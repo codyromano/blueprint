@@ -26,10 +26,16 @@ const createUUID = () => {
 
 const TENANT_VW = 15;
 
+type ExtraContent = {
+  primaryButtonText: string;
+  primaryButtonUrl: string;
+};
+
 export const addMessageOnce = (
   messageID: MessageID,
   messageContent: string,
-  state: GameState
+  state: GameState,
+  extraContent?: ExtraContent,
 ): GameState => {
   const newState = { ...state };
   if (!newState.messages.find(m => m.id === messageID)) {
@@ -38,6 +44,7 @@ export const addMessageOnce = (
       isDismissed: false,
       messageContent,
       messageType: "pop-up",
+      ...(extraContent ?? {})
     });
   }
   return newState;

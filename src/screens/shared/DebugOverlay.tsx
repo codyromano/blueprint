@@ -5,7 +5,7 @@ import { Button, IconButton, List, ListItemButton, Typography } from "@mui/mater
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { Close } from "@mui/icons-material";
+import { Close, QuestionMarkRounded } from "@mui/icons-material";
 import { GAME_STORAGE_KEY } from "../../state/GameStateProvider";
 
 interface TabPanelProps {
@@ -105,9 +105,10 @@ export default function DebugOverlay({ state }: { state: GameState }) {
       </CustomTabPanel>
     </Box> : (
       <Button
-        sx={{color: '#444', margin: '1rem',}}
+        size="small"
+        sx={{color: '#444', opacity: 0.5}}
         onClick={() => setIsOverlayVisible(true)}>
-          Secret
+         <QuestionMarkRounded />
       </Button>
     )}
     </div>

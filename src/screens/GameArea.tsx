@@ -5,7 +5,7 @@ import PositionLayer from "./shared/PositionLayer";
 import {Img as Image} from "react-image";
 import BuyFurniture from "./BuyFurniture";
 import GameContext from "../state/GameStateProvider";
-import reduceGameState from "../state/reduceGameState";
+import reduceGameState, { addMessageOnce } from "../state/reduceGameState";
 import GameActions from "../state/GameActions";
 import GameVitalStatsHeader from "./GameVitalStatsHeader";
 import getObjectValues from "../utils/getObjectValues";
@@ -184,8 +184,13 @@ export default function GameArea() {
               secondsUntilMoneyIsReady={secondsUntilMoneyReady}
               onCollectMoney={() => {
                 setGame((state) => {
-                  const newState = { ...state };
+                  let newState = { ...state };
                   const reward = 1000 * (tenant.happiness / 100);
+
+                  newState = addMessageOnce('CHOOSE_A_PERK', 'Choose a character trait', state, {
+                    primaryButtonText: 'Choose trait',
+                    primaryButtonUrl: '/mode'
+                  });
 
                   newState.player.cash += reward;
                   newState.tenants[tenant.id].moneyCollectedTime = Date.now();

@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import GameState from "../models/GameState";
 import Markers from "../models/Markers";
+import CharacterTrait from "../models/CharacterTrait";
 
 export const INITIAL_CASH = 100;
 export const GAME_STORAGE_KEY = '_temp_hf_key_';
@@ -17,6 +18,7 @@ export const getInitialGameState = (): GameState => {
     player: {
       id: "1",
       cash: INITIAL_CASH,
+      trait: CharacterTrait.UNSPECIFIED,
     },
     itemStages: {},
     initialLoadCoords: {},
