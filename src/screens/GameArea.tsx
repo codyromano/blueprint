@@ -25,7 +25,7 @@ import FurnitureModels from "../models/Furniture";
 import { getImageUrlForItem } from "../utils/itemStageUtils";
 import PlantMenu from "./PlantMenu";
 import { useNavigate } from "react-router-dom";
-import { ShoppingBag, ShoppingCart } from "@mui/icons-material";
+import { People, ShoppingBag, ShoppingCart } from "@mui/icons-material";
 import Economy, { getRentAmount } from "../models/Economy";
 
 
@@ -203,8 +203,8 @@ export default function GameArea() {
           const timeMoneyIsReady =
             tenant.moneyCollectedTime == null
               ? currentTime
-              : // Three minutes per money collection
-                tenant.moneyCollectedTime + 1000 * 60 * 2;
+              : 
+                tenant.moneyCollectedTime + 1000 * 60 * 5;
           const secondsUntilMoneyReady = Math.max(
             0,
             Math.round((timeMoneyIsReady - currentTime) / 1000)
@@ -238,18 +238,28 @@ export default function GameArea() {
           );
         })}
 
-        <Box position="absolute" bottom="0" right="0">
-        <Button
-          aria-label="Shop"
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
-            // addMarker(Markers.TUTORIAL_BUY_FURNITURE);
-          }}
-          endIcon={<ShoppingBag />}
-          className={getClassNameWithFocalPoint('OPEN_BUY_FURNITURE_MENU_BUTTON', 'buy-furniture-button')}
-        >Shop</Button>
+        <Box zIndex={499} display="flex" width="100%" justifyContent="space-between" position="absolute" bottom="2.5rem" right="0">
+          <Button
+            aria-label="Tenants"
+            variant="outlined"
+            style={{backgroundColor: "#fff"}}
+            onClick={() => {
+              // setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
+            }}
+            endIcon={<People />}
+          >Tenants</Button>
+          
+          <Button
+            aria-label="Shop"
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
+              // addMarker(Markers.TUTORIAL_BUY_FURNITURE);
+            }}
+            endIcon={<ShoppingBag />}
+            className={getClassNameWithFocalPoint('OPEN_BUY_FURNITURE_MENU_BUTTON', 'buy-furniture-button')}
+          >Shop</Button>
         </Box>
       </div>
       </Box>

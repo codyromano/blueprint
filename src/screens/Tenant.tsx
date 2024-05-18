@@ -65,6 +65,7 @@ export default function Tenant({
         className="tenant"
         style={{
           bottom: `${tenant.position[1] / 2}vh`,
+          zIndex: secondsUntilMoneyIsReady === 0 ? 500 : undefined,
           left: `${tenant.position[0]}vw`,
           width: `${BASE_IMAGE_SIZE * model.scale}%`,
           paddingBottom: `${BASE_IMAGE_SIZE * model.scale / model.aspectRatio}%`

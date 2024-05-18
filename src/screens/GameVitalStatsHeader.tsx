@@ -21,7 +21,7 @@ const formatCurrency = (n: number): string => {
 
 export default function GameVitalStatsHeader({ cash, happiness }: Props) {
   return (
-    <Box width="100%" alignItems="center"  style={{display: 'flex', padding: '1rem', position: 'absolute', top: 0, left: 0, justifyItems: 'center'}}>
+    <Box width="100%" alignItems="center"  style={{display: 'flex', padding: '1.5rem 0.5rem', position: 'absolute', top: 0, left: 0, justifyItems: 'center'}}>
       <Box display={"flex"} justifyContent={"center"} alignItems="center" gap="5px" flex={1}>
         <SentimentSatisfied />
         <Typography fontSize="x-large">{happiness ?? '0'}</Typography>

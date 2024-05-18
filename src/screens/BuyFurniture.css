@@ -84,9 +84,3 @@ Light Gray: #D3D3D3
   border-bottom-left-radius: 0.5rem;
 }
 
-.buy-furniture-button {
-  position: absolute;
-  bottom: 25px;
-  right: calc(var(--house-side-piece-width) * -0.5);
-  z-index: 1;
-}
