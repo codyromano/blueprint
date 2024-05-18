@@ -20,11 +20,12 @@ import useFocalPoint from "../utils/useFocalPoint";
 import "./GameArea.css";
 import useDebugCommand from "../state/useDebugCommand";
 import Position from "../models/Position";
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
 import FurnitureModels from "../models/Furniture";
 import { getImageUrlForItem } from "../utils/itemStageUtils";
 import PlantMenu from "./PlantMenu";
 import { useNavigate } from "react-router-dom";
+import { ShoppingBag, ShoppingCart } from "@mui/icons-material";
 
 
 enum ContextOverlayMenu {
@@ -209,15 +210,19 @@ export default function GameArea() {
           );
         })}
 
-        <button
+        <Box position="absolute" bottom="0" right="0">
+        <Button
+          aria-label="Shop"
+          variant="contained"
+          color="primary"
           onClick={() => {
             setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
             // addMarker(Markers.TUTORIAL_BUY_FURNITURE);
           }}
+          endIcon={<ShoppingBag />}
           className={getClassNameWithFocalPoint('OPEN_BUY_FURNITURE_MENU_BUTTON', 'buy-furniture-button')}
-        >
-          <i style={{fontSize: "75px"}} className="fa-solid fa-cart-shopping"></i>
-        </button>
+        >Shop</Button>
+        </Box>
       </div>
       </Box>
     </BaseScreen>
