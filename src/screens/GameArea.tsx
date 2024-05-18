@@ -194,7 +194,7 @@ export default function GameArea() {
                   let newState = { ...state };
                   const reward = 1000 * (tenant.happiness / 100);
 
-                  newState = addMessageOnce('CHOOSE_A_PERK', 'Choose a character trait', state, {
+                  newState = addMessageOnce('CHOOSE_A_PERK', 'Now that you\'ve learned the basics, it\'s time to choose a character trait!', state, {
                     primaryButtonText: 'Choose trait',
                     primaryButtonUrl: '/mode'
                   });

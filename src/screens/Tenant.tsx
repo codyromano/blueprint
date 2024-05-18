@@ -2,7 +2,7 @@ import React from "react";
 import GameState from "../models/GameState";
 import {Img as Image} from "react-image";
 import "./Tenant.css";
-import { IconButton, Typography } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import MoodIcon from '@mui/icons-material/Mood';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
@@ -79,11 +79,14 @@ export default function Tenant({
               <div style={{display: 'flex', flexDirection: 'column'}}>
 
               {secondsUntilMoneyIsReady === 0 ? (
-              <IconButton
-                style={{zIndex: 499, position: 'relative'}}
-                onClick={onCollectMoney} color="primary" size="large">
-                <AttachMoneyIcon fontSize="large" />
-              </IconButton>
+              <Button
+                color="primary"
+                variant="outlined"
+                endIcon={<AttachMoneyIcon />}
+                style={{zIndex: 499, backgroundColor: '#fff', position: 'relative'}}
+                onClick={onCollectMoney} size="small">
+                Collect Rent
+              </Button>
               ) : (
                 <>
                 <div style={{display: 'flex', zIndex: 499, position: 'relative'}}>
