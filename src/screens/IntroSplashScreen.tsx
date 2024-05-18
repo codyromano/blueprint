@@ -30,9 +30,9 @@ export default function IntroSplashScreen() {
           alignContent: "center",
         }}
       >
-        <Box position={"absolute"} top="0" right="0">
+        {/* <Box position={"absolute"} top="0" right="0">
           <Button onClick={play} endIcon={<MusicNote />}><Typography variant="caption">Tap here for a little jingle</Typography></Button>
-        </Box>
+      </Box> */}
 
         <Box marginBottom="2rem">
           <img src="/images/keroppi.webp" style={{
