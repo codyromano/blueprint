@@ -6,6 +6,7 @@ import GameContext from "../state/GameStateProvider";
 import nullThrows from "../utils/nullThrows";
 import { getSecondsUntilNextStage } from "../utils/itemStageUtils";
 import { formatCountdown } from "../utils/timeUtils";
+import traitObserverOnWaitTimePlants from "../state/traitObserverOnWaitTimePlants";
 
 export default function PlantMenu({
   ownedItem
@@ -19,10 +20,8 @@ export default function PlantMenu({
     setGame(state => {
       const newState = {...state};
 
-      if (getSecondsUntilNextStage(state, ownedItem.id) === 0) {
-        newState.itemStages[ownedItem.id].currentStage += 1;
-        newState.itemStages[ownedItem.id].stageLastChangedTime = Date.now();
-      }
+      newState.itemStages[ownedItem.id].currentStage += 1;
+      newState.itemStages[ownedItem.id].stageLastChangedTime = Date.now();
 
       return newState;
     });

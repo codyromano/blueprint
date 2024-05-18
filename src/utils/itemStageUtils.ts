@@ -1,5 +1,6 @@
 import FurnitureModels, { FurnitureName } from "../models/Furniture";
 import GameState from "../models/GameState";
+import traitObserverOnWaitTimePlants from "../state/traitObserverOnWaitTimePlants";
 import nullThrows from "./nullThrows";
 
 
@@ -46,6 +47,16 @@ export function getImageUrlForItem(state: GameState, itemId: string) {
   }
 }
 
+export function getTotalWaitTimeByStage(stage: number): number {
+  switch (stage) {
+    case 1: return 1000 * 60 * 3;
+    case 2: return 1000 * 60 * 5;
+    case 3: return 1000 * 60 * 6;
+    default:
+      throw  new Error(`Unrecognized stage ${stage}`)
+  }
+}
+
 export function getSecondsUntilNextStage(state: GameState, itemId: string) {
   const item = nullThrows(
     state.furniture[itemId],
@@ -57,27 +68,10 @@ export function getSecondsUntilNextStage(state: GameState, itemId: string) {
     'Expected stage info to exist for item'
   );
 
-  let targetTime: number;
-
-  switch (stageInfo.currentStage) {
-    case 1: {
-      // Three minutes
-      targetTime = stageInfo.stageLastChangedTime + 1000 * 60 * 3;
-      break;
-    }
-    case 2: {
-      // Five minutes
-      targetTime = stageInfo.stageLastChangedTime + 1000 * 60 * 5;
-      break;
-    }
-    case 3: {
-      // Ten minutes
-      targetTime = stageInfo.stageLastChangedTime + 1000 * 60 * 10;
-      break;
-    }
-    default: {
-      throw new Error(`Unexpected stage # ${stageInfo.currentStage}`);
-    }
-  }
+  const targetTime = stageInfo.stageLastChangedTime + traitObserverOnWaitTimePlants(
+    state,
+    getTotalWaitTimeByStage(stageInfo.currentStage)
+  );
+  
   return Math.floor(Math.max(0, targetTime - Date.now()) / 1000);
 }

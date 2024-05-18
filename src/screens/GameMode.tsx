@@ -5,6 +5,7 @@ import CharacterTrait from '../models/CharacterTrait';
 import GameContext from "../state/GameStateProvider";
 import nullThrows from "../utils/nullThrows";
 import { useNavigate } from "react-router-dom";
+import traitObserverOnTraitSelection from "../state/traitObserverOnTraitSelection";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -32,8 +33,8 @@ export default function GameMode() {
           trait: nullThrows(selectedTrait),
         }
       };
-
-      return newState;
+      
+      return traitObserverOnTraitSelection(newState);
     });
 
     navigate('/play');

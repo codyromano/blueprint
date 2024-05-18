@@ -81,7 +81,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   antiqueRug: {
     id: "antiqueRug",
     displayName: "Antique Rug",
-    scale: 3,
+    scale: 5,
     aspectRatio: 500 / 64,
     size: [100, 100],
     cost: INITIAL_CASH * 1.5,

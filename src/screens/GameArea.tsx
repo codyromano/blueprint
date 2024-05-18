@@ -24,6 +24,7 @@ import { Box, Button } from "@mui/material";
 import FurnitureModels from "../models/Furniture";
 import { getImageUrlForItem } from "../utils/itemStageUtils";
 import PlantMenu from "./PlantMenu";
+import { useNavigate } from "react-router-dom";
 
 
 enum ContextOverlayMenu {
@@ -51,6 +52,7 @@ export default function GameArea() {
   const tenants = useTenants();
 
   const {setCommandCallback} = useDebugCommand();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCommandCallback('COLLECT_MONEY_CHEAT', () => {
@@ -60,6 +62,10 @@ export default function GameArea() {
         lastUpdatedTime: Date.now(),
         collectCash: 1000
       }))
+    });
+
+    setCommandCallback('CHANGE_CHARACTER_TRAIT', () => {
+      navigate('/mode');
     });
   }, [setCommandCallback]);
 
