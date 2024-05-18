@@ -49,7 +49,9 @@ export default function Tenant({
   index,
   onCollectMoney,
   secondsUntilMoneyIsReady,
+  rentAmount,
 }: {
+  rentAmount: number;
   tenant: GameState["tenants"][string];
   index: number;
   onCollectMoney: () => void;
@@ -68,9 +70,10 @@ export default function Tenant({
           paddingBottom: `${BASE_IMAGE_SIZE * model.scale / model.aspectRatio}%`
         }}
       >
-          <div style={{
+          <div 
+          className={`tenant-status ${secondsUntilMoneyIsReady === 0 ? 'tenant-status-rent-ready' : ''}`} 
+          style={{
             position: 'absolute', 
-            top: '-2.5rem',
             left: 0,
             display: 'flex',
             width: '100%',
@@ -82,29 +85,28 @@ export default function Tenant({
               <Button
                 color="primary"
                 variant="outlined"
-                endIcon={<AttachMoneyIcon />}
+                startIcon={<AttachMoneyIcon fontSize="small" />}
                 style={{zIndex: 499, backgroundColor: '#fff', position: 'relative'}}
                 onClick={onCollectMoney} size="small">
-                Collect Rent
+                  {rentAmount}
               </Button>
               ) : (
                 <>
-                <div style={{display: 'flex', zIndex: 499, position: 'relative'}}>
+                {/* <div style={{display: 'flex', zIndex: 499, position: 'relative'}}>
                   <TenantMoodIcon happiness={tenant.happiness} />
                   <Typography>{tenant.happiness}</Typography>
                 </div>
                 <div style={{display: 'flex'}}>
                   <AccessTimeIcon />
                   <Typography>{formatCountdown(secondsUntilMoneyIsReady)}</Typography>
-                </div>
+              </div> */}
                 </>
               )}
-
-
               </div>
           </div>
       
         <div
+          className={`tenant-image ${secondsUntilMoneyIsReady === 0 ? 'tenant-image-rent-ready' : ''}`}
           style={{
             position: "absolute",
             background: `url(/images/${model.id}.webp) no-repeat`,
@@ -113,7 +115,6 @@ export default function Tenant({
             zIndex: 499,
             width: '100%',
             height: '100%',
-            opacity: 0.8,
           }} 
         />
       </div>

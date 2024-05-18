@@ -26,7 +26,7 @@ import { getImageUrlForItem } from "../utils/itemStageUtils";
 import PlantMenu from "./PlantMenu";
 import { useNavigate } from "react-router-dom";
 import { ShoppingBag, ShoppingCart } from "@mui/icons-material";
-import Economy from "../models/Economy";
+import Economy, { getRentAmount } from "../models/Economy";
 
 
 enum ContextOverlayMenu {
@@ -186,21 +186,24 @@ export default function GameArea() {
             Math.round((timeMoneyIsReady - currentTime) / 1000)
           );
 
+          const rent = getRentAmount(tenant.happiness);
+
           return (
             <Tenant
+              rentAmount={rent}
               key={tenant.id}
               secondsUntilMoneyIsReady={secondsUntilMoneyReady}
               onCollectMoney={() => {
                 setGame((state) => {
                   let newState = { ...state };
-                  const reward = 1000 * (tenant.happiness / 100);
+                  
 
                   newState = addMessageOnce('CHOOSE_A_PERK', 'Now that you\'ve learned the basics, it\'s time to choose a character trait!', state, {
                     primaryButtonText: 'Choose trait',
                     primaryButtonUrl: '/mode'
                   });
 
-                  newState.player.cash += reward;
+                  newState.player.cash += rent;
                   newState.tenants[tenant.id].moneyCollectedTime = Date.now();
                   return newState;
                 });

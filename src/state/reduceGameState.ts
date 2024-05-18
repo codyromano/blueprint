@@ -59,10 +59,25 @@ const getTargetTotalTenants = (
   totalItems: number,
   playerCash: number
 ): number => {
-
-  // TODO - Add end-game conditions here, first
-
-  return totalItems >= 2 ? 1 : 0;
+  if (totalItems >= 20) {
+    return 6;
+  }
+  if (totalItems >= 16) {
+    return 5;
+  }
+  if (totalItems >= 12) {
+    return 4;
+  }
+  if (totalItems >= 8) {
+    return 3;
+  }
+  if (totalItems >= 4) {
+    return 2;
+  }
+  if (totalItems >= 2) {
+    return 1;
+  }
+  return 0;
 };
 
 export default function reduceGameState(
@@ -138,12 +153,10 @@ export default function reduceGameState(
       break;
     }
     case GameActions.CREATE_TENANTS: {
-     // if (newState.markers["IS_READY_FOR_FIRST_TENANT"]) {
         const totalAssemblyQuality = getObjectValues(newState.furniture).reduce(
           (total, item) => total + (item?.assemblyQuality ?? 0),
           0
         );
-        // TODO: Adjust this function
         const targetTotalTenants = getTargetTotalTenants(
           totalAssemblyQuality,
           Object.keys(newState.furniture).length,
@@ -181,9 +194,9 @@ export default function reduceGameState(
     }
     case GameActions.UPDATE_TENANTS: {
       for (const tenant of getObjectValues(newState.tenants)) {
-        if (newState.lastUpdatedTime - tenant.lastUpdatedTime > 1000 * 15) {
+        if (newState.lastUpdatedTime - tenant.lastUpdatedTime > 1000 * 30) {
           // TODO: Update this
-          tenant.position[0] = 90 * payload.entropy;
+          tenant.position[0] = 80 * payload.entropy;
           tenant.lastUpdatedTime = newState.lastUpdatedTime;
         }
       }

@@ -238,7 +238,7 @@ export default function Furniture({
           className="overhead-content"
           width="100%"
           position="absolute"
-          top="-50%" 
+          top="-100%" 
           display="flex"
           justifyItems={"center"}
           justifyContent={"center"}

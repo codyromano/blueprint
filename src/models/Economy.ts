@@ -12,4 +12,14 @@ enum Economy {
   PRICE_LEVEL_10 = 100,
 }
 
+export function getRentAmount(tenantHappiness: number): number {
+  if (tenantHappiness === 100) {
+    return Economy.PRICE_LEVEL_3;
+  }
+  if (tenantHappiness > 75) {
+    return Economy.PRICE_LEVEL_2;
+  }
+  return Economy.PRICE_LEVEL_1;
+}
+
 export default Economy;
