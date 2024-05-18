@@ -54,7 +54,7 @@ export default function IntroSplashScreen() {
           </Grid>
         </Grid>
 
-        <Link to="/mode" style={{textDecoration: 'none'}}>
+        <Link to="/play" style={{textDecoration: 'none'}}>
           <Button variant="contained" size="large">New Game</Button>
         </Link>
       </div>
