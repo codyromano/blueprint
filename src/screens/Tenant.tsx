@@ -10,7 +10,7 @@ import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import getObjectValues from "../utils/getObjectValues";
-import Tenants from "../models/Tenants";
+import Tenants, { TenantName } from "../models/Tenants";
 import { BASE_IMAGE_SIZE } from "../models/Furniture";
 import nullThrows from "../utils/nullThrows";
 
@@ -41,9 +41,6 @@ const TenantMoodIcon = ({
   return <SentimentVeryDissatisfiedIcon />;
 }
 
-// Shuffle the tenant models
-const tenantModels = getObjectValues(Tenants).sort(() => Math.random() > 0.5 ? -1 : 1);
-
 export default function Tenant({
   tenant,
   index,
@@ -52,12 +49,12 @@ export default function Tenant({
   rentAmount,
 }: {
   rentAmount: number;
-  tenant: GameState["tenants"][string];
+  tenant: NonNullable<GameState["tenants"][TenantName]>;
   index: number;
   onCollectMoney: () => void;
   secondsUntilMoneyIsReady: number,
 }) {
-  const model = tenantModels[index % tenantModels.length];
+  const model = Tenants[tenant.id];
 
   return (
     <>

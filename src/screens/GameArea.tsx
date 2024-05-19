@@ -28,6 +28,7 @@ import { useNavigate } from "react-router-dom";
 import { People, ShoppingBag, ShoppingCart } from "@mui/icons-material";
 import Economy, { getRentAmount } from "../models/Economy";
 import TenantMenu from "./TenantMenu";
+import nullThrows from "../utils/nullThrows";
 
 
 enum ContextOverlayMenu {
@@ -236,7 +237,7 @@ export default function GameArea() {
                   });
 
                   newState.player.cash += rent;
-                  newState.tenants[tenant.id].moneyCollectedTime = Date.now();
+                  nullThrows(newState.tenants[tenant.id]).moneyCollectedTime = Date.now();
                   return newState;
                 });
               }}
@@ -255,7 +256,7 @@ export default function GameArea() {
               setActiveOverlayMenu(ContextOverlayMenu.ManageTenants);
             }}
             endIcon={<People />}
-          >Tenants</Button>
+          >Tenants {Object.keys(game.tenants).length > 0 && `(${Object.keys(game.tenants).length})`}</Button>
           
           <Button
             aria-label="Shop"

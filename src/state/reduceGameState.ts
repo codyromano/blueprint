@@ -6,6 +6,7 @@ import getObjectValues from "../utils/getObjectValues";
 import MessageID from "../models/MessageID";
 import reduceLayerZIndex from "./reduceLayerZIndex";
 import nullThrows from "../utils/nullThrows";
+import { getTenantOrder } from "../models/Tenants";
 
 type Payload = {
   action: GameActions;
@@ -171,20 +172,18 @@ export default function reduceGameState(
           );
         }
 
-        const newTenants = Math.max(
-          0,
-          targetTotalTenants - Object.keys(newState.tenants).length
-        );
+        const tenantNames = getTenantOrder().slice(0, targetTotalTenants);
 
-        for (let i = 0; i < newTenants; i++) {
-          const id = createUUID();
-          newState.tenants[id] = {
+        for (const id of tenantNames) {
+          console.log(tenantNames);
+          
+          newState.tenants[id] = newState.tenants[id] ?? {
             id,
             happiness: 50,
             coords: {x: 0.5, y: 0.5},
             // Note: Y position is from the bottom
             // 0 = "bottom: 0px"
-            position: [50 - TENANT_VW / 2, 0],
+            position: [(Math.random() * 50) - TENANT_VW / 2, 0],
             lastUpdatedTime: newState.lastUpdatedTime,
             moneyCollectedTime: null,
           };

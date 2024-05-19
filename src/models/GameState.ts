@@ -3,6 +3,7 @@ import FocalPoint from "./FocalPoint";
 import { FurnitureName } from "./Furniture";
 import Markers from "./Markers";
 import MessageID from "./MessageID";
+import { TenantName } from "./Tenants";
 
 export type PuzzleID = 'puzzleAnagram' | 'puzzleWordMerge';
 
@@ -36,10 +37,10 @@ type GameState = {
     primaryButtonText?: string;
     primaryButtonUrl?: string;
   }>;
-  tenants: Record<
-    string,
+  tenants: Partial<Record<
+    TenantName,
     {
-      id: string;
+      id: TenantName;
       happiness: number;
       coords: {
         x: number;
@@ -50,7 +51,7 @@ type GameState = {
       lastUpdatedTime: number;
       moneyCollectedTime: number | null;
     }
-  >;
+  >>;
   initialLoadCoords: Record<string, {
     x: number;
     y: number
