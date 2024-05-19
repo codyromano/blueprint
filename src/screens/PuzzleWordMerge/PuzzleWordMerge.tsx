@@ -5,8 +5,8 @@ import puzzles, { WordMergeTerm } from './wordMergePuzzles';
 import { getIsCommonTargetForWords, getWordsWithoutDependencies} from "./wordMergeGraphUtils";
 import toposort from "toposort";
 import "./PuzzleWordMerge.css";
-import { Alert, Box, Button, ButtonGroup, Card, Grid, Typography } from "@mui/material";
-import { CheckCircleOutline, Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Alert, Box, Button, ButtonGroup, Card, Grid, Snackbar, Typography } from "@mui/material";
+import { CheckCircleOutline, Favorite, FavoriteBorder, SentimentDissatisfied } from "@mui/icons-material";
 
 const getPuzzleRating = (countResolvedTerms: number, countTotalTerms: number): 0 | 1 | 2 | 3 => {
   return 3;
@@ -29,6 +29,7 @@ export default function PuzzleWordMerge({
   completedPuzzleIds,
   difficulty,
 }: Puzzle) {
+  const [isFailMessageOpen, setIsFailMessageOpen] = useState(false);
   const puzzle = findNextPuzzle(completedPuzzleIds, puzzles);
   const puzzleId = puzzle.id;
 
@@ -69,6 +70,12 @@ export default function PuzzleWordMerge({
     }
   }, [resolvedWords]);
 
+  useEffect(() => {
+    if (attemptsRemaining === 0) {
+      onPuzzleFailed();
+    }
+  }, [attemptsRemaining]);
+
   const onSelectWord = (term: WordMergeTerm) => {
     setSelectedWords(allWords => {
       const newWords = new Set(allWords);
@@ -93,7 +100,7 @@ export default function PuzzleWordMerge({
         return words;
       });
     } else {
-      alert('The words must all have something in common');
+      setIsFailMessageOpen(true);
       setAttemptsRemaining(attempts => --attempts);
     }
   };
@@ -120,21 +127,38 @@ export default function PuzzleWordMerge({
   
 
   return <div>
+    <Snackbar
+      open={isFailMessageOpen}
+      autoHideDuration={5000}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center'
+      }}
+      onClose={() => {
+        setIsFailMessageOpen(false);
+      }}
+      color="error"
+    >
+      <Alert
+        icon={<SentimentDissatisfied />}
+        variant="filled"
+        color="error"
+        >The words must relate to a common theme</Alert>
+    </Snackbar>
     <Box style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '16px'}}>
       <Typography variant="caption" style={{marginRight: '5px'}}>Attempts:</Typography> 
       {heartIcons}
     </Box>
 
     <Alert title="How to Play" severity="info" style={{margin: '16px'}}>
-    {instructions}
+      {instructions}
     </Alert>
 
     <Grid container spacing={2} style={{marginBottom: '16px'}}>
       {resolvedWords.map(term => (
-        <Grid item xs={4}>
+        <Grid item xs={4} key={term}>
           <Button
             fullWidth
-            key={term}
             variant={selectedWords.has(term) ? "contained" : "outlined"}
             color={"success"}
             onClick={() => {
@@ -145,7 +169,6 @@ export default function PuzzleWordMerge({
           >{term}</Button>
          </Grid>
       ))}
-
     </Grid>
 
     {resolvedWords.length !== 1 && <ButtonGroup fullWidth>

@@ -339,4 +339,13 @@ const puzzles: WordMergePuzzle[] = [
 
 puzzles.forEach(puzzle => validatePuzzle(puzzle));
 
+function shuffle<T>(_a: T, _b: T): number {
+  return Math.random() > 0.5 ? -1 : 1;
+}
+
+for (const puzzle of puzzles) {
+  puzzle.graph = puzzle.graph.sort(shuffle);
+}
+
+
 export default puzzles;

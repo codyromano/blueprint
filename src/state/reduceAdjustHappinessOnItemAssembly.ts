@@ -13,7 +13,9 @@ export default function reduceAdjustHappinessOnItemAssemble(
   // Increase the happiness of all tenants by a small amount based on quality
   // of the item that was assembled
   for (const currentTenant of tenants) {
-    currentTenant.happiness = Math.min(100, currentTenant.happiness + nullThrows(newItem.assemblyQuality));
+    currentTenant.happiness = Math.round(
+      Math.min(100, currentTenant.happiness + nullThrows(newItem.assemblyQuality))
+    );
   }
 
   // Award a major happiness boost to a specific tenant if the new item was their favorite
@@ -21,7 +23,9 @@ export default function reduceAdjustHappinessOnItemAssemble(
     .find(item => tenantMap[item.id].preferredItem === nullThrows(newItem.furnitureName));
   
   if (tenantFavorite != null) {
-    tenantFavorite.happiness = Math.min(100, tenantFavorite.happiness + 20);
+    tenantFavorite.happiness = Math.round(
+      Math.min(100, tenantFavorite.happiness + 20)
+    );
   }
 
   return newState;

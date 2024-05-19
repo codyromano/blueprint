@@ -51,7 +51,7 @@ export default function IntroSplashScreen() {
           </Grid>
 
           <Grid xs={6} textAlign="right" paddingRight={3}>
-            <Typography fontSize={15}>Writing</Typography>
+            <Typography fontSize={15}>Puzzles</Typography>
           </Grid>
           <Grid xs={6}>
             <Typography fontSize={15}>Tiffany Chen</Typography>

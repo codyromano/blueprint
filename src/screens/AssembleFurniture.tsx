@@ -15,6 +15,7 @@ import Avatar from '@mui/material/Avatar';
 import PaidIcon from '@mui/icons-material/Paid';
 import { getImageUrlForUnownedItemPreview } from "../utils/itemStageUtils";
 import reduceAdjustHappinessOnItemAssemble from "../state/reduceAdjustHappinessOnItemAssembly";
+import Economy from "../models/Economy";
 
 enum AssembleFurnitureResult {
   PENDING,
@@ -46,7 +47,7 @@ const puzzleGameOptions: Array<{
     id: 'puzzleWordMerge',
     title: 'Word Merge',
     instructions: "Tap two or more similar words to merge them. Merge all the words to win!",
-    cost: 500,
+    cost: Economy.PRICE_LEVEL_5,
   }
 ];
 
