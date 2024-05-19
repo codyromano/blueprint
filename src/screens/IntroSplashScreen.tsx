@@ -12,6 +12,12 @@ export default function IntroSplashScreen() {
   
   return (
     <BaseScreen className="intro-splash-screen">
+      <Box style={{zIndex: 500}} position={"absolute"} top="0" right="0">
+        <Button onClick={() => {
+          load('/audio/theme.mp3', {autoplay: true});
+        }} endIcon={<MusicNote />}><Typography variant="caption">Tap for jingle</Typography></Button>
+      </Box>
+
       <div
         style={{
           display: "flex",
@@ -27,14 +33,8 @@ export default function IntroSplashScreen() {
           alignContent: "center",
         }}
       >
-        <Box position={"absolute"} top="0" right="0">
-          <Button onClick={() => {
-            load('/audio/theme.mp3', {autoplay: true});
-          }} endIcon={<MusicNote />}><Typography variant="caption">Tap for jingle</Typography></Button>
-        </Box>
-
         <Box marginBottom="2rem">
-          <img src="/images/keroppi.webp" style={{
+          <img src="/images/discoBall.webp" style={{
             height: '25vh',
             maxHeight: '200px',
           }}/>
