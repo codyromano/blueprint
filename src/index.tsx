@@ -1,3 +1,4 @@
+import "./configureSentry";
 import React, { Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import {
