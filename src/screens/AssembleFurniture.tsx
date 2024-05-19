@@ -16,6 +16,7 @@ import PaidIcon from '@mui/icons-material/Paid';
 import { getImageUrlForUnownedItemPreview } from "../utils/itemStageUtils";
 import reduceAdjustHappinessOnItemAssemble from "../state/reduceAdjustHappinessOnItemAssembly";
 import Economy from "../models/Economy";
+import { useAudioPlayer } from "react-use-audio-player";
 
 enum AssembleFurnitureResult {
   PENDING,
@@ -68,6 +69,7 @@ export default function AssembleFurniture({
   item: NonNullable<GameState["furniture"][string]>;
   onClose: () => void;
 }) {
+  const { load} = useAudioPlayer();
   const [game, setGame] = React.useContext(GameContext);
   const [rating, setRating] = useState<number | null>(null);
   const [skipTutorialScreen, setSkipTutorialScreen] = useState<boolean>(false);
@@ -75,6 +77,10 @@ export default function AssembleFurniture({
 
   const onPuzzleSolved = (rating: AssemblyQualityRating, puzzleId: string) => {
     setRating(rating);
+
+    if (rating === 3) {
+      load('/audio/perfectAssembly.mp3', {autoplay: true});
+    }
 
     setGame(state => {
       const newGame = {...state};

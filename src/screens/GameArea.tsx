@@ -30,6 +30,7 @@ import Economy, { getRentAmount } from "../models/Economy";
 import TenantMenu from "./TenantMenu";
 import nullThrows from "../utils/nullThrows";
 import { getSecondsUntilTenantRent } from "../utils/timeUtils";
+import { useAudioPlayer } from "react-use-audio-player";
 
 
 enum ContextOverlayMenu {
@@ -48,6 +49,7 @@ export default function GameArea() {
     React.useState<ContextOverlayMenu | null>(null);
   const [game, setGame] = React.useContext(GameContext);
   const {getClassNameWithFocalPoint, setFocalPoint} = useFocalPoint();
+  const {load} = useAudioPlayer();
 
   const happiness =
     Object.keys(game.tenants).length > 0
@@ -256,6 +258,7 @@ export default function GameArea() {
             variant="contained"
             color="primary"
             onClick={() => {
+              load('/audio/click.mp3', {autoplay: true});
               setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
               // addMarker(Markers.TUTORIAL_BUY_FURNITURE);
             }}

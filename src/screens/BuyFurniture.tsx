@@ -7,6 +7,7 @@ import { Box, Button, ButtonGroup, IconButton, ImageList, ImageListItem, ImageLi
 import nullThrows from "../utils/nullThrows";
 import { getImageUrlForItem, getImageUrlForUnownedItemPreview } from "../utils/itemStageUtils";
 import GameContext from "../state/GameStateProvider";
+import { useAudioPlayer } from "react-use-audio-player";
 
 type Props = {
   onSelectClose: () => void;
@@ -29,6 +30,7 @@ const getColumns = () => {
 };
 
 export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }: Props) {
+  const {load} = useAudioPlayer();
   const [selectedItem, setSelectedItem] = useState<FurnitureItem>();
   const furnitureItems: FurnitureItem[] = Object.values(Furniture).sort(
     (a, b) => a.cost - b.cost
@@ -86,6 +88,7 @@ export default function BuyFurniture({ playerCash, onSelectClose, onSelectBuy }:
     <ButtonGroup fullWidth>
       <Button variant="outlined" fullWidth onClick={onSelectClose}>Cancel</Button>
       <Button variant="contained" onClick={() => {
+        load('/audio/tap.mp3', {autoplay: true});
         onSelectBuy(nullThrows(selectedItem, 'Expected selectedItem'));
       }} disabled={selectedItem == null} fullWidth color="primary">Buy</Button>
     </ButtonGroup>
