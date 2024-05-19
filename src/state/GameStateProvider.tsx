@@ -6,10 +6,25 @@ import Economy from "../models/Economy";
 
 export const GAME_STORAGE_KEY = '_temp_hf_key_';
 
+// Bump cache to invalidate local storage
+const CACHE_KEY = 1;
+
 export const getInitialGameState = (): GameState => {
   // TODO: Replace with proper game save system
   const saved = window.localStorage.getItem(GAME_STORAGE_KEY);
-  const game = saved == null ? ({
+  let validSave: null | GameState = null;
+
+  if (saved != null) {
+    const parsed = JSON.parse(saved) as GameState;
+    if (parsed?.session?.cacheKey === CACHE_KEY) {
+      validSave = parsed;
+    }
+  }
+
+  const game = validSave ?? ({
+    session: {
+      cacheKey: CACHE_KEY,
+    },
     lastUpdatedTime: Date.now(),
     layerZIndex: [],
     focalPoint: null,
@@ -34,7 +49,7 @@ export const getInitialGameState = (): GameState => {
     ],
     tenants: {},
     furniture: {},
-  } as GameState) : (JSON.parse(saved) as GameState);
+  } as GameState);
 
   for (const itemId in game.initialLoadCoords) {
     const coords = game.initialLoadCoords[itemId];

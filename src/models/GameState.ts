@@ -8,6 +8,9 @@ import { TenantName } from "./Tenants";
 export type PuzzleID = 'puzzleAnagram' | 'puzzleWordMerge';
 
 type GameState = {
+  session: {
+    cacheKey: number;
+  },
   lastUpdatedTime: number;
   focalPoint: null | FocalPoint;
   layerZIndex: Array<string>,
