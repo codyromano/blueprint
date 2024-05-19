@@ -7,3 +7,18 @@ export function formatCountdown(seconds: number): string {
 
   return [formattedMinutes, formattedSeconds].join(' ');
 }
+
+export function getSecondsUntilTenantRent(moneyCollectedTime: number | null): number {
+  const currentTime = Date.now();
+  const timeMoneyIsReady =
+    moneyCollectedTime == null
+      ? currentTime
+      : 
+        moneyCollectedTime + 1000 * 60 * 5;
+  const secondsUntilMoneyReady = Math.max(
+    0,
+    Math.round((timeMoneyIsReady - currentTime) / 1000)
+  );
+
+  return secondsUntilMoneyReady;
+}

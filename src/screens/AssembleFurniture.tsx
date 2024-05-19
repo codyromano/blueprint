@@ -14,6 +14,7 @@ import { Button, Typography, ImageList, ImageListItem, Box, ImageListItemBar, Ic
 import Avatar from '@mui/material/Avatar';
 import PaidIcon from '@mui/icons-material/Paid';
 import { getImageUrlForUnownedItemPreview } from "../utils/itemStageUtils";
+import reduceAdjustHappinessOnItemAssemble from "../state/reduceAdjustHappinessOnItemAssembly";
 
 enum AssembleFurnitureResult {
   PENDING,
@@ -108,7 +109,7 @@ export default function AssembleFurniture({
         });
       }
 
-      return newGame;
+      return reduceAdjustHappinessOnItemAssemble(itemRecord, newGame);
     });
 
     onClose();

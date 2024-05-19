@@ -60,16 +60,19 @@ const getTargetTotalTenants = (
   totalItems: number,
   playerCash: number
 ): number => {
-  if (totalItems >= 20) {
-    return 6;
-  }
-  if (totalItems >= 16) {
-    return 5;
+  if (totalItems >= 14) {
+    return 7;
   }
   if (totalItems >= 12) {
-    return 4;
+    return 6;
+  }
+  if (totalItems >= 10) {
+    return 5;
   }
   if (totalItems >= 8) {
+    return 4;
+  }
+  if (totalItems >= 6) {
     return 3;
   }
   if (totalItems >= 4) {
@@ -175,8 +178,6 @@ export default function reduceGameState(
         const tenantNames = getTenantOrder().slice(0, targetTotalTenants);
 
         for (const id of tenantNames) {
-          console.log(tenantNames);
-          
           newState.tenants[id] = newState.tenants[id] ?? {
             id,
             happiness: 50,

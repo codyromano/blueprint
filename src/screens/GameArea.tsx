@@ -29,6 +29,7 @@ import { People, ShoppingBag, ShoppingCart } from "@mui/icons-material";
 import Economy, { getRentAmount } from "../models/Economy";
 import TenantMenu from "./TenantMenu";
 import nullThrows from "../utils/nullThrows";
+import { getSecondsUntilTenantRent } from "../utils/timeUtils";
 
 
 enum ContextOverlayMenu {
@@ -208,16 +209,7 @@ export default function GameArea() {
         })}
 
         {tenants.map((tenant, index) => {
-          const currentTime = Date.now();
-          const timeMoneyIsReady =
-            tenant.moneyCollectedTime == null
-              ? currentTime
-              : 
-                tenant.moneyCollectedTime + 1000 * 60 * 5;
-          const secondsUntilMoneyReady = Math.max(
-            0,
-            Math.round((timeMoneyIsReady - currentTime) / 1000)
-          );
+          const secondsUntilMoneyReady = getSecondsUntilTenantRent(tenant.moneyCollectedTime);
 
           const rent = getRentAmount(tenant.happiness);
 

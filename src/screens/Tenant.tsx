@@ -24,7 +24,7 @@ function formatCountdown(seconds: number): string {
   return [formattedMinutes, formattedSeconds].join(' ');
 }
 
-const TenantMoodIcon = ({
+export const TenantMoodIcon = ({
   happiness
 }: {
   happiness: number
