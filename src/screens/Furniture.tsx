@@ -19,6 +19,7 @@ import { convertPixelCoordsToPosition } from "../utils/positionUtils";
 import "./Furniture.css";
 import reduceGameState from "../state/reduceGameState";
 import GameActions from "../state/GameActions";
+import { stagedItemAspectRatioOverride } from "../utils/itemStageUtils";
 
 type Props = {
   onTouchEnd: () => void;
@@ -117,12 +118,18 @@ export default function Furniture({
   // Don't show the context menu when the furniture is unassembled (box)
   const open = status !== 'blueprint' && Boolean(anchorEl);
   const popoverId = open ? 'simple-popover' : undefined;
-    
 
+  const currentStage = game.itemStages[id]?.currentStage;
+
+  // Certain items such as plants have different images for each stage of growth
+  // We want to adjust the aspect ratio accordingly
+  const aspectRatioForStagedItem = stagedItemAspectRatioOverride[model.id]?.[currentStage];
+    
   // Default box aspect ratio: 500px / 302px = 1.65
-  const aspectRatio = status === "blueprint" ? 1.65 : model.aspectRatio;
+  const aspectRatio = status === "blueprint" ? 1.65 : (aspectRatioForStagedItem ?? model.aspectRatio);
   const scale = status === "blueprint" ? 1.5 : model.scale;
   const imageWidth = BASE_IMAGE_SIZE * scale;
+
   const imagePaddingBottom = BASE_IMAGE_SIZE * scale / aspectRatio;
   
   return (

@@ -75,3 +75,12 @@ export function getSecondsUntilNextStage(state: GameState, itemId: string) {
   
   return Math.floor(Math.max(0, targetTime - Date.now()) / 1000);
 }
+
+export const stagedItemAspectRatioOverride = {
+  "basicPlant": {
+    2: 441 / 565,
+    3: 401 / 621
+  }
+} as Record<string, {
+  [stage: number]: number
+}>;
