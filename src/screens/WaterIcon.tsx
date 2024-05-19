@@ -15,7 +15,7 @@ export default function WaterIcon({
   ownedItem: NonNullable<GameState['furniture'][string]>
 }) {
   const [game, setGame] = useContext(GameContext);
-  const {currentStage, stageLastChangedTime} = game.itemStages[ownedItem.id];
+  const {currentStage, stageLastChangedTime} = game.itemStages[ownedItem.id] ?? {};
 
   const onClickWater = () => {
     setGame(state => {
