@@ -14,7 +14,7 @@ export function getSecondsUntilTenantRent(moneyCollectedTime: number | null): nu
     moneyCollectedTime == null
       ? currentTime
       : 
-        moneyCollectedTime + 1000 * 60 * 5;
+        moneyCollectedTime + 1000 * 60 * 2;
   const secondsUntilMoneyReady = Math.max(
     0,
     Math.round((timeMoneyIsReady - currentTime) / 1000)
