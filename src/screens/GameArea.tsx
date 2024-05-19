@@ -27,11 +27,13 @@ import PlantMenu from "./PlantMenu";
 import { useNavigate } from "react-router-dom";
 import { People, ShoppingBag, ShoppingCart } from "@mui/icons-material";
 import Economy, { getRentAmount } from "../models/Economy";
+import TenantMenu from "./TenantMenu";
 
 
 enum ContextOverlayMenu {
   BuyFurniture = "BuyFurniture",
   AssembleFurniture = "AssembleFurniture",
+  ManageTenants = "ManageTenants"
 }
 
 const average = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
@@ -130,6 +132,12 @@ export default function GameArea() {
             }}
           />
         )}
+
+      {activeOverlayMenu === ContextOverlayMenu.ManageTenants && <TenantMenu
+        onSelectClose={() => {
+          setActiveOverlayMenu(null);
+        }}
+      />}
 
       {activeOverlayMenu === ContextOverlayMenu.BuyFurniture && (
         <BuyFurniture
@@ -244,7 +252,7 @@ export default function GameArea() {
             variant="outlined"
             style={{backgroundColor: "#fff"}}
             onClick={() => {
-              // setActiveOverlayMenu(ContextOverlayMenu.BuyFurniture);
+              setActiveOverlayMenu(ContextOverlayMenu.ManageTenants);
             }}
             endIcon={<People />}
           >Tenants</Button>
