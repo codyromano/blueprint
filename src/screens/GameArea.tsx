@@ -239,11 +239,11 @@ export default function GameArea() {
           );
         })}
 
-        <Box zIndex={499} display="flex" width="100%" justifyContent="space-between" position="absolute" bottom="2.5rem" right="0">
+        <Box display="flex" width="100%" justifyContent="space-between" position="absolute" bottom="2.5rem" right="0">
           <Button
+            style={{zIndex: 499, backgroundColor: "#fff"}}
             aria-label="Tenants"
             variant="outlined"
-            style={{backgroundColor: "#fff"}}
             onClick={() => {
               setActiveOverlayMenu(ContextOverlayMenu.ManageTenants);
             }}
@@ -251,6 +251,7 @@ export default function GameArea() {
           >Tenants {Object.keys(game.tenants).length > 0 && `(${Object.keys(game.tenants).length})`}</Button>
           
           <Button
+            style={{zIndex: 499}}
             aria-label="Shop"
             variant="contained"
             color="primary"
