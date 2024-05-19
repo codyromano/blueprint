@@ -65,7 +65,8 @@ export default function Tenant({
           zIndex: secondsUntilMoneyIsReady === 0 ? 500 : undefined,
           left: `${tenant.position[0]}vw`,
           width: `${BASE_IMAGE_SIZE * model.scale}%`,
-          paddingBottom: `${BASE_IMAGE_SIZE * model.scale / model.aspectRatio}%`
+          paddingBottom: `${BASE_IMAGE_SIZE * model.scale / model.aspectRatio}%`,
+          pointerEvents: secondsUntilMoneyIsReady === 0 ? 'initial' : 'none',
         }}
       >
           <div 
