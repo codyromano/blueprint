@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
+    "@sentry/cli": "^2.31.2",
     "@sentry/react": "^8.2.1",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
@@ -35,9 +36,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && yarn sentry:sourcemaps",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org random-side-projects --project house-fashionista ./build/ && sentry-cli sourcemaps upload --org random-side-projects --project house-fashionista ./build/"
   },
   "browserslist": [
     ">0.2%",

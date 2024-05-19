@@ -99,11 +99,21 @@ export default function DebugOverlay({ state }: { state: GameState }) {
         </List>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
+      <Box display="flex" gap="5px" flexDirection="column" style={{marginBottom: '25px'}}>
         <Button onClick={() => {
           window.localStorage.removeItem(GAME_STORAGE_KEY);
           window.location.reload();
-        }} variant="outlined" style={{marginBottom: '25px'}}>Erase Local Storage</Button>
-          <pre style={{maxWidth: '50vw', height: '100%', maxHeight: '800px', overflow: 'scroll',}}>{JSON.stringify(state, null, 2)}</pre>
+        }} variant="outlined" >Erase Local Storage</Button>
+      </Box>
+
+
+          <pre style={{width: "100%", height: '100%', maxHeight: '800px', overflow: 'scroll',}}>
+            {JSON.stringify(state, null, 2)}</pre>
+
+        <Button sx={{mt: 10}} color="error" variant="contained" onClick={()=> {
+          throw new Error('foobar');
+        }} >Throw exception</Button>
+        
       </CustomTabPanel>
     </Box> : (
       <Button
