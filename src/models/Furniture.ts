@@ -127,7 +127,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     id: "tableLamp",
     displayName: "Table Lamp",
     scale: 1,
-    aspectRatio: 1,
+    aspectRatio: 551 / 453,
     size: [100, 100],
     cost: Economy.PRICE_LEVEL_2,
     category: 'furniture'
