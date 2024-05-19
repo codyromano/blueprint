@@ -27,7 +27,7 @@ function CustomTabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -87,12 +87,14 @@ export default function DebugOverlay({ state }: { state: GameState }) {
         </Typography>
         <List>
         {availableCommands.map(command => (
-          <ListItemButton
-            dense
-            key={command}
-            onClick={() => {
-              executeCommand(command);
-            }}>{command}</ListItemButton>
+          <Typography>
+            <ListItemButton
+              dense
+              key={command}
+              onClick={() => {
+                executeCommand(command);
+              }}>{command}</ListItemButton>
+            </Typography>
         ))}
         </List>
       </CustomTabPanel>
