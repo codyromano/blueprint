@@ -1,5 +1,5 @@
-import { ArrowDownwardTwoTone, Water } from "@mui/icons-material";
-import { Box, IconButton, LinearProgress, Typography } from "@mui/material";
+import { Water, WaterDrop } from "@mui/icons-material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import GameState from "../models/GameState";
 import GameContext from "../state/GameStateProvider";
@@ -7,9 +7,9 @@ import nullThrows from "../utils/nullThrows";
 import { getSecondsUntilNextStage } from "../utils/itemStageUtils";
 import { formatCountdown } from "../utils/timeUtils";
 import traitObserverOnWaitTimePlants from "../state/traitObserverOnWaitTimePlants";
-import { OVERHEAD_CONTENT_CONTAINER_HEIGHT } from "./Furniture";
+import Furniture from "../models/Furniture";
 
-export default function PlantMenu({
+export default function WaterIcon({
   ownedItem
 }: {
   ownedItem: NonNullable<GameState['furniture'][string]>
@@ -28,30 +28,20 @@ export default function PlantMenu({
     });
   };
 
-  if (ownedItem.status !== 'assembled') {
-    return null;
-  }
-
-  // Maximum growth
-  if (currentStage === 3) {
+  const model = Furniture[ownedItem.furnitureName];
+  if (model.category !== 'plant' || ownedItem.status !== 'assembled' || currentStage === 3) {
     return null;
   }
 
   const secondsUntilNextStage = getSecondsUntilNextStage(game, ownedItem.id);
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" height={OVERHEAD_CONTENT_CONTAINER_HEIGHT}>
-      {secondsUntilNextStage === 0 ? (
-        <>
-          <Typography variant="caption" color="success">Ready!</Typography>
-          <ArrowDownwardTwoTone />
-        </>
-      ) : (
-      <>
-        <Typography variant="caption">Lvl {currentStage}/3</Typography>
-        <Typography variant="caption" sx={{opacity: 0.5}}>{formatCountdown(secondsUntilNextStage)}</Typography>
-      </>
-      )}
-    </Box>
+    <IconButton
+      onClick={onClickWater}
+      disabled={secondsUntilNextStage > 0}
+      color={secondsUntilNextStage === 0 ? 'primary' : 'secondary'}
+    >
+      <WaterDrop />
+    </IconButton>
   );
 }

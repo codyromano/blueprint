@@ -238,5 +238,12 @@ export default function reduceGameState(
     newState.focalPoint = 'FURNITURE_ITEM';
   }
 
+  // Purge stale data from item stages
+  for (const stagedItemId in newState.itemStages) {
+    if (!newState.furniture.hasOwnProperty(stagedItemId)) {
+      delete newState.itemStages[stagedItemId];
+    }
+  }
+
   return newState;
 }

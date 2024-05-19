@@ -20,6 +20,8 @@ import "./Furniture.css";
 import reduceGameState from "../state/reduceGameState";
 import GameActions from "../state/GameActions";
 import { stagedItemAspectRatioOverride } from "../utils/itemStageUtils";
+import { Water, WaterDrop } from "@mui/icons-material";
+import WaterIcon from "./WaterIcon";
 
 type Props = {
   onTouchEnd: () => void;
@@ -57,6 +59,8 @@ function getPositionRelativeToParent(element: HTMLElement): { x: number; y: numb
 
   return { x, y };
 }
+
+export const OVERHEAD_CONTENT_CONTAINER_HEIGHT = "4rem";
 
 // TODO: Name this something broader than furniture. It also includes
 // plants, animals, and decorations.
@@ -148,6 +152,9 @@ export default function Furniture({
         <Box padding="5px">
         <Typography variant="caption" fontWeight={"bold"}>{model.displayName}</Typography>
         <Box display="flex" gap="2px">
+
+          <WaterIcon ownedItem={ownedItem} />
+
           {/* TODO: Update disabled */}
           <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id, 'down')}>
             <KeyboardDoubleArrowUpSharpIcon />
@@ -168,7 +175,6 @@ export default function Furniture({
 
 
       <Draggable
-        onStart={event => event.preventDefault()}
         onDrag={(_event, data) => {
           // onDragPositionChanged(convertPixelCoordsToPosition(x, y));
         }} onStop={(event, data) => {
@@ -188,6 +194,12 @@ export default function Furniture({
           const mouseDownTime = mouseDownStartTimeRef.current; 
           setFocalPoint(null);
           onTouchEnd();
+
+          // @ts-ignore
+          if (!event.target.matches('.furniture-item')) {
+            setAnchorEl(null);
+            return;
+          }
           
           // When dragging stops, get the computed fixed position of the target element
           // so that we can persist it for the next time the scene renders
@@ -202,7 +214,7 @@ export default function Furniture({
         }}
         onMouseDown={() => {
           mouseDownStartTimeRef.current = Date.now();
-        }}>
+        }}>      
       <div
         onMouseUp={onTouchEnd}
         ref={furnitureRef}
@@ -243,9 +255,10 @@ export default function Furniture({
       >
         <Box
           className="overhead-content"
-          width="100%"
           position="absolute"
-          top="-100%" 
+          width="100%"
+          overflow="hidden"
+          top={`-${OVERHEAD_CONTENT_CONTAINER_HEIGHT}`}
           display="flex"
           justifyItems={"center"}
           justifyContent={"center"}
