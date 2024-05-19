@@ -66,7 +66,7 @@ export default function DebugOverlay({ state }: { state: GameState }) {
         overflow: "scroll",
         top: '0rem',
         left: '0rem',
-        zIndex: 501,
+        zIndex: 502,
         backgroundColor: isOverlayVisible ? "rgba(255, 255, 255, 0.95)" : "transparent",
       }}
     >
