@@ -26,7 +26,8 @@ export type FurnitureName =
   "basicWallArt" |
   "fancyWallArt" |
   "discoBall" |
-  "basicPlant";
+  "basicPlant" |
+  "fancyPlant";
 
 export type FurnitureItem = {
   id: FurnitureName;
@@ -103,6 +104,15 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     aspectRatio: 409 / 611,
     size: [100, 100],
     cost: Economy.PRICE_LEVEL_2,
+    category: 'plant'
+  },
+  fancyPlant: {
+    id: "fancyPlant",
+    displayName: "Fancy Plant",
+    scale: 1,
+    aspectRatio: 501 / 498,
+    size: [100, 100],
+    cost: Economy.PRICE_LEVEL_4,
     category: 'plant'
   },
   floorLamp: {

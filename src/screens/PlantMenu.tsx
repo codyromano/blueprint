@@ -43,7 +43,7 @@ export default function PlantMenu({
     <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" height={OVERHEAD_CONTENT_CONTAINER_HEIGHT}>
       {secondsUntilNextStage === 0 ? (
         <>
-          <Typography variant="caption" color="success">Ready!</Typography>
+          <Typography variant="caption" color="success">Water me</Typography>
           <ArrowDownwardTwoTone />
         </>
       ) : (
