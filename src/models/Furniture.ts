@@ -65,7 +65,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     id: "fancyBed",
     displayName: "Fancy Bed",
     scale: 2.5,
-    aspectRatio: 548 / 455,
+    aspectRatio: 610 / 409,
     size: [100, 100],
     cost: Economy.PRICE_LEVEL_7,
     category: 'furniture'
