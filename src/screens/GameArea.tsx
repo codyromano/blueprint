@@ -53,7 +53,7 @@ export default function GameArea() {
 
   const happiness =
     Object.keys(game.tenants).length > 0
-      ? average(getObjectValues(game.tenants).map((t) => t.happiness))
+      ? Math.round(average(getObjectValues(game.tenants).map((t) => t.happiness)))
       : null;
       
 
