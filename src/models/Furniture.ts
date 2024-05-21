@@ -27,7 +27,8 @@ export type FurnitureName =
   "fancyWallArt" |
   "discoBall" |
   "basicPlant" |
-  "fancyPlant";
+  "fancyPlant" |
+  "tallWindow";
 
 export type FurnitureItem = {
   id: FurnitureName;
@@ -202,6 +203,20 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     scale: 0.8,
     aspectRatio: 351 / 700,
     size: [100, 100],
+    cost: Economy.PRICE_LEVEL_3,
+    category: 'furniture',
+  },
+  tallWindow: {
+    id: "tallWindow",
+    displayName: "Tall Window",
+    // Desired size of the image. Usually just see how it looks
+    // in the game and adjust this accordingly.
+    scale: 1,
+    // Native width of the image divided by its height
+    aspectRatio: 307 / 814,
+    // Thiss "size" property is no longer used. Value doesn't matter.
+    size: [100, 100],
+    // Priciness of the item relative to other items. LEVEL_10 is most expensive
     cost: Economy.PRICE_LEVEL_3,
     category: 'furniture',
   },
