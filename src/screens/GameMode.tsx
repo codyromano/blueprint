@@ -6,6 +6,7 @@ import GameContext from "../state/GameStateProvider";
 import nullThrows from "../utils/nullThrows";
 import { useNavigate } from "react-router-dom";
 import traitObserverOnTraitSelection from "../state/traitObserverOnTraitSelection";
+import reduceUpdateItemPositionsOnInitialLoad from "../state/reduceUpdateItemPositionsOnInitialLoad";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -34,7 +35,9 @@ export default function GameMode() {
         }
       };
       
-      return traitObserverOnTraitSelection(newState);
+      return reduceUpdateItemPositionsOnInitialLoad(
+        traitObserverOnTraitSelection(newState)
+      );
     });
 
     navigate('/play');

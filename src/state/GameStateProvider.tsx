@@ -3,6 +3,7 @@ import GameState from "../models/GameState";
 import Markers from "../models/Markers";
 import CharacterTrait from "../models/CharacterTrait";
 import Economy from "../models/Economy";
+import reduceUpdateItemPositionsOnInitialLoad from "./reduceUpdateItemPositionsOnInitialLoad";
 
 export const GAME_STORAGE_KEY = '_temp_hf_key_';
 
@@ -51,19 +52,7 @@ export const getInitialGameState = (): GameState => {
     furniture: {},
   } as GameState);
 
-  for (const itemId in game.initialLoadCoords) {
-    const coords = game.initialLoadCoords[itemId];
-    const item = game.furniture[itemId];
-
-    if (item == null) {
-      console.warn(`Item ID ${itemId} no longer exists. Deleting position metadata`);
-      delete game.initialLoadCoords[itemId];
-    } else {
-      item.coords = coords;
-    }
-  }
-
-  return game;
+  return reduceUpdateItemPositionsOnInitialLoad(game);
 };
 
 const GameContext = React.createContext<
