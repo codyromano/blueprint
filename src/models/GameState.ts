@@ -10,6 +10,7 @@ export type PuzzleID = 'puzzleAnagram' | 'puzzleWordMerge';
 type GameState = {
   session: {
     cacheKey: number;
+    rewardVideo: string;
   },
   lastUpdatedTime: number;
   focalPoint: null | FocalPoint;

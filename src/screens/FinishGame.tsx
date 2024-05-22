@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import "./FinishGame.css";
 import { useContext } from "react";
-import GameContext from "../state/GameStateProvider";
+import GameContext, { GAME_STORAGE_KEY } from "../state/GameStateProvider";
 import getObjectValues from "../utils/getObjectValues";
 import { average } from "./GameArea";
 import GameState from "../models/GameState";
@@ -24,8 +24,8 @@ function getEndGameStarRating(state: GameState) {
 
 export default function FinishGame() {
   const [game] = useContext(GameContext);
-  const rating = getEndGameStarRating(game);
-  const happiness = Math.round(average(getObjectValues(game.tenants).map((t) => t.happiness)));
+  const rating = Object.keys(game.tenants).length > 0 ? getEndGameStarRating(game) : 0;
+  const happiness = Object.keys(game.tenants).length > 0 ? Math.round(average(getObjectValues(game.tenants).map((t) => t.happiness))) : 0;
 
 
   return (
@@ -58,7 +58,10 @@ export default function FinishGame() {
           </Grid>
 
           <Grid xs={12} textAlign="center">
-            <Button variant="contained">Unlock random video</Button>
+            <Button variant="contained" onClick={() => {
+              window.localStorage.removeItem(GAME_STORAGE_KEY);
+              window.location.href = game.session.rewardVideo;
+            }}>Unlock random video</Button>
           </Grid>
         </Grid>
       </Box>

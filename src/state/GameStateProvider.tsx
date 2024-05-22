@@ -4,11 +4,13 @@ import Markers from "../models/Markers";
 import CharacterTrait from "../models/CharacterTrait";
 import Economy from "../models/Economy";
 import reduceUpdateItemPositionsOnInitialLoad from "./reduceUpdateItemPositionsOnInitialLoad";
+import RewardVideo from "../models/RewardVideo";
+import { rand } from "../utils/puzzleUtils";
 
 export const GAME_STORAGE_KEY = '_temp_hf_key_';
 
 // Bump cache to invalidate local storage
-const CACHE_KEY = 1;
+const CACHE_KEY = 2;
 
 export const getInitialGameState = (): GameState => {
   // TODO: Replace with proper game save system
@@ -25,6 +27,7 @@ export const getInitialGameState = (): GameState => {
   const game = validSave ?? ({
     session: {
       cacheKey: CACHE_KEY,
+      rewardVideo: rand(RewardVideo),
     },
     lastUpdatedTime: Date.now(),
     layerZIndex: [],

@@ -7,3 +7,8 @@ export function findNextPuzzle<T extends {id: string}>(
     Math.floor(Math.random() * puzzles.length)
   ];
 }
+
+export function rand(sources: string[]): string {
+  const i = Math.floor(Math.random() * sources.length);
+  return sources[i];
+}
