@@ -59,6 +59,62 @@ const puzzles: WordMergePuzzle[] = [
     ]
   },
   {
+    id: 'wordMergeUniversalStudios',
+    difficulty: 'medium',
+    graph: [
+      ['Play', NO_DEPENDENCIES],
+      ['Kids', NO_DEPENDENCIES],
+      ['Park', 'Play'],
+      ['Park', 'Kids'],
+
+      ['Mario', NO_DEPENDENCIES],
+      ['Luigi', NO_DEPENDENCIES],
+      ['Peach', NO_DEPENDENCIES],
+      ['Game', 'Mario'],
+      ['Game', 'Luigi'],
+      ['Game', 'Peach'],
+
+      ['Water', NO_DEPENDENCIES],
+      ['Dirt', NO_DEPENDENCIES],
+      ['Air', NO_DEPENDENCIES],
+      ['World', 'Water'],
+      ['World', 'Dirt'],
+      ['World', 'Air'],
+
+      ['Universal Studios', 'Park'],
+      ['Universal Studios', 'Game'],
+      ['Universal Studios', 'World']
+    ]
+  },
+  {
+    id: 'wordMergePokemonRave',
+    difficulty: 'medium',
+    graph: [
+      ['Lights', NO_DEPENDENCIES],
+      ['Music', NO_DEPENDENCIES],
+      ['Party', 'Lights'],
+      ['Party', 'Music'],
+
+      ['Bear', NO_DEPENDENCIES],
+      ['Penguin', NO_DEPENDENCIES],
+      ['Chicken', NO_DEPENDENCIES],
+      ['Animal', 'Bear'],
+      ['Animal', 'Penguin'],
+      ['Animal', 'Chicken'],
+
+      ['Invisibility', NO_DEPENDENCIES],
+      ['Teleportation', NO_DEPENDENCIES],
+      ['Telekinesis', NO_DEPENDENCIES],
+      ['Superpower', 'Invisibility'],
+      ['Superpower', 'Teleportation'],
+      ['Superpower', 'Telekinesis'],
+
+      ['Pokémon Rave', 'Party'],
+      ['Pokémon Rave', 'Animal'],
+      ['Pokémon Rave', 'Superpower']
+    ]
+  },
+  {
     id: 'wordMerge3',
     difficulty: 'medium',
     graph: [
