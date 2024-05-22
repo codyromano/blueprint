@@ -1,4 +1,4 @@
-import { ArrowDownwardTwoTone, Water } from "@mui/icons-material";
+import { ArrowDownwardTwoTone, Celebration, DoneAll, DoneOutlineOutlined, PartyMode, Water } from "@mui/icons-material";
 import { Box, IconButton, LinearProgress, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import GameState from "../models/GameState";
@@ -34,7 +34,9 @@ export default function PlantMenu({
 
   // Maximum growth
   if (currentStage === 3) {
-    return null;
+    return <Box display="flex" alignContent={"center"} alignItems="center">
+      <Typography style={{opacity: 0.5}}>Level 3/3 <DoneAll fontSize="small" /></Typography>
+    </Box>;
   }
 
   const secondsUntilNextStage = getSecondsUntilNextStage(game, ownedItem.id);

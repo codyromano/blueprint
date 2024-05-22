@@ -87,14 +87,12 @@ export default function DebugOverlay({ state }: { state: GameState }) {
         </Typography>
         <List>
         {availableCommands.map(command => (
-          <Typography>
-            <ListItemButton
-              dense
-              key={command}
-              onClick={() => {
-                executeCommand(command);
-              }}>{command}</ListItemButton>
-            </Typography>
+          <ListItemButton
+            dense
+            key={command}
+            onClick={() => {
+              executeCommand(command);
+            }}> <Typography>{command}</Typography></ListItemButton>
         ))}
         </List>
       </CustomTabPanel>
