@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import Puzzle from "../../models/Puzzle";
 import useCountdown from "../../utils/useCountdown";
 import "./PuzzleAnagram.css";
 import englishWords from "./popularEnglishWords.json";
 import useDebugCommand from "../../state/useDebugCommand";
-import { Box, Button, Typography } from "@mui/material";
-import { AccessTime } from "@mui/icons-material";
+import { Badge, Box, Button, Chip, Typography } from "@mui/material";
+import { AccessTime, BadgeOutlined } from "@mui/icons-material";
 import { formatCountdown } from "../../utils/timeUtils";
 import { findNextPuzzle } from "../../utils/puzzleUtils";
+import GameContext from "../../state/GameStateProvider";
+import CharacterTrait from "../../models/CharacterTrait";
 
 
 function getRandomItem<T>(items: T[]): T {
@@ -37,7 +39,8 @@ export default function PuzzleAnagram({
   ), []);
 
   const anagrams = React.useMemo(() => getAnagramWords(puzzle), []);
-  const secondsLeft = useCountdown(45);
+  const [game] = useContext(GameContext);
+  const secondsLeft = useCountdown(game.player.trait === 'diva' ? 25 : 45);
   const {setCommandCallback} = useDebugCommand();
   
   const [wordGuessResult, setWordGuessResult] = React.useState<
@@ -119,6 +122,10 @@ export default function PuzzleAnagram({
         <Typography fontSize="large" color="info">{
           Number.isFinite(secondsLeft) ? formatCountdown(secondsLeft) : secondsLeft
         }</Typography>
+
+        {game.player.trait === CharacterTrait.DIVA && (
+          <Chip label="Diva" color="warning" variant="filled" />
+        )}
       </Box>
         
         <div className="puzzle-overview-row row">

@@ -89,7 +89,7 @@ export default function GameMode() {
           <Typography variant="h5" textAlign={"center"} fontFamily={"Japandi"}>Diva</Typography>
             <div className="game-mode-icon"  style={{backgroundImage: 'url(/images/discoBall.webp'}} />
             <Typography variant="body2">
-              You get a cash bonus – and disco balls are free, but puzzles are extremely hard.</Typography>
+              You start the game with more money, but puzzles are extremely hard.</Typography>
           </Grid>
 
           <Grid xs={4} padding="0 1rem">
