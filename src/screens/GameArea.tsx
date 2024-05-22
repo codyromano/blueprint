@@ -20,7 +20,7 @@ import useFocalPoint from "../utils/useFocalPoint";
 import "./GameArea.css";
 import useDebugCommand from "../state/useDebugCommand";
 import Position from "../models/Position";
-import { Box, Button, IconButton } from "@mui/material";
+import { Box, Button, ButtonGroup, IconButton, Modal, Typography } from "@mui/material";
 import FurnitureModels from "../models/Furniture";
 import { getImageUrlForItem } from "../utils/itemStageUtils";
 import PlantMenu from "./PlantMenu";
@@ -37,10 +37,23 @@ import useSoundEffectOnGameStateChange from "../utils/useSoundEffectOnGameStateC
 enum ContextOverlayMenu {
   BuyFurniture = "BuyFurniture",
   AssembleFurniture = "AssembleFurniture",
-  ManageTenants = "ManageTenants"
+  ManageTenants = "ManageTenants",
+  ConfirmFinishGame = "ConfirmFinishGame"
 }
 
 const average = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 
 export default function GameArea() {
@@ -123,6 +136,10 @@ export default function GameArea() {
     itemZIndexMap[itemId] = i;
   });
 
+  const onPressFinish = () => {
+    setActiveOverlayMenu(ContextOverlayMenu.ConfirmFinishGame);
+  };
+
   return (
     <BaseScreen>
       <DebugOverlay state={game} />
@@ -163,11 +180,30 @@ export default function GameArea() {
           onSelectClose={() => setActiveOverlayMenu(null)}
         />
       )}
+
+
+      <Modal open={activeOverlayMenu === ContextOverlayMenu.ConfirmFinishGame}>
+        <Box  sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Ready to end the game?
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 1, mb: 2 }}>
+              You bought enough furniture to finish the game! Would you like to keep decorating or end the game to see your final score?
+            </Typography>
+
+            <ButtonGroup fullWidth>
+              <Button fullWidth variant="outlined" onClick={() => setActiveOverlayMenu(null)}>Keep Playing</Button>
+              <Button fullWidth variant="contained" onClick={() => {}}>Finish Game</Button>
+            </ButtonGroup>
+          </Box>
+      </Modal>
+ 
+
       <PopUpNoticeContainer />
 
       <Box display="flex" height="100%" alignContent="center" alignItems="center">
       <div className="house">
-      <GameVitalStatsHeader cash={game.player.cash} happiness={happiness} />
+      <GameVitalStatsHeader onPressFinish={onPressFinish} cash={game.player.cash} happiness={happiness} />
       
         {ownedItems.length > 0 &&
           ownedItems.map((item) => {

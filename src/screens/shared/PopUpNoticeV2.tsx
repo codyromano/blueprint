@@ -8,6 +8,7 @@ interface PopUpNoticeProps {
   title: string;
   description: string;
   buttonText: string;
+  secondaryButton?: React.ReactNode;
 }
 
 const PopUpNotice: React.FC<PopUpNoticeProps> = ({
@@ -17,6 +18,7 @@ const PopUpNotice: React.FC<PopUpNoticeProps> = ({
   title,
   description,
   buttonText,
+  secondaryButton
 }) => {
   const modalStyle = {
     position: "absolute",
@@ -43,15 +45,19 @@ const PopUpNotice: React.FC<PopUpNoticeProps> = ({
         <Typography id="modal-description" mt={2}>
           {description}
         </Typography>
-        <Button
-          fullWidth
-          style={{ marginTop: "16px" }}
-          variant="contained"
-          color="primary"
-          onClick={onContinue}
-        >
-          {buttonText}
-        </Button>
+
+        <Box display="flex">
+          {secondaryButton}
+          <Button
+            fullWidth
+            style={{ marginTop: "16px" }}
+            variant="contained"
+            color="primary"
+            onClick={onContinue}
+          >
+            {buttonText}
+          </Button>
+        </Box>
       </Box>
     </Modal>
   );
