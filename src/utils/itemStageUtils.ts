@@ -84,6 +84,10 @@ export const stagedItemAspectRatioOverride = {
   "fancyPlant": {
     2: 364 / 685,
     3: 364 / 685
+  },
+  "tropicalPlant": {
+    2: 457 / 546,
+    3: 373 / 669
   }
 } as Record<string, {
   [stage: number]: number

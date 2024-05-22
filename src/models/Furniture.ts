@@ -28,7 +28,10 @@ export type FurnitureName =
   "discoBall" |
   "basicPlant" |
   "fancyPlant" |
-  "tallWindow";
+  "tallWindow" |
+  "tropicalPlant" |
+  "windowArch" |
+  "windowStrip";
 
 export type FurnitureItem = {
   id: FurnitureName;
@@ -116,6 +119,33 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     cost: Economy.PRICE_LEVEL_4,
     category: 'plant'
   },
+  tropicalPlant: {
+    id: "tropicalPlant",
+    displayName: "Tropical Plant",
+    scale: 1,
+    aspectRatio: 460 / 543,
+    size: [100, 100],
+    cost: Economy.PRICE_LEVEL_8,
+    category: 'plant',
+  },
+  windowArch: {
+    id: 'windowArch',
+    displayName: "Window Arch",
+    scale: 1,
+    aspectRatio: 348 / 717,
+    size: [100, 100],
+    cost: Economy.PRICE_LEVEL_7,
+    category: 'decorations'
+  },
+  windowStrip: {
+    id: 'windowStrip',
+    displayName: "Window Strip",
+    scale: 4,
+    aspectRatio: 1357 / 184,
+    size: [100, 100],
+    cost: Economy.PRICE_LEVEL_5,
+    category: 'decorations'
+  },
   floorLamp: {
     id: "floorLamp",
     displayName: "Floor Lamp",
@@ -165,7 +195,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
     id: "momo",
     displayName: "Momo",
     scale: 1,
-    aspectRatio: 1,
+    aspectRatio: 698 / 357,
     size: [100, 100],
     cost: Economy.PRICE_LEVEL_10,
     category: 'animal',
@@ -173,7 +203,7 @@ const Furniture: Record<FurnitureName, FurnitureItem> = {
   emmy: {
     id: "emmy",
     displayName: "Emmy",
-    scale: 1,
+    scale: 0.75,
     aspectRatio: 1,
     size: [100, 100],
     cost: Economy.PRICE_LEVEL_8,
