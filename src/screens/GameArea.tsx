@@ -41,7 +41,7 @@ enum ContextOverlayMenu {
   ConfirmFinishGame = "ConfirmFinishGame"
 }
 
-const average = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
+export const average = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -193,7 +193,9 @@ export default function GameArea() {
 
             <ButtonGroup fullWidth>
               <Button fullWidth variant="outlined" onClick={() => setActiveOverlayMenu(null)}>Keep Playing</Button>
-              <Button fullWidth variant="contained" onClick={() => {}}>Finish Game</Button>
+              <Button fullWidth variant="contained" onClick={() => {
+                navigate('/win');
+              }}>Finish Game</Button>
             </ButtonGroup>
           </Box>
       </Modal>
