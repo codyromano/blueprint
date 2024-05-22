@@ -20,8 +20,9 @@ import "./Furniture.css";
 import reduceGameState from "../state/reduceGameState";
 import GameActions from "../state/GameActions";
 import { stagedItemAspectRatioOverride } from "../utils/itemStageUtils";
-import { Water, WaterDrop } from "@mui/icons-material";
+import { Pets, Water, WaterDrop } from "@mui/icons-material";
 import WaterIcon from "./WaterIcon";
+import { useAudioPlayer } from "react-use-audio-player";
 
 type Props = {
   onTouchEnd: () => void;
@@ -148,6 +149,8 @@ export default function Furniture({
   const imageWidth = BASE_IMAGE_SIZE * scale;
 
   const imagePaddingBottom = BASE_IMAGE_SIZE * scale / aspectRatio;
+
+  const {load } = useAudioPlayer();
   
   return (
     <ClickAwayListener onClickAway={handleClose}>
@@ -171,6 +174,14 @@ export default function Furniture({
         <Box display="flex" gap="2px">
 
           <WaterIcon ownedItem={ownedItem} />
+
+          {ownedItem.furnitureName === 'momo' && (
+            <IconButton disabled={false} onClick={() => {
+              load('/audio/howl.mp3', {autoplay: true});
+            }}>
+              <Pets />
+            </IconButton>
+          )}
 
           {/* TODO: Update disabled */}
           <IconButton disabled={false} onClick={() => adjustLayer(ownedItem.id, 'down')}>
