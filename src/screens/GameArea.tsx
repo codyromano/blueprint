@@ -213,7 +213,7 @@ export default function GameArea() {
         })}
 
         {tenants.map((tenant, index) => {
-          const secondsUntilMoneyReady = getSecondsUntilTenantRent(tenant.moneyCollectedTime);
+          const secondsUntilMoneyReady = getSecondsUntilTenantRent(tenant.moneyCollectedTime, tenant.id);
 
           const rent = getRentAmount(tenant.happiness);
 

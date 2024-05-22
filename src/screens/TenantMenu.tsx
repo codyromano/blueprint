@@ -60,7 +60,7 @@ export default function TenantMenu({
 
                 <TableCell align="center">
                   {formatCountdown(
-                    getSecondsUntilTenantRent(tenant.moneyCollectedTime)
+                    getSecondsUntilTenantRent(tenant.moneyCollectedTime, tenant.id)
                   )}
                 </TableCell>
                 <TableCell align="center">
