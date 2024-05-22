@@ -1,7 +1,20 @@
+import CharacterTrait from "../models/CharacterTrait";
 import GameState from "../models/GameState";
 import tenantMap from "../models/Tenants";
 import getObjectValues from "../utils/getObjectValues";
 import nullThrows from "../utils/nullThrows";
+
+
+function getTraitHappinessMultiplier(trait: CharacterTrait): number {
+  switch (trait) {
+    case CharacterTrait.BOTANIST:
+    case CharacterTrait.DIVA:
+    case CharacterTrait.UNSPECIFIED:
+      return 1;
+    case CharacterTrait.HOSTESS:
+      return 2;
+  }
+}
 
 export default function reduceAdjustHappinessOnItemAssemble(
   newItem: NonNullable<GameState['furniture'][string]>,
@@ -14,7 +27,10 @@ export default function reduceAdjustHappinessOnItemAssemble(
   // of the item that was assembled
   for (const currentTenant of tenants) {
     currentTenant.happiness = Math.round(
-      Math.min(100, currentTenant.happiness + nullThrows(newItem.assemblyQuality))
+      Math.min(
+        100, currentTenant.happiness + nullThrows(newItem.assemblyQuality) *
+          getTraitHappinessMultiplier(newState.player.trait)
+      )
     );
   }
 
