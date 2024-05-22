@@ -42,6 +42,7 @@ enum ContextOverlayMenu {
 
 const average = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
+
 export default function GameArea() {
   const [selectedItem, setSelectedItem] = React.useState<
     GameState["furniture"][string] | null

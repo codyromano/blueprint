@@ -62,6 +62,19 @@ function getPositionRelativeToParent(element: HTMLElement): { x: number; y: numb
 
 export const OVERHEAD_CONTENT_CONTAINER_HEIGHT = "4rem";
 
+function AssemblyQualityRating({
+  rating
+}: {
+  rating: number | undefined
+}) {
+  return rating == null ? null : (
+    <div style={{ fontSize: '0.75rem'}}>
+      {new Array(rating).fill(null).map(() => '★').join('')}
+      {new Array(3 - rating).fill(null).map(() => '☆').join('')}
+    </div>
+  );
+}
+
 // TODO: Name this something broader than furniture. It also includes
 // plants, animals, and decorations.
 // Presentation only component
@@ -150,7 +163,11 @@ export default function Furniture({
         }}
       >
         <Box padding="5px">
-        <Typography variant="caption" fontWeight={"bold"}>{model.displayName}</Typography>
+        <Box display="flex" justifyContent={"space-between"}>
+          <Typography variant="caption" fontWeight={"bold"}>{model.displayName}</Typography>
+          <AssemblyQualityRating rating={ownedItem.assemblyQuality} />
+        </Box>
+
         <Box display="flex" gap="2px">
 
           <WaterIcon ownedItem={ownedItem} />
