@@ -35,7 +35,7 @@ export default function PlantMenu({
   // Maximum growth
   if (currentStage === 3) {
     return <Box display="flex" alignContent={"center"} alignItems="center">
-      <Typography style={{opacity: 0.5}}>Level 3/3 <DoneAll fontSize="small" /></Typography>
+      <Typography style={{pointerEvents: 'none', opacity: 0.5}}>Lvl 3/3 <DoneAll fontSize="small" /></Typography>
     </Box>;
   }
 
